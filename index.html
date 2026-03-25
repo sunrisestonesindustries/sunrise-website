@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUNRISE INDUSTRIES - Premium Tandur Limestone Export</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'San Francisco', 'Helvetica Neue', sans-serif;
+            background-color: #fafaf8;
+            color: #2c2c2c;
+            line-height: 1.7;
+            overflow-x: hidden;
+            letter-spacing: 0.3px;
+        }
+
+        /* Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            background-color: rgba(250, 250, 248, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(100, 89, 82, 0.1);
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'San Francisco', sans-serif;
+        }
+
+        .logo span {
+            color: #a89080;
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 50px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #4a4340;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.8px;
+            transition: color 0.4s ease;
+            text-transform: uppercase;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'San Francisco', sans-serif;
+        }
+
+        nav a:hover {
+            color: #a89080;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, #fafaf8 0%, #f5f3f0 50%, #efe8e2 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 60px 40px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -5%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(168, 144, 128, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(168, 144, 128, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            z-index: 10;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 84px;
+            font-weight: 300;
+            letter-spacing: -0.5px;
+            margin-bottom: 28px;
+            color: #1a1a1a;
+            line-height: 1.1;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'San Francisco', sans-serif;
+        }
+
+        .hero h1 span {
+            color: #a89080;
+            font-weight: 500;
+            display: block;
+            margin-top: 12px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #6b5f56;
+            margin-bottom: 50px;
+            letter-spacing: 0.2px;
+            font-weight: 300;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'San Francisco', sans-serif;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 60px;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            transition: all 0.5s ease;
+            border: 2px solid #1a1a1a;
+            cursor: pointer;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'San Francisco', sans-serif;
+        }
+
+        .cta-button:hover {
+            background-color: #fafaf8;
+            color: #1a1a1a;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(26, 26, 26, 0.15);
+        }
+
+        /* Products Section */
+        .products {
+            padding: 140px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+            background-color: #fafaf8;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 100px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .section-title h2 {
+            font-size: 56px;
+            font-weight: 300;
+            letter-spacing: -0.5px;
+            margin-bottom: 18px;
+            color: #1a1a1a;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'San Francisco', sans-serif;
+        }
+
+        .section-title h2 span {
+            color: #a89080;
+            font-weight: 400;
+        }
+
+        .section-title p {
+            font-size: 18px;
+            color: #7a6f6a;
+            letter-spacing: 0.2px;
+            font-weight: 300;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'San Francisco', sans-serif;
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .color-card {
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out;
+            transition: transform 0.5s ease;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        .color-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+        }
+
+        .color-sample {
+            width: 100%;
+            height: 380px;
+            margin-bottom: 0;
+            box-shadow: none;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .color-sample::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(0,0,0,0.05) 100%);
+        }
+
+        .color-card:hover .color-sample {
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.3);
+        }
+
+        .blue { background: linear-gradient(135deg, #5b9dd9 0%, #3a6fa1 100%); }
+        .yellow { background: linear-gradient(135deg, #d4af65 0%, #b8890a 100%); }
+        .gray { background: linear-gradient(135deg, #8b8680 0%, #5f5752 100%); }
+        .black { background: linear-gradient(135deg, #3a3a3a 0%, #0a0a0a 100%); }
+
+        .color-card h3 {
+            font-size: 24px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            margin-bottom: 12px;
+            color: #1a1a1a;
+            padding: 30px 30px 12px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'San Francisco', sans-serif;
+        }
+
+        .color-card p {
+            font-size: 15px;
+            color: #7a6f6a;
+            letter-spacing: 0.2px;
+            padding: 0 30px 30px;
+            font-weight: 300;
+            line-height: 1.8;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'San Francisco', sans-serif;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 140px 60px;
+            background: linear-gradient(135deg, #f5f3f0 0%, #efe8e2 100%);
+        }
+
+        .features-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+            margin-top: 80px;
+        }
+
+        .feature-item {
+            animation: fadeInUp 0.8s ease-out;
+            padding: 50px 40px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 12px;
+            border: 1px solid rgba(168, 144, 128, 0.1);
+            transition: all 0.5s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-item:hover {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: rgba(168, 144, 128, 0.3);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #a89080 0%, #8b6f64 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #ffffff;
+            transition: all 0.5s ease;
+        }
+
+        .feature-item:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .feature-item h3 {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 16px;
+            color: #1a1a1a;
+            letter-spacing: 0.3px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'San Francisco', sans-serif;
+        }
+
+        .feature-item p {
+            font-size: 15px;
+            color: #6b5f56;
+            line-height: 1.9;
+            letter-spacing: 0.2px;
+            font-weight: 300;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'San Francisco', sans-serif;
+        }
+
+        /* About Section */
+        .about {
+            padding: 140px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+            background-color: #fafaf8;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 48px;
+            font-weight: 300;
+            letter-spacing: -0.5px;
+            margin-bottom: 30px;
+            color: #1a1a1a;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'San Francisco', sans-serif;
+            line-height: 1.2;
+        }
+
+        .about-text h2 span {
+            color: #a89080;
+            font-weight: 400;
+            display: block;
+        }
+
+        .about-text p {
+            font-size: 16px;
+            color: #6b5f56;
+            margin-bottom: 24px;
+            line-height: 2;
+            letter-spacing: 0.2px;
+            font-weight: 300;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'San Francisco', sans-serif;
+        }
+
+        .about-box {
+            background: linear-gradient(135deg, #f5f3f0 0%, #efe8e2 100%);
+            padding: 50px;
+            border-radius: 12px;
+            margin-top: 40px;
+            border: 1px solid rgba(168, 144, 128, 0.1);
+        }
+
+        .about-box h3 {
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            margin-bottom: 25px;
+            color: #1a1a1a;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'San Francisco', sans-serif;
+        }
+
+        .about-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .about-box li {
+            padding: 12px 0;
+            font-size: 15px;
+            color: #6b5f56;
+            letter-spacing: 0.2px;
+            font-weight: 300;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'San Francisco', sans-serif;
+            line-height: 1.8;
+        }
+
+        .about-box li::before {
+            content: '✓ ';
+            color: #a89080;
+            font-weight: 600;
+            margin-right: 12px;
+        }
+
+        .about-image {
+            height: 550px;
+            background: linear-gradient(135deg, #b8987f 0%, #8b6f64 50%, #6b5f56 100%);
+            border-radius: 12px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.1) 0%, transparent 50%);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 140px 60px;
+            background: linear-gradient(135deg, #2a2520 0%, #1a1612 100%);
+            color: #ffffff;
+        }
+
+        .contact-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 56px;
+            font-weight: 300;
+            letter-spacing: -0.5px;
+            margin-bottom: 18px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'San Francisco', sans-serif;
+        }
+
+        .contact h2 span {
+            color: #a89080;
+            font-weight: 400;
+        }
+
+        .contact > p {
+            font-size: 18px;
+            color: #b8a89f;
+            margin-bottom: 70px;
+            letter-spacing: 0.2px;
+            font-weight: 300;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'San Francisco', sans-serif;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 50px 40px;
+            border-radius: 12px;
+            border: 1px solid rgba(168, 144, 128, 0.2);
+            animation: fadeInUp 0.8s ease-out;
+            backdrop-filter: blur(10px);
+            transition: all 0.5s ease;
+        }
+
+        .contact-card:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(168, 144, 128, 0.4);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-card h3 {
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+            color: #a89080;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'San Francisco', sans-serif;
+        }
+
+        .contact-card p {
+            font-size: 15px;
+            color: #c4b5ac;
+            letter-spacing: 0.2px;
+            font-weight: 300;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'San Francisco', sans-serif;
+        }
+
+        .contact-card a {
+            color: #a89080;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 400;
+        }
+
+        .contact-card a:hover {
+            color: #ffffff;
+        }
+
+        .cta-button-light {
+            display: inline-block;
+            padding: 18px 60px;
+            background: linear-gradient(135deg, #a89080 0%, #8b6f64 100%);
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            transition: all 0.5s ease;
+            border: 2px solid #a89080;
+            cursor: pointer;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'San Francisco', sans-serif;
+            margin-top: 30px;
+        }
+
+        .cta-button-light:hover {
+            background: transparent;
+            color: #a89080;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(168, 144, 128, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #0f0d0a 0%, #1a1612 100%);
+            padding: 50px 60px;
+            text-align: center;
+            color: #8a7f78;
+            font-size: 13px;
+            letter-spacing: 0.3px;
+            border-top: 1px solid rgba(168, 144, 128, 0.15);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'San Francisco', sans-serif;
+            font-weight: 300;
+        }
+
+        footer span {
+            color: #a89080;
+            font-weight: 400;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .color-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 20px;
+                padding: 15px 30px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .section-title h2 {
+                font-size: 36px;
+            }
+
+            .products, .features, .about, .contact {
+                padding: 80px 30px;
+            }
+
+            .about-image {
+                height: 350px;
+            }
+
+            .color-card {
+                border-radius: 12px;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animation delays */
+        .color-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .color-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .color-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .color-card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .feature-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .feature-item:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .feature-item:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .contact-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .contact-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .contact-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <nav>
+            <div class="logo">SUNRISE <span>INDUSTRIES</span></div>
+            <ul>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Architectural <span>Excellence in Stone</span></h1>
+            <p>Premium Tandur Limestone crafted for visionary designs</p>
+            <a href="#products" class="cta-button">View Our Collections</a>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="section-title">
+            <h2>Curated <span>Stone Palette</span></h2>
+            <p>Sophisticated Tandur limestone in exceptional finishes, customized for architectural masterpieces</p>
+        </div>
+
+        <div class="color-grid">
+            <div class="color-card">
+                <div class="color-sample blue"></div>
+                <h3>Slate Blue</h3>
+                <p>A refined and sophisticated blue that evokes timeless elegance. Perfect for contemporary luxury spaces and architectural statements.</p>
+            </div>
+
+            <div class="color-card">
+                <div class="color-sample yellow"></div>
+                <h3>Imperial Gold</h3>
+                <p>Warm and luminous golden tones that bring warmth to premium interiors. Ideal for high-end residential and commercial projects.</p>
+            </div>
+
+            <div class="color-card">
+                <div class="color-sample gray"></div>
+                <h3>Charcoal Grey</h3>
+                <p>Neutral elegance meets modern sophistication. A versatile choice for contemporary designs with understated luxury appeal.</p>
+            </div>
+
+            <div class="color-card">
+                <div class="color-sample black"></div>
+                <h3>Midnight Black</h3>
+                <p>Deep, mysterious black that commands presence in any space. Signature choice for bold architectural visions and luxury interiors.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="features-container">
+            <div class="section-title">
+                <h2>The <span>SUNRISE</span> Difference</h2>
+                <p>Uncompromising standards in every dimension</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🏔️</div>
+                    <h3>Quarry Excellence</h3>
+                    <p>Sourced exclusively from premium Tandur quarries, each stone is meticulously selected for superior quality, durability, and aesthetic perfection.</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">📐</div>
+                    <h3>Bespoke Specifications</h3>
+                    <p>Precision-cut custom dimensions tailored to your architectural vision. We deliver exactly what your project demands.</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">🌍</div>
+                    <h3>International Excellence</h3>
+                    <p>Trusted logistics partners ensure flawless delivery to premium projects worldwide, with meticulous care and protection.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>Heritage of <span>Excellence</span></h2>
+                <p>SUNRISE INDUSTRIES stands as a distinguished supplier of premium Tandur limestone to the world's most discerning architects, designers, and builders across North America and beyond.</p>
+                <p>With an unwavering commitment to exceptional quality, sustainable practices, and visionary partnership, we provide the finest natural stone solutions for luxury residential estates, prestigious commercial developments, and significant architectural projects.</p>
+
+                <div class="about-box">
+                    <h3>Our Distinction</h3>
+                    <ul>
+                        <li>Handpicked Tandur limestone in four exclusive, sophisticated colors</li>
+                        <li>Precision custom sizing for exacting architectural specifications</li>
+                        <li>Competitive luxury pricing without compromise on quality</li>
+                        <li>Guaranteed timely delivery with professional handling</li>
+                        <li>Dedicated architectural consultation and project support</li>
+                        <li>Sustainable, ethical sourcing practices</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="about-image"></div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <h2>Begin Your <span>Journey</span></h2>
+            <p>Connect with our specialists to explore how SUNRISE INDUSTRIES can elevate your architectural vision</p>
+
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <h3>📧 CORRESPONDENCE</h3>
+                    <p><a href="mailto:info@sunriseindustries.com">info@sunriseindustries.com</a></p>
+                </div>
+
+                <div class="contact-card">
+                    <h3>📞 DIRECT LINE</h3>
+                    <p><a href="tel:+1-800-SUNRISE1">+1 (800) SUNRISE-1</a></p>
+                </div>
+
+                <div class="contact-card">
+                    <h3>📍 HEADQUARTERS</h3>
+                    <p>SUNRISE INDUSTRIES<br>USA East Coast Operations</p>
+                </div>
+            </div>
+
+            <a href="mailto:info@sunriseindustries.com" class="cta-button-light">Request Exclusive Quote</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 SUNRISE INDUSTRIES. All rights reserved. | Curators of <span>Premium Tandur Limestone</span></p>
+    </footer>
+</body>
+</html>

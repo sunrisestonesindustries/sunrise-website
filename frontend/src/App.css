@@ -1,0 +1,25 @@
+.App {
+    @apply bg-black text-off-white overflow-x-hidden;
+}
+
+/* Smooth animations for Framer Motion */
+* {
+    @apply transition-colors duration-220 ease-out;
+}
+
+button {
+    @apply transition-all duration-180 ease-out;
+}
+
+/* Prevent excessive scrollbar flashing */
+html {
+    scrollbar-gutter: stable;
+}
+
+/* Smooth scroll behavior for anchor links */
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+

@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Global base styles */
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    scrollbar-width: none;
+}
+
+body {
+    @apply bg-white text-black font-gabarito overflow-x-hidden;
+    font-weight: 400;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -ms-overflow-style: none;
+}
+
+/* Headings */
+h1 {
+    @apply font-gabarito text-h1 font-bold tracking-tighter leading-tight;
+}
+
+h2 {
+    @apply font-gabarito text-h2 font-bold tracking-tight leading-snug;
+}
+
+h3 {
+    @apply font-gabarito text-h3 font-medium tracking-tight leading-snug;
+}
+
+/* Buttons base */
+button {
+    @apply transition-all duration-180 ease-out cursor-pointer;
+}
+
+button:disabled {
+    @apply opacity-50 cursor-not-allowed;
+}
+
+/* Links */
+a {
+    @apply transition-colors duration-220;
+}
+
+/* Images */
+img {
+    @apply max-w-full h-auto;
+}
+
+/* Hide visible scrollbar */
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+/* Selection */
+::selection {
+    @apply bg-gray-300 text-black;
+}
+
+/* Placeholder */
+::placeholder {
+    @apply text-gray-500;
+}
+
+/* Focus rings */
+input:focus,
+textarea:focus,
+select:focus {
+    @apply outline-none ring-1 ring-gray-800/50;
+}
+
+/* Responsive typography */
+@media (max-width: 1024px) {
+    h1 {
+        @apply text-4xl;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        @apply text-sm;
+    }
+    
+    h1 {
+        @apply text-3xl;
+    }
+    
+    h2 {
+        @apply text-2xl;
+    }
+    
+    h3 {
+        @apply text-xl;
+    }
+}
