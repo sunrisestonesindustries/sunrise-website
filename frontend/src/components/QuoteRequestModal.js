@@ -1,19 +1,40 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export default function QuoteRequestModal({ isOpen, onClose, cartItems = [] }) {
-  const [formData, setFormData] = useState({
-    name: '',
-    contact: '',
-    email: '',
-    country: '',
-    state: '',
-    inquiry: '',
-  });
+const FIELD_LABELS = {
+  name: 'Full Name',
+  contact: 'Phone/Contact',
+  email: 'Email',
+  country: 'Country',
+  state: 'State/Region',
+  inquiry: 'Your Inquiry',
+};
 
+const getDefaultFormData = (initialData = {}) => ({
+  name: '',
+  contact: '',
+  email: '',
+  country: '',
+  state: '',
+  inquiry: initialData.inquiry || '',
+});
+
+export default function QuoteRequestModal({ isOpen, onClose, cartItems = [], initialData = {} }) {
+  const [formData, setFormData] = useState(getDefaultFormData(initialData));
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
+
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    setFormData(getDefaultFormData(initialData));
+    setSubmitted(false);
+    setIsSubmitting(false);
+    setSubmitError('');
+  }, [isOpen, initialData]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -25,23 +46,43 @@ export default function QuoteRequestModal({ isOpen, onClose, cartItems = [] }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    setIsSubmitting(true);
     setSubmitError('');
 
+    const trimmedFormData = Object.fromEntries(
+      Object.entries(formData).map(([key, value]) => [key, value.trim()])
+    );
+
+    const missingField = Object.entries(trimmedFormData).find(([, value]) => !value);
+    if (missingField) {
+      setSubmitError(`${FIELD_LABELS[missingField[0]]} is required.`);
+      return;
+    }
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(trimmedFormData.email)) {
+      setSubmitError('Email must be in the format name@example.com.');
+      return;
+    }
+
+    setIsSubmitting(true);
+
     try {
-      const response = await fetch('/api/quote', {
+      const endpoint = new URL('/api/quote', window.location.origin).toString();
+      const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          ...formData,
+          ...trimmedFormData,
           cartItems,
         }),
       });
 
-      const result = await response.json();
+      const responseType = response.headers.get('content-type') || '';
+      const result = responseType.includes('application/json')
+        ? await response.json()
+        : { error: await response.text() };
 
       if (!response.ok) {
         throw new Error(result.error || 'Failed to submit quote request');
@@ -53,21 +94,20 @@ export default function QuoteRequestModal({ isOpen, onClose, cartItems = [] }) {
         handleClose();
       }, 2000);
     } catch (error) {
-      setSubmitError(error.message || 'Failed to submit quote request');
+      if (error.message === 'The string did not match the expected pattern.') {
+        setSubmitError('Quote request could not be submitted. If you are testing locally, make sure the backend API is running on http://127.0.0.1:5001.');
+      } else if (error.message === 'Failed to fetch') {
+        setSubmitError('Quote request could not reach the server. If you are testing locally, start the backend API on http://127.0.0.1:5001.');
+      } else {
+        setSubmitError(error.message || 'Failed to submit quote request');
+      }
     } finally {
       setIsSubmitting(false);
     }
   };
 
   const handleClose = () => {
-    setFormData({
-      name: '',
-      contact: '',
-      email: '',
-      country: '',
-      state: '',
-      inquiry: '',
-    });
+    setFormData(getDefaultFormData(initialData));
     setSubmitted(false);
     setIsSubmitting(false);
     setSubmitError('');
@@ -98,6 +138,7 @@ export default function QuoteRequestModal({ isOpen, onClose, cartItems = [] }) {
             <div className="relative w-full max-w-xl rounded-lg bg-white shadow-2xl">
               {/* Close Button */}
               <motion.button
+                type="button"
                 onClick={handleClose}
                 className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center hover:bg-gray-100 rounded-full transition-colors"
                 whileHover={{ scale: 1.1 }}
@@ -118,7 +159,7 @@ export default function QuoteRequestModal({ isOpen, onClose, cartItems = [] }) {
 
               {/* Form */}
               {!submitted ? (
-                <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-4 px-6 py-5 md:grid-cols-2 md:px-8">
+                <form noValidate onSubmit={handleSubmit} className="grid grid-cols-1 gap-4 px-6 py-5 md:grid-cols-2 md:px-8">
                   {/* Name */}
                   <div>
                     <label className="block text-sm font-gabarito font-semibold text-black mb-2">
@@ -141,7 +182,7 @@ export default function QuoteRequestModal({ isOpen, onClose, cartItems = [] }) {
                       Phone/Contact *
                     </label>
                     <input
-                      type="tel"
+                      type="text"
                       name="contact"
                       value={formData.contact}
                       onChange={handleInputChange}
@@ -157,7 +198,9 @@ export default function QuoteRequestModal({ isOpen, onClose, cartItems = [] }) {
                       Email *
                     </label>
                     <input
-                      type="email"
+                      type="text"
+                      inputMode="email"
+                      autoComplete="email"
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}

@@ -5,7 +5,7 @@ import stepyImage from '../Pictures/stepy.webp';
 import extyImage from '../Pictures/exty5.webp';
 import poolImage from '../Pictures/pb.jpg';
 
-export default function Hero({ onOpenModal }) {
+export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const containerRef = useRef(null);
   const { scrollY } = useScroll();
@@ -82,20 +82,17 @@ export default function Hero({ onOpenModal }) {
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 mb-8 justify-center">
             <motion.button
-              onClick={onOpenModal}
+              onClick={() => {
+                const collectionSection = document.getElementById('limestone-collection');
+                if (collectionSection) {
+                  collectionSection.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
               whileHover={{ y: -2, boxShadow: '0 0 20px rgba(255, 255, 255, 0.2)' }}
               whileTap={{ y: 0 }}
               className="px-6 md:px-8 py-3 border-2 border-white text-white text-button font-gabarito tracking-wide rounded-sm transition-all duration-180 hover:bg-white hover:text-black"
             >
               Browse Collection
-            </motion.button>
-
-            <motion.button
-              onClick={onOpenModal}
-              whileHover={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}
-              className="px-6 md:px-8 py-3 border-2 border-white text-white text-button font-gabarito tracking-wide rounded-sm transition-all duration-180 hover:bg-white hover:text-black"
-            >
-              Enquire Now
             </motion.button>
           </div>
 
@@ -108,7 +105,7 @@ export default function Hero({ onOpenModal }) {
           <div className="flex items-center gap-2 justify-center">
             <div className="h-px w-8 bg-white" />
             <p className="text-xs font-gabarito text-white/60 tracking-wide">
-              Owned Quarry • Custom Cuts • QC Evidence
+              Owned Quarry • Custom Cuts • International Exports
             </p>
           </div>
         </motion.div>

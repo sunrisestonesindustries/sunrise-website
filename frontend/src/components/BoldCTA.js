@@ -70,7 +70,7 @@ export default function BoldCTA({ onOpenModal }) {
               Contact
             </p>
             <p className="text-sm font-gabarito text-gray-600">
-              sunrisestoneindustries@gmail.com<br />+1 (555) 123-4567
+              sunrisestonesindustries@gmail.com<br />+1 (555) 123-4567
             </p>
           </div>
         </motion.div>

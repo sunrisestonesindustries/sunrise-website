@@ -4,8 +4,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 const CONTACT_DETAILS = [
   {
     label: 'Email',
-    value: 'sunrisestoneindustries@gmail.com',
-    href: 'mailto:sunrisestoneindustries@gmail.com',
+    value: 'sunrisestonesindustries@gmail.com',
+    href: 'mailto:sunrisestonesindustries@gmail.com',
   },
   {
     label: 'Phone',

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Lenis from 'lenis';
 import Navbar from './components/Navbar';
 import HeroCarousel from './components/HeroCarousel';
@@ -14,9 +14,12 @@ import Footer from './components/Footer';
 import LimestoneDetail from './components/LimestoneDetail';
 import MiningJourney from './components/MiningJourney';
 import CartPage from './components/CartPage';
+import StoneCustomizationPage from './components/StoneCustomizationPage';
 import './App.css';
 
 function HomePage({ setIsModalOpen, setIsContactOpen, cartCount }) {
+  const location = useLocation();
+
   // Initialize Lenis smooth scrolling
   useEffect(() => {
     const lenis = new Lenis({
@@ -40,6 +43,22 @@ function HomePage({ setIsModalOpen, setIsContactOpen, cartCount }) {
       lenis.destroy();
     };
   }, []);
+
+  useEffect(() => {
+    const sectionId = location.state?.scrollTo;
+    if (!sectionId) {
+      return;
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      const targetSection = document.getElementById(sectionId);
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 150);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [location]);
 
   return (
     <div className="App bg-white min-h-screen">
@@ -178,6 +197,15 @@ function App() {
               onClearCart={handleClearCart}
               onOpenModal={() => setIsModalOpen(true)}
               onOpenContact={() => setIsContactOpen(true)}
+            />
+          }
+        />
+        <Route
+          path="/customize-stone"
+          element={
+            <StoneCustomizationPage
+              onOpenContact={() => setIsContactOpen(true)}
+              cartCount={cartCount}
             />
           }
         />

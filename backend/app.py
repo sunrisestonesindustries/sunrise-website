@@ -45,7 +45,7 @@ COMPANY_DATA = {
     "name": "SUNRISE INDUSTRIES",
     "description": "Premium Tandur Limestone Exporters to USA",
     "tagline": "Exquisite natural stone for international markets",
-    "email": "sunrisestoneindustries@gmail.com",
+    "email": "sunrisestonesindustries@gmail.com",
     "phone": "+1 (800) SUNRISE-1",
     "location": "Export Partners, USA Headquarters"
 }
@@ -123,7 +123,7 @@ ABOUT_DATA = {
 
 # Contact data
 CONTACT_INFO = {
-    "email": "sunrisestoneindustries@gmail.com",
+    "email": "sunrisestonesindustries@gmail.com",
     "phone": "+1 (800) SUNRISE-1",
     "location": "Export Partners, USA Headquarters"
 }
@@ -166,12 +166,17 @@ def build_quote_email(data):
     return "\n".join(lines)
 
 
+def normalize_smtp_password(password):
+    """Allow pasted Gmail app passwords with visual spacing."""
+    return ''.join((password or '').split())
+
+
 def send_quote_email(data):
     smtp_host = os.environ.get('SMTP_HOST')
     smtp_port = int(os.environ.get('SMTP_PORT', '587'))
     smtp_user = os.environ.get('SMTP_USER')
-    smtp_pass = os.environ.get('SMTP_PASS')
-    quote_to_email = os.environ.get('QUOTE_TO_EMAIL', 'sunrisestoneindustries@gmail.com')
+    smtp_pass = normalize_smtp_password(os.environ.get('SMTP_PASS'))
+    quote_to_email = os.environ.get('QUOTE_TO_EMAIL', 'sunrisestonesindustries@gmail.com')
 
     if not smtp_host or not smtp_user or not smtp_pass:
         raise RuntimeError('SMTP is not configured. Set SMTP_HOST, SMTP_PORT, SMTP_USER, and SMTP_PASS.')
@@ -208,7 +213,7 @@ def test_smtp_connection():
     smtp_host = os.environ.get('SMTP_HOST')
     smtp_port = int(os.environ.get('SMTP_PORT', '587'))
     smtp_user = os.environ.get('SMTP_USER')
-    smtp_pass = os.environ.get('SMTP_PASS')
+    smtp_pass = normalize_smtp_password(os.environ.get('SMTP_PASS'))
 
     if not smtp_host or not smtp_user or not smtp_pass:
         raise QuoteEmailError('SMTP is not configured. Set SMTP_HOST, SMTP_PORT, SMTP_USER, and SMTP_PASS.')
@@ -390,6 +395,15 @@ def get_testimonials():
     return jsonify({"testimonials": testimonials})
 
 
+@app.route('/favicon.ico')
+def serve_favicon():
+    """Serve a stable favicon path for browsers that request /favicon.ico by default."""
+    if not os.path.isdir(FRONTEND_BUILD_DIR):
+        return jsonify({"error": "Frontend build not found. Run the frontend build before deployment."}), 404
+
+    return send_from_directory(FRONTEND_BUILD_DIR, 'favicon.png', mimetype='image/png')
+
+
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def serve_frontend(path):
@@ -405,4 +419,4 @@ def serve_frontend(path):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='127.0.0.1', port=5000)
+    app.run(debug=True, host='127.0.0.1', port=int(os.environ.get('PORT', '5001')))

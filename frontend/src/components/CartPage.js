@@ -89,7 +89,7 @@ export default function CartPage({ cartItems, onRemoveCartItem, onClearCart, onO
                 Add a limestone by selecting its size, finish, and edge options from any product detail page.
               </p>
               <button
-                onClick={() => navigate('/')}
+                onClick={() => navigate('/', { state: { scrollTo: 'limestone-collection' } })}
                 className="px-6 py-3 bg-black text-white font-gabarito font-semibold rounded-sm hover:bg-gray-800 transition-all duration-220"
               >
                 Browse Collection

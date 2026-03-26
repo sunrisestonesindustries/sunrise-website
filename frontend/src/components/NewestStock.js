@@ -13,21 +13,21 @@ export default function NewestStock() {
     {
       id: 1,
       colorId: 'blue',
-      name: 'Blue',
+      name: 'Urban Blue Limestone',
       image: blueImage,
       code: 'LST-BLU',
     },
     {
       id: 2,
       colorId: 'yellow',
-      name: 'Yellow',
+      name: 'Sunwashed Limestone',
       image: yellowImage,
       code: 'LST-YEL',
     },
     {
       id: 3,
       colorId: 'grey',
-      name: 'Grey',
+      name: 'Silver Ash Limestone',
       image: greyImage,
       code: 'LST-GRY',
     },
@@ -164,7 +164,7 @@ export default function NewestStock() {
             whileHover={{ x: 4 }}
             className="inline-flex items-center gap-3 text-button font-gabarito tracking-wide text-white hover:text-gray-300 transition-colors duration-220"
           >
-            DESIGNED BY NATURE. LAUNCHING SOON.
+            A New Collection Is Launching Soon.
             <span className="w-4 h-px bg-white" />
           </motion.a>
         </motion.div>

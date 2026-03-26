@@ -48,7 +48,7 @@ export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveM
 
   const limestoneData = {
     blue: {
-      name: 'Blue Limestone',
+      name: 'Urban Blue Limestone',
       code: 'LST-BLU',
       image: blueImage,
       description: 'Premium blue limestone sourced directly from our Telangana mines. Known for its distinctive blue-gray tone and exceptional durability. Perfect for both contemporary and traditional architectural projects.',
@@ -107,7 +107,7 @@ export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveM
       ],
     },
     yellow: {
-      name: 'Yellow Limestone',
+      name: 'Sunwashed Limestone',
       code: 'LST-YEL',
       image: yellowImage,
       description: 'Warm, golden yellow limestone that brings elegance to any project. This premium stone features excellent workability and consistent coloring throughout each piece.',
@@ -166,7 +166,7 @@ export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveM
       ],
     },
     grey: {
-      name: 'Grey Limestone',
+      name: 'Silver Ash Limestone',
       code: 'LST-GRY',
       image: greyImage,
       description: 'Sophisticated grey limestone offering timeless elegance. Perfect for modern and traditional designs with its neutral, versatile tone that complements any aesthetic.',
@@ -345,6 +345,14 @@ export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveM
     },
   };
   const selectionTheme = themeByColor[colorId] || themeByColor.grey;
+  const handleCustomizeSpecs = () => {
+    navigate('/customize-stone', {
+      state: {
+        stoneName: stone?.name,
+        colorId,
+      },
+    });
+  };
 
   if (!stone) {
     return (
@@ -443,12 +451,20 @@ export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveM
               </div>
 
               {/* CTA */}
-              <button 
-                onClick={() => setIsModalOpen(true)}
-                className="w-full py-4 bg-black text-white font-gabarito font-bold tracking-wide rounded-sm hover:bg-gray-800 transition-all duration-220"
-              >
-                Request Quote
-              </button>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <button 
+                  onClick={() => setIsModalOpen(true)}
+                  className="flex-1 py-4 bg-black text-white font-gabarito font-bold tracking-wide rounded-sm hover:bg-gray-800 transition-all duration-220"
+                >
+                  Request Quote
+                </button>
+                <button
+                  onClick={handleCustomizeSpecs}
+                  className="px-5 py-3 border border-black text-black text-sm font-gabarito font-semibold tracking-wide rounded-sm hover:bg-black hover:text-white transition-all duration-220 sm:w-auto"
+                >
+                  Customize Specs
+                </button>
+              </div>
             </motion.div>
           </div>
 
@@ -695,14 +711,24 @@ export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveM
                 </button>
               </div>
 
-              <motion.button
-                onClick={() => setIsModalOpen(true)}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full rounded-[22px] border-2 border-black bg-white py-4 text-black font-gabarito font-bold tracking-wide transition-all duration-220 hover:bg-black hover:text-white md:col-span-2"
-              >
-                Request Quote
-              </motion.button>
+              <div className="grid gap-3 md:col-span-2 md:grid-cols-[minmax(0,1fr)_auto]">
+                <motion.button
+                  onClick={() => setIsModalOpen(true)}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="w-full rounded-[22px] border-2 border-black bg-white py-4 text-black font-gabarito font-bold tracking-wide transition-all duration-220 hover:bg-black hover:text-white"
+                >
+                  Request Quote
+                </motion.button>
+                <motion.button
+                  onClick={handleCustomizeSpecs}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="rounded-[22px] border border-black px-5 py-4 text-sm font-gabarito font-semibold tracking-wide text-black transition-all duration-220 hover:bg-black hover:text-white"
+                >
+                  Customize Specs
+                </motion.button>
+              </div>
             </div>
           </motion.div>
 

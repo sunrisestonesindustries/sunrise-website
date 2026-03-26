@@ -94,8 +94,8 @@ export default function Footer() {
               <p className="text-xs font-gabarito tracking-wider text-gray-600 mb-2 uppercase">
                 Contact
               </p>
-              <a href="mailto:sunrisestoneindustries@gmail.com" className="text-sm font-gabarito text-black hover:text-gray-600 transition-colors">
-                sunrisestoneindustries@gmail.com
+              <a href="mailto:sunrisestonesindustries@gmail.com" className="text-sm font-gabarito text-black hover:text-gray-600 transition-colors">
+                sunrisestonesindustries@gmail.com
               </a>
             </div>
 
