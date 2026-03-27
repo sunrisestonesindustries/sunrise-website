@@ -10,6 +10,8 @@ const FIELD_LABELS = {
   inquiry: 'Your Inquiry',
 };
 
+const EMPTY_INITIAL_DATA = Object.freeze({});
+
 const getDefaultFormData = (initialData = {}) => ({
   name: '',
   contact: '',
@@ -19,8 +21,9 @@ const getDefaultFormData = (initialData = {}) => ({
   inquiry: initialData.inquiry || '',
 });
 
-export default function QuoteRequestModal({ isOpen, onClose, cartItems = [], initialData = {} }) {
-  const [formData, setFormData] = useState(getDefaultFormData(initialData));
+export default function QuoteRequestModal({ isOpen, onClose, cartItems = [], initialData = EMPTY_INITIAL_DATA }) {
+  const initialInquiry = initialData?.inquiry || '';
+  const [formData, setFormData] = useState(getDefaultFormData({ inquiry: initialInquiry }));
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
@@ -30,11 +33,11 @@ export default function QuoteRequestModal({ isOpen, onClose, cartItems = [], ini
       return;
     }
 
-    setFormData(getDefaultFormData(initialData));
+    setFormData(getDefaultFormData({ inquiry: initialInquiry }));
     setSubmitted(false);
     setIsSubmitting(false);
     setSubmitError('');
-  }, [isOpen, initialData]);
+  }, [isOpen, initialInquiry]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -107,7 +110,7 @@ export default function QuoteRequestModal({ isOpen, onClose, cartItems = [], ini
   };
 
   const handleClose = () => {
-    setFormData(getDefaultFormData(initialData));
+    setFormData(getDefaultFormData({ inquiry: initialInquiry }));
     setSubmitted(false);
     setIsSubmitting(false);
     setSubmitError('');
