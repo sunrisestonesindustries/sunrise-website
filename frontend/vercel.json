@@ -2,5 +2,10 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "create-react-app",
   "buildCommand": "npm run build",
-  "outputDirectory": "build"
+  "outputDirectory": "build",
+  "functions": {
+    "api/**/*.py": {
+      "excludeFiles": "{build/**,node_modules/**,public/**,src/**,.git/**}"
+    }
+  }
 }
