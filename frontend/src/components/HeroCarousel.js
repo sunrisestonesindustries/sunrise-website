@@ -47,7 +47,7 @@ export default function Hero() {
     <motion.div 
       ref={containerRef}
       style={{ opacity: heroOpacity }}
-      className="fixed inset-0 w-full h-screen overflow-hidden z-0 pointer-events-auto"
+      className="fixed inset-0 w-full h-screen overflow-hidden z-0 pointer-events-none"
     >
       <AnimatePresence mode="wait">
         <motion.div
@@ -71,13 +71,13 @@ export default function Hero() {
       </AnimatePresence>
 
       {/* Hero Content */}
-      <div className="absolute inset-0 flex items-center justify-center px-6 pt-28 md:px-12 md:pt-32">
+      <div className="absolute inset-0 flex items-center justify-center px-6 pt-28 md:px-12 md:pt-32 pointer-events-none">
         <motion.div
           key={`content-${currentSlide}`}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-2xl text-center"
+          className="max-w-2xl text-center pointer-events-auto"
         >
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 mb-8 justify-center">
@@ -112,7 +112,7 @@ export default function Hero() {
       </div>
 
       {/* Slide Navigation Dots */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2">
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2 pointer-events-auto">
         {slides.map((_, idx) => (
           <motion.button
             key={idx}

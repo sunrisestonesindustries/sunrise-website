@@ -6,7 +6,7 @@ function Products({ products }) {
     <section className="products" id="products">
       <div className="section-title">
         <h2>Our <span>Collection</span></h2>
-        <p>Tandur limestone in four stunning colors, custom-sized for your projects</p>
+        <p>Premium limestone in four stunning colors, custom-sized for your projects</p>
       </div>
 
       <div className="color-grid">

@@ -10,14 +10,16 @@ import Testimonials from './components/Testimonials';
 import BoldCTA from './components/BoldCTA';
 import QuoteRequestModal from './components/QuoteRequestModal';
 import ContactDetailsModal from './components/ContactDetailsModal';
+import MultiStepModal from './components/MultiStepModal';
 import Footer from './components/Footer';
 import LimestoneDetail from './components/LimestoneDetail';
 import MiningJourney from './components/MiningJourney';
 import CartPage from './components/CartPage';
 import StoneCustomizationPage from './components/StoneCustomizationPage';
+import CompanyInfoPage from './components/CompanyInfoPage';
 import './App.css';
 
-function HomePage({ setIsModalOpen, setIsContactOpen, cartCount }) {
+function HomePage({ setIsModalOpen, setIsAppointmentOpen, setIsContactOpen, cartCount }) {
   const location = useLocation();
 
   // Initialize Lenis smooth scrolling
@@ -45,7 +47,8 @@ function HomePage({ setIsModalOpen, setIsContactOpen, cartCount }) {
   }, []);
 
   useEffect(() => {
-    const sectionId = location.state?.scrollTo;
+    const sectionId = location.state?.scrollTo
+      || (typeof window !== 'undefined' ? window.sessionStorage.getItem('home-scroll-target') : '');
     if (!sectionId) {
       return;
     }
@@ -54,6 +57,7 @@ function HomePage({ setIsModalOpen, setIsContactOpen, cartCount }) {
       const targetSection = document.getElementById(sectionId);
       if (targetSection) {
         targetSection.scrollIntoView({ behavior: 'smooth' });
+        window.sessionStorage.removeItem('home-scroll-target');
       }
     }, 150);
 
@@ -74,14 +78,21 @@ function HomePage({ setIsModalOpen, setIsContactOpen, cartCount }) {
       <MiningJourney />
       <LogoStrip />
       <Testimonials />
-      <BoldCTA onOpenModal={() => setIsModalOpen(true)} />
-      <Footer />
+      <BoldCTA
+        onOpenModal={() => setIsModalOpen(true)}
+        onOpenAppointment={() => setIsAppointmentOpen(true)}
+      />
+      <Footer
+        onOpenModal={() => setIsModalOpen(true)}
+        onOpenContact={() => setIsContactOpen(true)}
+      />
     </div>
   );
 }
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAppointmentOpen, setIsAppointmentOpen] = useState(false);
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const cartCount = cartItems.reduce((sum, item) => sum + (item.sqm || 0), 0);
@@ -172,6 +183,7 @@ function App() {
           element={
             <HomePage
               setIsModalOpen={setIsModalOpen}
+              setIsAppointmentOpen={setIsAppointmentOpen}
               setIsContactOpen={setIsContactOpen}
               cartCount={cartCount}
             />
@@ -209,6 +221,36 @@ function App() {
             />
           }
         />
+        <Route
+          path="/terms"
+          element={
+            <CompanyInfoPage
+              onOpenModal={() => setIsModalOpen(true)}
+              onOpenContact={() => setIsContactOpen(true)}
+              cartCount={cartCount}
+            />
+          }
+        />
+        <Route
+          path="/privacy"
+          element={
+            <CompanyInfoPage
+              onOpenModal={() => setIsModalOpen(true)}
+              onOpenContact={() => setIsContactOpen(true)}
+              cartCount={cartCount}
+            />
+          }
+        />
+        <Route
+          path="/shipping-info"
+          element={
+            <CompanyInfoPage
+              onOpenModal={() => setIsModalOpen(true)}
+              onOpenContact={() => setIsContactOpen(true)}
+              cartCount={cartCount}
+            />
+          }
+        />
       </Routes>
       
       {/* Quote Request Modal */}
@@ -216,6 +258,10 @@ function App() {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         cartItems={cartItems}
+      />
+      <MultiStepModal
+        isOpen={isAppointmentOpen}
+        onClose={() => setIsAppointmentOpen(false)}
       />
       <ContactDetailsModal
         isOpen={isContactOpen}

@@ -9,8 +9,8 @@ const CONTACT_DETAILS = [
   },
   {
     label: 'Phone',
-    value: '+1 (800) SUNRISE-1',
-    href: 'tel:+18007867473',
+    value: '+1 (908) 800-2340',
+    href: 'tel:+19088002340',
   },
   {
     label: 'Website',

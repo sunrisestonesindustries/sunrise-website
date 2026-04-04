@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-export default function BoldCTA({ onOpenModal }) {
+export default function BoldCTA({ onOpenModal, onOpenAppointment }) {
   return (
     <section className="py-24 md:py-40 px-6 md:px-12 bg-white relative overflow-hidden">
       {/* Background accent */}
@@ -40,7 +40,7 @@ export default function BoldCTA({ onOpenModal }) {
           className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
         >
           <motion.button
-            onClick={onOpenModal}
+            onClick={onOpenAppointment}
             whileHover={{ y: -2, boxShadow: '0 0 20px rgba(0, 0, 0, 0.1)' }}
             whileTap={{ y: 0 }}
             className="px-8 py-4 bg-black text-white text-button font-gabarito tracking-wide rounded-sm transition-all duration-180 hover:bg-gray-800"
@@ -70,7 +70,7 @@ export default function BoldCTA({ onOpenModal }) {
               Contact
             </p>
             <p className="text-sm font-gabarito text-gray-600">
-              sunrisestonesindustries@gmail.com<br />+1 (555) 123-4567
+              sunrisestonesindustries@gmail.com<br />+1 (908) 800-2340
             </p>
           </div>
         </motion.div>

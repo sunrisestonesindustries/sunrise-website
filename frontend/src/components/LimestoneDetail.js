@@ -7,6 +7,7 @@ import QuoteRequestModal from './QuoteRequestModal';
 import blueImage from '../Pictures/blue shade.webp';
 import yellowImage from '../Pictures/Yellow shades.png';
 import greyImage from '../Pictures/grey shades.png';
+import blackImage from '../Pictures/Black-Limestone.png';
 import yellowMachineCut from '../Pictures/YMC.png';
 import yellowPoolCoping from '../Pictures/YPC.png';
 import yellowHandCut from '../Pictures/Y HC.png';
@@ -224,6 +225,65 @@ export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveM
         'Museum & Gallery Spaces',
       ],
     },
+    black: {
+      name: 'Cudappah Black Limestone',
+      code: 'LST-BLK',
+      image: blackImage,
+      description: 'Deep black limestone with a bold architectural presence, ideal for premium facades, modern paving, statement interiors, and high-contrast design palettes.',
+      story: 'Selected for its saturated tone and sleek surface character, our Cudappah Black Limestone creates a dramatic visual anchor for contemporary spaces and export-grade projects.',
+      benefits: [
+        { title: 'Bold Contrast', desc: 'Rich dark tones create a sharp, premium look in modern architecture' },
+        { title: 'Luxury Presence', desc: 'Makes feature walls, paving, and steps feel elevated and intentional' },
+        { title: 'Project Versatility', desc: 'Suitable for statement interiors, facades, pool decks, and landscape detailing' },
+        { title: 'Reliable Performance', desc: 'Durable limestone structure suited for residential and commercial use' },
+      ],
+      types: [
+        { name: 'Tiles', sizes: '30 x 30 to 60 x 120 CM in various thicknesses', icon: '▪️' },
+        { name: 'Cutter Slabs', sizes: '120-150 x 60-90 x 3 & 4 CM', icon: '▪️' },
+        { name: 'Palisades', sizes: '100 x 25 x 6 CM', icon: '▪️' },
+        { name: 'Wall Cladding', sizes: '60 x 15 x 1.5-2.5 CM', icon: '▪️' },
+        { name: 'Step Blocks', sizes: '100-120 x 35-40 x 14-16 CM', icon: '▪️' },
+        { name: 'Mosaic', sizes: '30 x 30 x 1 CM', icon: '▪️' },
+        { name: 'Pool Coping', sizes: '60-100 x 30-60 x 3 CM', icon: '▪️' },
+        { name: 'Cobbles', sizes: '10 x 10 x 3-5-7-9 CM', icon: '▪️' },
+        { name: 'Crazy Paving', sizes: '30-60 x 30-60 x 2.5-3.5 CM', icon: '▪️' },
+        { name: 'Stepping Stones', sizes: '30 x 30, 60 x 40 x 2 & 3 CM', icon: '▪️' },
+      ],
+      finishes: [
+        { name: 'Natural', image: null },
+        { name: 'Brushed', image: null },
+        { name: 'Tumbled', image: null },
+        { name: 'Tumbled and Brushed', image: null },
+        { name: 'Sandblast', image: null },
+        { name: 'Honed + Sandblast', image: null },
+        { name: 'Bush Hammered', image: null },
+        { name: 'Bush Hammered + Brushed', image: null },
+      ],
+      edge: ['Machine cut', 'Hand cut', 'Pool coping', 'Eased edge'],
+      maintenance: [
+        'Sweep regularly to keep the dark tone crisp and dust-free',
+        'Use pH-neutral stone cleaners only',
+        'Avoid acidic cleaners and bleach-based products',
+        'Seal periodically for better stain resistance',
+        'Wipe spills promptly to preserve the finish',
+      ],
+      specs: [
+        { label: 'Origin', value: 'Telangana, India' },
+        { label: 'Density', value: '2.7 g/cm³' },
+        { label: 'Compressive Strength', value: '170 MPa' },
+        { label: 'Water Absorption', value: '0.45%' },
+      ],
+      applications: [
+        'Luxury Exterior Paving',
+        'Feature Walls',
+        'High-Contrast Interiors',
+        'Pool & Spa Surrounds',
+        'Modern Staircases',
+        'Boutique Retail Design',
+        'Hospitality Entrances',
+        'Landscape Highlights',
+      ],
+    },
   };
 
   const stone = limestoneData[colorId];
@@ -244,6 +304,12 @@ export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveM
         'Eased edge': yellowEasedEdge,
       },
       grey: {
+        'Machine cut': greyMachineCut,
+        'Pool coping': greyPoolCoping,
+        'Hand cut': greyHandCut,
+        'Eased edge': greyEasedEdge,
+      },
+      black: {
         'Machine cut': greyMachineCut,
         'Pool coping': greyPoolCoping,
         'Hand cut': greyHandCut,
@@ -275,9 +341,6 @@ export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveM
     }
 
     setSelectedEdge(edgeName);
-    if (selectedEdge !== edgeName) {
-      handleAddToCart(edgeName, 1);
-    }
   };
 
   const handleAddToCart = (edgeName = selectedEdge, quantity = 1) => {
@@ -297,6 +360,7 @@ export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveM
     };
 
     onAddToCart?.(cartItem);
+    setAddMessage(`${stone.name} added to cart.`);
   };
 
   const handleRemoveFromCart = (quantity = 1) => {
@@ -343,6 +407,13 @@ export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveM
       stat: 'bg-slate-800 text-white',
       message: 'border-slate-800 bg-slate-800 text-white',
     },
+    black: {
+      panel: 'border-neutral-500 bg-neutral-200/90',
+      inner: 'border-neutral-400 bg-white',
+      step: 'bg-neutral-300/80',
+      stat: 'bg-neutral-900 text-white',
+      message: 'border-neutral-900 bg-neutral-900 text-white',
+    },
   };
   const selectionTheme = themeByColor[colorId] || themeByColor.grey;
   const handleCustomizeSpecs = () => {
@@ -371,7 +442,10 @@ export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveM
             Back to Collection
           </button>
         </div>
-        <Footer />
+        <Footer
+          onOpenModal={() => setIsModalOpen(true)}
+          onOpenContact={onOpenContact}
+        />
         <QuoteRequestModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       </div>
     );
@@ -606,7 +680,7 @@ export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveM
               Product Specifications
             </h2>
             <p className="mb-8 max-w-3xl text-gray-600">
-              Select size, finish, and edge. The item will be added to your cart automatically.
+              Select size, finish, and edge, then click Add to Cart to save this exact specification.
             </p>
 
             <motion.div
@@ -644,9 +718,9 @@ export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveM
                   <div>
                     <p className="text-xs font-gabarito uppercase tracking-[0.24em] text-gray-400">Cart Quantity</p>
                     <p className="mt-2 text-lg font-gabarito font-semibold text-black">
-                      {selectedSize && selectedFinish && selectedEdge
+                      {selectedCartCount > 0
                         ? 'Use these controls to adjust this exact selection'
-                        : 'Complete all three steps to activate quantity controls'}
+                        : 'Add this specification to the cart to activate quantity controls'}
                     </p>
                   </div>
                   <div className="flex items-center overflow-hidden rounded-full border border-black/15">
@@ -667,9 +741,9 @@ export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveM
                     </div>
                     <button
                       onClick={() => handleAddToCart(selectedEdge, 1)}
-                      disabled={!selectedEdge}
+                      disabled={!selectedEdge || selectedCartCount === 0}
                       className={`flex h-14 w-14 items-center justify-center text-3xl font-gabarito transition-colors duration-220 ${
-                        selectedEdge
+                        selectedEdge && selectedCartCount > 0
                           ? 'bg-white text-black hover:bg-gray-100'
                           : 'cursor-not-allowed bg-gray-100 text-gray-300'
                       }`}
@@ -681,35 +755,25 @@ export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveM
                 </div>
               </div>
 
-              <div className="flex items-stretch overflow-hidden rounded-[22px] border border-black bg-black text-white">
-                <button
-                  onClick={handleRemoveFromCart}
-                  disabled={selectedCartCount === 0}
-                  className={`flex w-16 items-center justify-center text-2xl font-gabarito transition-colors duration-220 ${
-                    selectedCartCount > 0
-                      ? 'bg-white text-black hover:bg-gray-100'
-                      : 'cursor-not-allowed bg-white/60 text-black/30'
-                  }`}
-                  aria-label="Remove one selected item"
-                >
-                  -
-                </button>
-                <div className="flex flex-1 items-center justify-center border-l border-r border-white/20 px-4 text-center text-sm font-gabarito font-bold uppercase tracking-[0.2em] text-white">
-                  Selected Item
-                </div>
-                <button
-                  onClick={() => handleAddToCart(selectedEdge, 1)}
-                  disabled={!selectedEdge}
-                  className={`flex w-16 items-center justify-center text-2xl font-gabarito transition-colors duration-220 ${
-                    selectedEdge
-                      ? 'bg-white text-black hover:bg-gray-100'
-                      : 'cursor-not-allowed bg-white/60 text-black/30'
-                  }`}
-                  aria-label="Add one selected item"
-                >
-                  +
-                </button>
-              </div>
+              <motion.button
+                onClick={() => handleAddToCart(selectedEdge, 1)}
+                whileHover={selectedEdge ? { scale: 1.01 } : undefined}
+                whileTap={selectedEdge ? { scale: 0.99 } : undefined}
+                disabled={!selectedEdge}
+                className={`rounded-[22px] py-4 text-base font-gabarito font-bold tracking-[0.18em] uppercase transition-all duration-220 ${
+                  selectedEdge
+                    ? 'border border-black bg-black text-white hover:bg-gray-800'
+                    : 'cursor-not-allowed border border-black/10 bg-black/10 text-black/35'
+                }`}
+              >
+                Add to Cart
+              </motion.button>
+
+              {addMessage && (
+                <p className={`rounded-[18px] border px-5 py-3 text-sm font-gabarito ${selectionTheme.message}`}>
+                  {addMessage}
+                </p>
+              )}
 
               <div className="grid gap-3 md:col-span-2 md:grid-cols-[minmax(0,1fr)_auto]">
                 <motion.button
@@ -798,7 +862,10 @@ export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveM
         </section>
       </main>
 
-      <Footer />
+      <Footer
+        onOpenModal={() => setIsModalOpen(true)}
+        onOpenContact={onOpenContact}
+      />
       <QuoteRequestModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );

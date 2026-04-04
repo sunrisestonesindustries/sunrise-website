@@ -21,6 +21,10 @@ export default function CartPage({ cartItems, onRemoveCartItem, onClearCart, onO
         card: 'border-slate-400 bg-slate-200/90',
         pill: 'bg-slate-300 text-slate-800',
       },
+      black: {
+        card: 'border-neutral-500 bg-neutral-200/90',
+        pill: 'bg-neutral-900 text-white',
+      },
     };
 
     return themes[colorId] || themes.grey;
@@ -51,7 +55,7 @@ export default function CartPage({ cartItems, onRemoveCartItem, onClearCart, onO
 
             <div className="flex flex-wrap gap-3">
               <button
-                onClick={() => navigate('/')}
+                onClick={() => navigate('/', { state: { scrollTo: 'limestone-collection' } })}
                 className="px-5 py-3 border border-black text-black font-gabarito font-semibold rounded-sm hover:bg-black hover:text-white transition-all duration-220"
               >
                 Continue Browsing
@@ -145,7 +149,10 @@ export default function CartPage({ cartItems, onRemoveCartItem, onClearCart, onO
         </div>
       </main>
 
-      <Footer />
+      <Footer
+        onOpenModal={onOpenModal}
+        onOpenContact={onOpenContact}
+      />
     </div>
   );
 }

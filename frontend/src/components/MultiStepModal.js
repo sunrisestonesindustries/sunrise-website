@@ -1,280 +1,393 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import logoImage from '../Pictures/logo1.webp';
+
+const TIME_SLOTS = [
+  '09:00 AM',
+  '10:00 AM',
+  '11:00 AM',
+  '12:00 PM',
+  '01:00 PM',
+  '02:00 PM',
+  '03:00 PM',
+  '04:00 PM',
+  '05:00 PM',
+];
+
+const TIME_ZONES = [
+  { value: 'EST', label: 'EST (Default)' },
+  { value: 'CST', label: 'CST' },
+  { value: 'MST', label: 'MST' },
+  { value: 'PST', label: 'PST' },
+  { value: 'GMT', label: 'GMT' },
+  { value: 'IST', label: 'IST' },
+];
+
+const CONSULTATION_TYPES = [
+  'Stone selection guidance',
+  'Custom sizing and thickness',
+  'Finish and edge consultation',
+  'Export and logistics discussion',
+];
+
+const getTodayString = () => new Date().toISOString().split('T')[0];
+
+const formatDisplayDate = (value) => {
+  if (!value) {
+    return 'Select your preferred month and day';
+  }
+
+  const parsed = new Date(`${value}T12:00:00`);
+  if (Number.isNaN(parsed.getTime())) {
+    return 'Select your preferred month and day';
+  }
+
+  return parsed.toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  });
+};
 
 export default function MultiStepModal({ isOpen, onClose }) {
-  const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     date: '',
     time: '',
+    timezone: 'EST',
     name: '',
     email: '',
     phone: '',
-    stoneType: '',
+    consultationType: CONSULTATION_TYPES[0],
+    notes: '',
   });
+  const [submitted, setSubmitted] = useState(false);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
+  const selectedTimezoneLabel = useMemo(
+    () => TIME_ZONES.find((zone) => zone.value === formData.timezone)?.label || 'EST (Default)',
+    [formData.timezone]
+  );
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
-  const handleNextStep = () => {
-    if (step < 3) {
-      setStep(step + 1);
-    }
+  const handleTimeSelect = (time) => {
+    setFormData((prev) => ({
+      ...prev,
+      time,
+    }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Handle submission
-    onClose();
-    setStep(1);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setSubmitted(true);
   };
 
   const handleClose = () => {
-    onClose();
-    setStep(1);
+    setSubmitted(false);
     setFormData({
       date: '',
       time: '',
+      timezone: 'EST',
       name: '',
       email: '',
       phone: '',
-      stoneType: '',
+      consultationType: CONSULTATION_TYPES[0],
+      notes: '',
     });
+    onClose();
   };
-
-  const stepTitles = [
-    'Select Date & Time',
-    'Your Contact Details',
-    'Stone Preferences',
-  ];
 
   return (
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Overlay */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={handleClose}
-            className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40"
+            className="fixed inset-0 z-[60] bg-black/45 backdrop-blur-sm"
           />
 
-          {/* Modal */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            initial={{ opacity: 0, y: 24, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 24, scale: 0.96 }}
+            transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-0 z-[70] flex items-center justify-center p-4"
           >
-            <div className="bg-white border border-gray-300 rounded-lg max-w-lg w-full max-h-[90vh] overflow-y-auto">
-              {/* Modal Header with Step Indicator */}
-              <div className="sticky top-0 bg-white border-b border-gray-300 p-6 sm:p-8">
-                <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-2xl font-gabarito font-bold text-black">
-                    {stepTitles[step - 1]}
-                  </h2>
-                  <button
-                    onClick={handleClose}
-                    className="text-gray-600 hover:text-black transition-colors text-2xl leading-none"
-                  >
-                    ✕
-                  </button>
+            <div className="max-h-[92vh] w-full max-w-5xl overflow-y-auto rounded-[32px] border border-black/10 bg-white shadow-[0_28px_80px_rgba(15,23,42,0.18)]">
+              <div className="grid lg:grid-cols-[0.92fr_1.08fr]">
+                <div className="border-b border-black/10 bg-[#f7f3ea] p-6 md:p-8 lg:border-b-0 lg:border-r">
+                  <div className="mb-6 flex items-center gap-3">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white shadow-sm ring-1 ring-black/10">
+                      <img
+                        src={logoImage}
+                        alt="Sunrise Stones Industries Logo"
+                        className="h-10 w-10 object-contain"
+                      />
+                    </div>
+                    <div>
+                      <p className="text-xs font-gabarito uppercase tracking-[0.28em] text-gray-500">
+                        Appointment Booking
+                      </p>
+                      <h2 className="text-2xl font-gabarito font-bold text-black">
+                        Book a consultation
+                      </h2>
+                    </div>
+                  </div>
+
+                  <p className="max-w-md text-base leading-7 text-gray-700">
+                    Choose a preferred month, day, time, and timezone for your meeting. EST is set as the standard by default, but you can change it anytime.
+                  </p>
+
+                  <div className="mt-8 space-y-4">
+                    <div className="rounded-[24px] border border-black/10 bg-white p-5">
+                      <p className="text-xs font-gabarito uppercase tracking-[0.24em] text-gray-500">
+                        Selected Date
+                      </p>
+                      <p className="mt-3 text-lg font-gabarito font-semibold text-black">
+                        {formatDisplayDate(formData.date)}
+                      </p>
+                    </div>
+                    <div className="rounded-[24px] border border-black/10 bg-white p-5">
+                      <p className="text-xs font-gabarito uppercase tracking-[0.24em] text-gray-500">
+                        Selected Time
+                      </p>
+                      <p className="mt-3 text-lg font-gabarito font-semibold text-black">
+                        {formData.time || 'Choose an available time slot'}
+                      </p>
+                    </div>
+                    <div className="rounded-[24px] border border-black/10 bg-white p-5">
+                      <p className="text-xs font-gabarito uppercase tracking-[0.24em] text-gray-500">
+                        Time Zone
+                      </p>
+                      <p className="mt-3 text-lg font-gabarito font-semibold text-black">
+                        {selectedTimezoneLabel}
+                      </p>
+                    </div>
+                  </div>
                 </div>
 
-                {/* Step Indicator */}
-                <p className="text-sm font-gabarito text-black">
-                  Step {step} of 3
-                </p>
-                <div className="mt-3 h-1 bg-gray-200 rounded-full overflow-hidden">
-                  <motion.div
-                    className="h-full bg-black"
-                    initial={{ width: '0%' }}
-                    animate={{ width: `${(step / 3) * 100}%` }}
-                    transition={{ duration: 0.3 }}
-                  />
+                <div className="p-6 md:p-8">
+                  <div className="mb-6 flex items-start justify-between gap-4">
+                    <div>
+                      <p className="text-xs font-gabarito uppercase tracking-[0.28em] text-gray-500">
+                        Schedule Request
+                      </p>
+                      <h3 className="mt-2 text-3xl font-gabarito font-bold tracking-tight text-black">
+                        Pick a time that works for you
+                      </h3>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={handleClose}
+                      className="flex h-10 w-10 items-center justify-center rounded-full border border-black/10 text-xl text-gray-500 transition hover:border-black hover:text-black"
+                    >
+                      ✕
+                    </button>
+                  </div>
+
+                  {!submitted ? (
+                    <form onSubmit={handleSubmit} className="space-y-7">
+                      <div className="grid gap-5 md:grid-cols-[1fr_220px]">
+                        <label className="block">
+                          <span className="mb-2 block text-sm font-gabarito font-semibold text-black">
+                            Month & Day
+                          </span>
+                          <input
+                            type="date"
+                            name="date"
+                            value={formData.date}
+                            onChange={handleInputChange}
+                            min={getTodayString()}
+                            required
+                            className="w-full rounded-[18px] border border-gray-300 bg-white px-4 py-3 font-gabarito text-black outline-none transition focus:border-black focus:ring-1 focus:ring-black"
+                          />
+                        </label>
+
+                        <label className="block">
+                          <span className="mb-2 block text-sm font-gabarito font-semibold text-black">
+                            Time Zone
+                          </span>
+                          <select
+                            name="timezone"
+                            value={formData.timezone}
+                            onChange={handleInputChange}
+                            className="w-full rounded-[18px] border border-gray-300 bg-white px-4 py-3 font-gabarito text-black outline-none transition focus:border-black focus:ring-1 focus:ring-black"
+                          >
+                            {TIME_ZONES.map((zone) => (
+                              <option key={zone.value} value={zone.value}>
+                                {zone.label}
+                              </option>
+                            ))}
+                          </select>
+                        </label>
+                      </div>
+
+                      <div>
+                        <div className="mb-3 flex items-center justify-between gap-3">
+                          <span className="text-sm font-gabarito font-semibold text-black">
+                            Preferred Time
+                          </span>
+                          <span className="text-xs font-gabarito uppercase tracking-[0.22em] text-gray-500">
+                            EST standard
+                          </span>
+                        </div>
+                        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+                          {TIME_SLOTS.map((slot) => {
+                            const isSelected = formData.time === slot;
+                            return (
+                              <button
+                                key={slot}
+                                type="button"
+                                onClick={() => handleTimeSelect(slot)}
+                                className={`rounded-[18px] border px-4 py-3 text-sm font-gabarito font-semibold transition-all ${
+                                  isSelected
+                                    ? 'border-black bg-black text-white shadow-sm'
+                                    : 'border-gray-300 bg-white text-black hover:border-black'
+                                }`}
+                              >
+                                {slot}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      <div className="grid gap-5 md:grid-cols-2">
+                        <label className="block">
+                          <span className="mb-2 block text-sm font-gabarito font-semibold text-black">
+                            Full Name
+                          </span>
+                          <input
+                            type="text"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleInputChange}
+                            placeholder="Your name"
+                            required
+                            className="w-full rounded-[18px] border border-gray-300 bg-white px-4 py-3 font-gabarito text-black outline-none transition focus:border-black focus:ring-1 focus:ring-black"
+                          />
+                        </label>
+
+                        <label className="block">
+                          <span className="mb-2 block text-sm font-gabarito font-semibold text-black">
+                            Email
+                          </span>
+                          <input
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleInputChange}
+                            placeholder="your@email.com"
+                            required
+                            className="w-full rounded-[18px] border border-gray-300 bg-white px-4 py-3 font-gabarito text-black outline-none transition focus:border-black focus:ring-1 focus:ring-black"
+                          />
+                        </label>
+
+                        <label className="block">
+                          <span className="mb-2 block text-sm font-gabarito font-semibold text-black">
+                            Phone
+                          </span>
+                          <input
+                            type="tel"
+                            name="phone"
+                            value={formData.phone}
+                            onChange={handleInputChange}
+                            placeholder="+1 (908) 800-2340"
+                            className="w-full rounded-[18px] border border-gray-300 bg-white px-4 py-3 font-gabarito text-black outline-none transition focus:border-black focus:ring-1 focus:ring-black"
+                          />
+                        </label>
+
+                        <label className="block">
+                          <span className="mb-2 block text-sm font-gabarito font-semibold text-black">
+                            Consultation Type
+                          </span>
+                          <select
+                            name="consultationType"
+                            value={formData.consultationType}
+                            onChange={handleInputChange}
+                            className="w-full rounded-[18px] border border-gray-300 bg-white px-4 py-3 font-gabarito text-black outline-none transition focus:border-black focus:ring-1 focus:ring-black"
+                          >
+                            {CONSULTATION_TYPES.map((type) => (
+                              <option key={type} value={type}>
+                                {type}
+                              </option>
+                            ))}
+                          </select>
+                        </label>
+                      </div>
+
+                      <label className="block">
+                        <span className="mb-2 block text-sm font-gabarito font-semibold text-black">
+                          Notes
+                        </span>
+                        <textarea
+                          name="notes"
+                          value={formData.notes}
+                          onChange={handleInputChange}
+                          rows={4}
+                          placeholder="Share any stone type, quantity, or project details you want to discuss."
+                          className="w-full rounded-[20px] border border-gray-300 bg-white px-4 py-3 font-gabarito text-black outline-none transition focus:border-black focus:ring-1 focus:ring-black"
+                        />
+                      </label>
+
+                      <div className="flex flex-col gap-3 border-t border-black/10 pt-6 sm:flex-row">
+                        <button
+                          type="button"
+                          onClick={handleClose}
+                          className="rounded-[18px] border border-black px-5 py-3 text-sm font-gabarito font-semibold tracking-wide text-black transition hover:bg-black hover:text-white sm:min-w-[140px]"
+                        >
+                          Cancel
+                        </button>
+                        <button
+                          type="submit"
+                          disabled={!formData.date || !formData.time || !formData.name || !formData.email}
+                          className={`rounded-[18px] px-5 py-3 text-sm font-gabarito font-semibold tracking-wide transition sm:flex-1 ${
+                            formData.date && formData.time && formData.name && formData.email
+                              ? 'bg-black text-white hover:bg-gray-800'
+                              : 'cursor-not-allowed bg-gray-200 text-gray-400'
+                          }`}
+                        >
+                          Confirm Appointment Request
+                        </button>
+                      </div>
+                    </form>
+                  ) : (
+                    <div className="py-10 text-center">
+                      <div className="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-full bg-[#f7f3ea] ring-1 ring-black/10">
+                        <img
+                          src={logoImage}
+                          alt="Sunrise Stones Industries Logo"
+                          className="h-12 w-12 object-contain"
+                        />
+                      </div>
+                      <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-gray-500">
+                        Appointment Requested
+                      </p>
+                      <h4 className="mb-3 text-3xl font-semibold tracking-[-0.04em] text-black">
+                        You&apos;re booked in.
+                      </h4>
+                      <p className="mx-auto max-w-md text-[15px] leading-7 text-gray-600">
+                        We&apos;ve saved your preferred month, day, time, and timezone. Our team will confirm the appointment shortly by email.
+                      </p>
+                      <button
+                        type="button"
+                        onClick={handleClose}
+                        className="mt-8 rounded-[18px] bg-black px-6 py-3 text-sm font-gabarito font-semibold tracking-wide text-white transition hover:bg-gray-800"
+                      >
+                        Close
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
-
-              {/* Modal Content */}
-              <form onSubmit={handleSubmit} className="p-6 sm:p-8">
-                <AnimatePresence mode="wait">
-                  {/* Step 1: Date & Time */}
-                  {step === 1 && (
-                    <motion.div
-                      key="step1"
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -20 }}
-                      transition={{ duration: 0.26 }}
-                      className="space-y-6"
-                    >
-                      <div>
-                        <label className="block text-sm font-gabarito text-gray-700 mb-2 uppercase tracking-wide">
-                          Preferred Date
-                        </label>
-                        <input
-                          type="date"
-                          name="date"
-                          value={formData.date}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 bg-gray-50 border border-gray-300 text-black placeholder-gray-500 rounded-sm focus:outline-none focus:ring-1 focus:ring-black transition-all"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-gabarito text-gray-700 mb-2 uppercase tracking-wide">
-                          Preferred Time
-                        </label>
-                        <select
-                          name="time"
-                          value={formData.time}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 bg-gray-50 border border-gray-300 text-black placeholder-gray-500 rounded-sm focus:outline-none focus:ring-1 focus:ring-black transition-all appearance-none cursor-pointer"
-                        >
-                          <option value="">Select a time slot</option>
-                          <option value="09:00">09:00 AM</option>
-                          <option value="10:00">10:00 AM</option>
-                          <option value="11:00">11:00 AM</option>
-                          <option value="14:00">02:00 PM</option>
-                          <option value="15:00">03:00 PM</option>
-                          <option value="16:00">04:00 PM</option>
-                        </select>
-                      </div>
-                    </motion.div>
-                  )}
-
-                  {/* Step 2: Contact Details */}
-                  {step === 2 && (
-                    <motion.div
-                      key="step2"
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -20 }}
-                      transition={{ duration: 0.26 }}
-                      className="space-y-6"
-                    >
-                      <div>
-                        <label className="block text-sm font-gabarito text-gray-700 mb-2 uppercase tracking-wide">
-                          Full Name
-                        </label>
-                        <input
-                          type="text"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleInputChange}
-                          placeholder="Your name"
-                          className="w-full px-4 py-3 bg-gray-50 border border-gray-300 text-black placeholder-gray-500 rounded-sm focus:outline-none focus:ring-1 focus:ring-black transition-all"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-gabarito text-gray-700 mb-2 uppercase tracking-wide">
-                          Email
-                        </label>
-                        <input
-                          type="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          placeholder="your@email.com"
-                          className="w-full px-4 py-3 bg-gray-50 border border-gray-300 text-black placeholder-gray-500 rounded-sm focus:outline-none focus:ring-1 focus:ring-black transition-all"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-gabarito text-gray-700 mb-2 uppercase tracking-wide">
-                          Phone
-                        </label>
-                        <input
-                          type="tel"
-                          name="phone"
-                          value={formData.phone}
-                          onChange={handleInputChange}
-                          placeholder="+1 (555) 000-0000"
-                          className="w-full px-4 py-3 bg-gray-50 border border-gray-300 text-black placeholder-gray-500 rounded-sm focus:outline-none focus:ring-1 focus:ring-black transition-all"
-                        />
-                      </div>
-                    </motion.div>
-                  )}
-
-                  {/* Step 3: Stone Preferences */}
-                  {step === 3 && (
-                    <motion.div
-                      key="step3"
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -20 }}
-                      transition={{ duration: 0.26 }}
-                      className="space-y-6"
-                    >
-                      <div>
-                        <label className="block text-sm font-gabarito text-gray-700 mb-2 uppercase tracking-wide">
-                          Stone Type (Optional)
-                        </label>
-                        <select
-                          name="stoneType"
-                          value={formData.stoneType}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 bg-gray-50 border border-gray-300 text-black placeholder-gray-500 rounded-sm focus:outline-none focus:ring-1 focus:ring-black transition-all appearance-none cursor-pointer"
-                        >
-                          <option value="">Select a stone type</option>
-                          <option value="limestone">Limestone</option>
-                          <option value="marble">Marble</option>
-                          <option value="granite">Granite</option>
-                          <option value="quartzite">Quartzite</option>
-                          <option value="travertine">Travertine</option>
-                          <option value="onyx">Onyx</option>
-                          <option value="custom">Custom Orders</option>
-                        </select>
-                      </div>
-
-                      <div className="p-4 bg-gray-100 border border-gray-300 rounded-sm">
-                        <p className="text-sm font-gabarito text-gray-700">
-                          Our team will reach out shortly with personalized recommendations, specifications, and pricing based on your project requirements.
-                        </p>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
-                {/* Modal Footer - Buttons */}
-                <div className="mt-8 flex gap-4">
-                  <motion.button
-                    type="button"
-                    onClick={handleClose}
-                    className="flex-1 px-4 py-3 border-2 border-black text-black text-button font-gabarito tracking-wide rounded-sm hover:bg-black hover:text-white transition-all duration-180"
-                  >
-                    Cancel
-                  </motion.button>
-
-                  {step < 3 ? (
-                    <motion.button
-                      type="button"
-                      onClick={handleNextStep}
-                      whileHover={{ y: -2 }}
-                      className="flex-1 px-4 py-3 bg-black text-white text-button font-gabarito tracking-wide rounded-sm hover:bg-gray-800 transition-all duration-180"
-                    >
-                      Next
-                    </motion.button>
-                  ) : (
-                    <motion.button
-                      type="submit"
-                      whileHover={{ y: -2 }}
-                      className="flex-1 px-4 py-3 bg-black text-white text-button font-gabarito tracking-wide rounded-sm hover:bg-gray-800 transition-all duration-180"
-                    >
-                      Submit
-                    </motion.button>
-                  )}
-                </div>
-              </form>
             </div>
           </motion.div>
         </>

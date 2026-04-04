@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import logoImage from '../Pictures/logo1.webp';
 
 const FIELD_LABELS = {
   name: 'Full Name',
@@ -283,20 +284,36 @@ export default function QuoteRequestModal({ isOpen, onClose, cartItems = [], ini
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  className="p-6 text-center"
+                  className="px-6 py-8 text-center md:px-8"
                 >
                   <motion.div
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 0.6 }}
-                    className="mb-4 text-4xl"
+                    animate={{ scale: [0.96, 1.04, 1] }}
+                    transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                    className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-[28px] border border-black/10 bg-[#f7f3ea] shadow-[0_18px_40px_rgba(15,23,42,0.10)]"
                   >
-                    ✓
+                    <img
+                      src={logoImage}
+                      alt="Sunrise Stones Industries Logo"
+                      className="h-16 w-16 object-contain"
+                    />
                   </motion.div>
-                  <h3 className="text-xl font-gabarito font-bold text-black mb-2">
-                    Thank You!
+                  <p
+                    className="mb-3 text-[0.7rem] font-semibold uppercase tracking-[0.35em] text-gray-500"
+                    style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif' }}
+                  >
+                    Submission Received
+                  </p>
+                  <h3
+                    className="mb-3 text-3xl font-semibold tracking-[-0.04em] text-black"
+                    style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif' }}
+                  >
+                    Thank you.
                   </h3>
-                  <p className="text-gray-600">
-                    Your quote request has been submitted successfully. We'll contact you soon.
+                  <p
+                    className="mx-auto max-w-sm text-[15px] leading-7 text-gray-600"
+                    style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif' }}
+                  >
+                    Your request has been submitted successfully. We&apos;ll contact you soon.
                   </p>
                 </motion.div>
               )}

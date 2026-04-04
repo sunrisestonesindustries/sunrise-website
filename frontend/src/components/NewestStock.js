@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import blueImage from '../Pictures/blue shade.webp';
 import yellowImage from '../Pictures/Yellow shades.png';
 import greyImage from '../Pictures/grey shades.png';
+import blackImage from '../Pictures/Black-Limestone.png';
 
 export default function NewestStock() {
   const [hoveredId, setHoveredId] = useState(null);
@@ -30,6 +31,13 @@ export default function NewestStock() {
       name: 'Silver Ash Limestone',
       image: greyImage,
       code: 'LST-GRY',
+    },
+    {
+      id: 4,
+      colorId: 'black',
+      name: 'Cudappah Black Limestone',
+      image: blackImage,
+      code: 'LST-BLK',
     },
   ];
 
@@ -78,7 +86,7 @@ export default function NewestStock() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-8"
         >
           {colors.map((item) => (
             <motion.div

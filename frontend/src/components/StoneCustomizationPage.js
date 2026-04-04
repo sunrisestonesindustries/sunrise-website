@@ -9,6 +9,7 @@ const COLOR_OPTIONS = [
   'Urban Blue Limestone',
   'Sunwashed Limestone',
   'Silver Ash Limestone',
+  'Cudappah Black Limestone',
 ];
 
 const SIZE_OPTIONS = [
@@ -250,7 +251,10 @@ export default function StoneCustomizationPage({ onOpenContact, cartCount = 0 })
         </div>
       </main>
 
-      <Footer />
+      <Footer
+        onOpenModal={() => setIsQuoteOpen(true)}
+        onOpenContact={onOpenContact}
+      />
       <QuoteRequestModal
         isOpen={isQuoteOpen}
         onClose={() => setIsQuoteOpen(false)}

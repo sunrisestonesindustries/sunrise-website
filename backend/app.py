@@ -46,7 +46,7 @@ COMPANY_DATA = {
     "description": "Premium Tandur Limestone Exporters to USA",
     "tagline": "Exquisite natural stone for international markets",
     "email": "sunrisestonesindustries@gmail.com",
-    "phone": "+1 (800) SUNRISE-1",
+    "phone": "+1 (908) 800-2340",
     "location": "Export Partners, USA Headquarters"
 }
 
@@ -124,7 +124,7 @@ ABOUT_DATA = {
 # Contact data
 CONTACT_INFO = {
     "email": "sunrisestonesindustries@gmail.com",
-    "phone": "+1 (800) SUNRISE-1",
+    "phone": "+1 (908) 800-2340",
     "location": "Export Partners, USA Headquarters"
 }
 

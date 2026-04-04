@@ -24,7 +24,7 @@ const slides = [
   {
     image: greyWall,
     title: 'Built To Endure',
-    subtitle: 'Dense Tandur limestone ready for walls, pools, and public spaces.',
+    subtitle: 'Dense limestone ready for walls, pools, and public spaces.',
   },
 ];
 
