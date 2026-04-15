@@ -38,6 +38,7 @@ export default function NewestStock() {
       name: 'Cudappah Black Limestone',
       image: blackImage,
       code: 'LST-BLK',
+      comingSoon: true,
     },
   ];
 
@@ -99,15 +100,20 @@ export default function NewestStock() {
             >
               {/* Color Block */}
               <motion.div
-                className="relative h-64 md:h-72 mb-6 rounded-sm overflow-hidden border border-gray-700 cursor-pointer"
+                className="relative mb-6 aspect-square overflow-hidden rounded-sm bg-neutral-950 cursor-pointer"
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.22 }}
               >
+                {item.comingSoon && (
+                  <div className="absolute left-4 top-4 z-20 rounded-full border border-white/20 bg-black/70 px-3 py-1 text-[11px] font-gabarito font-bold uppercase tracking-[0.24em] text-white">
+                    Coming Soon
+                  </div>
+                )}
                 <motion.img
                   src={item.image}
                   alt={item.name}
-                  className="w-full h-full object-cover cursor-pointer"
-                  whileHover={{ scale: 1.1 }}
+                  className="absolute inset-0 h-full w-full object-contain p-4 cursor-pointer"
+                  whileHover={{ scale: 1.04 }}
                   transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 />
                 {/* Hover Overlay */}
@@ -119,19 +125,31 @@ export default function NewestStock() {
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
                     >
-                      <motion.button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          navigate(`/limestone/${item.colorId}`);
-                        }}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        transition={{ duration: 0.18 }}
-                        className="px-6 py-3 bg-white text-black text-sm font-gabarito tracking-wide rounded-sm hover:bg-gray-100 transition-all font-bold"
-                      >
-                        VIEW DETAILS
-                      </motion.button>
+                      {item.comingSoon ? (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 10 }}
+                          transition={{ duration: 0.18 }}
+                          className="rounded-sm border border-white/25 bg-black/70 px-6 py-3 text-sm font-gabarito font-bold tracking-[0.22em] text-white"
+                        >
+                          COMING SOON
+                        </motion.div>
+                      ) : (
+                        <motion.button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            navigate(`/limestone/${item.colorId}`);
+                          }}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 10 }}
+                          transition={{ duration: 0.18 }}
+                          className="px-6 py-3 bg-white text-black text-sm font-gabarito tracking-wide rounded-sm hover:bg-gray-100 transition-all font-bold"
+                        >
+                          VIEW DETAILS
+                        </motion.button>
+                      )}
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -154,6 +172,11 @@ export default function NewestStock() {
                 <p className="text-xs font-gabarito text-gray-400 uppercase tracking-wider">
                   Code: {item.code}
                 </p>
+                {item.comingSoon && (
+                  <p className="mt-2 text-xs font-gabarito uppercase tracking-[0.2em] text-amber-300">
+                    Coming Soon
+                  </p>
+                )}
               </motion.div>
             </motion.div>
           ))}

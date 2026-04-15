@@ -20,6 +20,36 @@ import greyMachineCut from '../Pictures/BMC.png';
 import greyPoolCoping from '../Pictures/BPC.png';
 import greyHandCut from '../Pictures/BHC.png';
 import greyEasedEdge from '../Pictures/BEE.png';
+import tilesImage from '../Pictures/tiles.png';
+import cutterSlabImage from '../Pictures/cutter slab.png';
+import palisadesImage from '../Pictures/Palisades.png';
+import wallCladdingImage from '../Pictures/Wall Cladding.png';
+import stepBlocksImage from '../Pictures/step blocks.png';
+import mosaicImage from '../Pictures/Mosaic.png';
+import poolCopingTypeImage from '../Pictures/Pool Coping.png';
+import cobblesImage from '../Pictures/Cobbles.png';
+import crazyPavingImage from '../Pictures/Crazy Paving.png';
+import steppingStonesImage from '../Pictures/Stepping Stones.png';
+import yellowTilesImage from '../Pictures/tiles (1).png';
+import yellowCutterSlabImage from '../Pictures/cutter slabe..png';
+import yellowPalisadesImage from '../Pictures/palisades..png';
+import yellowWallCladdingImage from '../Pictures/wallcladding..png';
+import yellowStepBlocksImage from '../Pictures/step block.png';
+import yellowMosaicImage from '../Pictures/mosaic (1).png';
+import yellowPoolCopingTypeImage from '../Pictures/poolcoping.png';
+import yellowCobblesImage from '../Pictures/cobbles..png';
+import yellowCrazyPavingImage from '../Pictures/crazy paving..png';
+import yellowSteppingStonesImage from '../Pictures/stepping stone.png';
+import greyTilesTypeImage from '../Pictures/Grey limestone slab detail shot.png';
+import greyCutterSlabTypeImage from '../Pictures/Limestone slabs in natural light.png';
+import greyPalisadesTypeImage from '../Pictures/Grey limestone palisade in focus.png';
+import greyWallCladdingTypeImage from '../Pictures/Natural grey limestone wall cladding.png';
+import greyStepBlocksTypeImage from '../Pictures/Limestone stone step block detail.png';
+import greyMosaicTypeImage from '../Pictures/Limestone mosaic tile pattern.png';
+import greyPoolCopingTypeImage from '../Pictures/Limestone pool coping stone in focus.png';
+import greyCobblesTypeImage from '../Pictures/Cobblestones in perfect alignment.png';
+import greyCrazyPavingTypeImage from '../Pictures/Limestone flagstones in crazy paving pattern.png';
+import greySteppingStonesTypeImage from '../Pictures/Limestone stepping stones arrangement.png';
 
 export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveMatchingCartItem, onOpenContact }) {
   const { colorId } = useParams();
@@ -289,6 +319,49 @@ export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveM
   const stone = limestoneData[colorId];
 
   const getFinishName = (finish) => (typeof finish === 'string' ? finish : finish.name);
+  const getTypeImage = (typeName) => {
+    const typeImagesByColor = {
+      grey: {
+        Tiles: greyTilesTypeImage,
+        'Cutter Slabs': greyCutterSlabTypeImage,
+        Palisades: greyPalisadesTypeImage,
+        'Wall Cladding': greyWallCladdingTypeImage,
+        'Step Blocks': greyStepBlocksTypeImage,
+        Mosaic: greyMosaicTypeImage,
+        'Pool Coping': greyPoolCopingTypeImage,
+        Cobbles: greyCobblesTypeImage,
+        'Crazy Paving': greyCrazyPavingTypeImage,
+        'Stepping Stones': greySteppingStonesTypeImage,
+      },
+      yellow: {
+        Tiles: yellowTilesImage,
+        'Cutter Slabs': yellowCutterSlabImage,
+        Palisades: yellowPalisadesImage,
+        'Wall Cladding': yellowWallCladdingImage,
+        'Step Blocks': yellowStepBlocksImage,
+        Mosaic: yellowMosaicImage,
+        'Pool Coping': yellowPoolCopingTypeImage,
+        Cobbles: yellowCobblesImage,
+        'Crazy Paving': yellowCrazyPavingImage,
+        'Stepping Stones': yellowSteppingStonesImage,
+      },
+      default: {
+        Tiles: tilesImage,
+        'Cutter Slabs': cutterSlabImage,
+        Palisades: palisadesImage,
+        'Wall Cladding': wallCladdingImage,
+        'Step Blocks': stepBlocksImage,
+        Mosaic: mosaicImage,
+        'Pool Coping': poolCopingTypeImage,
+        Cobbles: cobblesImage,
+        'Crazy Paving': crazyPavingImage,
+        'Stepping Stones': steppingStonesImage,
+      },
+    };
+
+    return typeImagesByColor[colorId]?.[typeName] || typeImagesByColor.default[typeName] || null;
+  };
+
   const getEdgeImage = (edgeName) => {
     const edgeImagesByColor = {
       blue: {
@@ -569,6 +642,17 @@ export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveM
                       : 'border-gray-200 hover:shadow-xl'
                   }`}
                 >
+                  {getTypeImage(type.name) ? (
+                    <div className="mb-5 w-full overflow-hidden rounded-lg bg-gray-100 aspect-[4/3]">
+                      <motion.img
+                        src={getTypeImage(type.name)}
+                        alt={type.name}
+                        className="h-full w-full object-cover"
+                        whileHover={{ scale: 1.06 }}
+                        transition={{ type: 'spring', stiffness: 120 }}
+                      />
+                    </div>
+                  ) : null}
                   <div className="mb-3 flex items-start justify-between gap-3">
                     <h3 className="text-lg font-gabarito font-bold text-black">
                       {type.name}
