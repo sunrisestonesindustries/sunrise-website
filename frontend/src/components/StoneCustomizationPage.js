@@ -13,18 +13,18 @@ const COLOR_OPTIONS = [
 ];
 
 const SIZE_OPTIONS = [
-  '30 x 30 cm',
-  '60 x 30 cm',
-  '60 x 60 cm',
-  '60 x 90 cm',
+  '12" x 12"',
+  '24" x 12"',
+  '24" x 24"',
+  '24" x 36"',
   'Custom project size',
 ];
 
 const THICKNESS_OPTIONS = [
-  '2 cm',
-  '3 cm',
-  '4 cm',
-  '5 cm',
+  '0.8"',
+  '1.2"',
+  '1.6"',
+  '2"',
   'Custom thickness',
 ];
 

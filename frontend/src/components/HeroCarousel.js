@@ -98,7 +98,7 @@ export default function Hero() {
 
           {/* Main Headline */}
           <h1 className="text-4xl md:text-5xl lg:text-h1-lg font-gabarito font-bold tracking-tight text-white mb-6 md:mb-8 leading-tight">
-            LIMESTONE EXPORTS
+            NATURAL STONE EXPORTS
           </h1>
 
           {/* Microproof */}

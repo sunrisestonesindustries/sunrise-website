@@ -95,12 +95,12 @@ export default function NewestStock() {
               variants={itemVariants}
               onMouseEnter={() => setHoveredId(item.id)}
               onMouseLeave={() => setHoveredId(null)}
-              onClick={() => navigate(`/limestone/${item.colorId}`)}
-              className="group cursor-pointer"
+              onClick={item.comingSoon ? undefined : () => navigate(`/limestone/${item.colorId}`)}
+              className={`group ${item.comingSoon ? 'cursor-default' : 'cursor-pointer'}`}
             >
               {/* Color Block */}
               <motion.div
-                className="relative mb-6 aspect-square overflow-hidden rounded-sm bg-neutral-950 cursor-pointer"
+                className={`relative mb-6 aspect-square overflow-hidden rounded-sm bg-neutral-950 ${item.comingSoon ? 'cursor-default' : 'cursor-pointer'}`}
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.22 }}
               >
@@ -161,8 +161,8 @@ export default function NewestStock() {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.65, delay: 0.1 }}
-                onClick={() => navigate(`/limestone/${item.colorId}`)}
-                className="cursor-pointer"
+                onClick={item.comingSoon ? undefined : () => navigate(`/limestone/${item.colorId}`)}
+                className={item.comingSoon ? 'cursor-default' : 'cursor-pointer'}
               >
                 <h3 className="text-sm md:text-base font-gabarito font-bold text-white mb-2 group-hover:text-gray-300 transition-colors duration-220">
                   {item.name}

@@ -7,7 +7,6 @@ import QuoteRequestModal from './QuoteRequestModal';
 import blueImage from '../Pictures/blue shade.webp';
 import yellowImage from '../Pictures/Yellow shades.png';
 import greyImage from '../Pictures/grey shades.png';
-import blackImage from '../Pictures/Black-Limestone.png';
 import yellowMachineCut from '../Pictures/YMC.png';
 import yellowPoolCoping from '../Pictures/YPC.png';
 import yellowHandCut from '../Pictures/Y HC.png';
@@ -21,7 +20,6 @@ import greyPoolCoping from '../Pictures/BPC.png';
 import greyHandCut from '../Pictures/BHC.png';
 import greyEasedEdge from '../Pictures/BEE.png';
 import tilesImage from '../Pictures/tiles.png';
-import cutterSlabImage from '../Pictures/cutter slab.png';
 import palisadesImage from '../Pictures/Palisades.png';
 import wallCladdingImage from '../Pictures/Wall Cladding.png';
 import stepBlocksImage from '../Pictures/step blocks.png';
@@ -30,18 +28,21 @@ import poolCopingTypeImage from '../Pictures/Pool Coping.png';
 import cobblesImage from '../Pictures/Cobbles.png';
 import crazyPavingImage from '../Pictures/Crazy Paving.png';
 import steppingStonesImage from '../Pictures/Stepping Stones.png';
+import blueWallCladdingTypeImage from '../Pictures/Tandur Blue Limestone Wall Cladding Stack.png';
+import blueMosaicTypeImage from '../Pictures/Tandur Blue Limestone Mosaic Tile Pattern.png';
+import bluePoolCopingTypeImage from '../Pictures/Tandur Blue Limestone Pool Coping Slab.png';
+import blueCrazyPavingTypeImage from '../Pictures/Tandur Blue Limestone Crazy Paving Pattern.png';
+import blueSteppingStonesTypeImage from '../Pictures/Tandur Blue Limestone Stepping Stones.png';
 import yellowTilesImage from '../Pictures/tiles (1).png';
-import yellowCutterSlabImage from '../Pictures/cutter slabe..png';
 import yellowPalisadesImage from '../Pictures/palisades..png';
-import yellowWallCladdingImage from '../Pictures/wallcladding..png';
+import yellowWallCladdingImage from '../Pictures/Yellow limestone wall cladding stacked veneer.png';
 import yellowStepBlocksImage from '../Pictures/step block.png';
-import yellowMosaicImage from '../Pictures/mosaic (1).png';
-import yellowPoolCopingTypeImage from '../Pictures/poolcoping.png';
+import yellowMosaicImage from '../Pictures/Yellow limestone mosaic tile pattern.png';
+import yellowPoolCopingTypeImage from '../Pictures/Yellow limestone pool coping bullnose slab.png';
 import yellowCobblesImage from '../Pictures/cobbles..png';
-import yellowCrazyPavingImage from '../Pictures/crazy paving..png';
-import yellowSteppingStonesImage from '../Pictures/stepping stone.png';
+import yellowCrazyPavingImage from '../Pictures/Yellow limestone crazy paving pattern.png';
+import yellowSteppingStonesImage from '../Pictures/Yellow limestone stepping stones set.png';
 import greyTilesTypeImage from '../Pictures/Grey limestone slab detail shot.png';
-import greyCutterSlabTypeImage from '../Pictures/Limestone slabs in natural light.png';
 import greyPalisadesTypeImage from '../Pictures/Grey limestone palisade in focus.png';
 import greyWallCladdingTypeImage from '../Pictures/Natural grey limestone wall cladding.png';
 import greyStepBlocksTypeImage from '../Pictures/Limestone stone step block detail.png';
@@ -50,6 +51,18 @@ import greyPoolCopingTypeImage from '../Pictures/Limestone pool coping stone in 
 import greyCobblesTypeImage from '../Pictures/Cobblestones in perfect alignment.png';
 import greyCrazyPavingTypeImage from '../Pictures/Limestone flagstones in crazy paving pattern.png';
 import greySteppingStonesTypeImage from '../Pictures/Limestone stepping stones arrangement.png';
+
+const LIMESTONE_TYPE_SIZES = [
+  { name: 'Tiles', sizes: '12" x 12" to 24" x 47" in various thicknesses', icon: '▪️' },
+  { name: 'Palisades', sizes: '39" x 10" x 2.4"', icon: '▪️' },
+  { name: 'Wall Cladding', sizes: '24" x 6" x 0.6"-1"', icon: '▪️' },
+  { name: 'Step Blocks', sizes: '39"-47" x 14"-16" x 5.5"-6.3"', icon: '▪️' },
+  { name: 'Mosaic', sizes: '12" x 12" x 0.4"', icon: '▪️' },
+  { name: 'Pool Coping', sizes: '24"-39" x 12"-24" x 1.2"', icon: '▪️' },
+  { name: 'Cobbles', sizes: '4" x 4" x 1.2"-2"-2.8"-3.5"', icon: '▪️' },
+  { name: 'Crazy Paving', sizes: '12"-24" x 12"-24" x 1"-1.4"', icon: '▪️' },
+  { name: 'Stepping Stones', sizes: '12" x 12", 24" x 16" x 0.8" & 1.2"', icon: '▪️' },
+];
 
 export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveMatchingCartItem, onOpenContact }) {
   const { colorId } = useParams();
@@ -90,18 +103,7 @@ export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveM
         { title: 'Low Maintenance', desc: 'Simple care routine with minimal upkeep required' },
         { title: 'Versatile Applications', desc: 'Perfect for both indoor and outdoor projects' },
       ],
-      types: [
-        { name: 'Tiles', sizes: '30 x 30 to 60 x 120 CM in various thicknesses', icon: '▪️' },
-        { name: 'Cutter Slabs', sizes: '120-150 x 60-90 x 3 & 4 CM', icon: '▪️' },
-        { name: 'Palisades', sizes: '100 x 25 x 6 CM', icon: '▪️' },
-        { name: 'Wall Cladding', sizes: '60 x 15 x 1.5-2.5 CM', icon: '▪️' },
-        { name: 'Step Blocks', sizes: '100-120 x 35-40 x 14-16 CM', icon: '▪️' },
-        { name: 'Mosaic', sizes: '30 x 30 x 1 CM', icon: '▪️' },
-        { name: 'Pool Coping', sizes: '60-100 x 30-60 x 3 CM', icon: '▪️' },
-        { name: 'Cobbles', sizes: '10 x 10 x 3-5-7-9 CM', icon: '▪️' },
-        { name: 'Crazy Paving', sizes: '30-60 x 30-60 x 2.5-3.5 CM', icon: '▪️' },
-        { name: 'Stepping Stones', sizes: '30 x 30, 60 x 40 x 2 & 3 CM', icon: '▪️' },
-      ],
+      types: LIMESTONE_TYPE_SIZES,
       finishes: [
         { name: 'Natural', image: null },
         { name: 'Brushed', image: null },
@@ -149,18 +151,7 @@ export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveM
         { title: 'Consistent Coloring', desc: 'Uniform appearance throughout each piece' },
         { title: 'Aesthetic Versatility', desc: 'Works with contemporary and classic designs' },
       ],
-      types: [
-        { name: 'Tiles', sizes: '30 x 30 to 60 x 120 CM in various thicknesses', icon: '▪️' },
-        { name: 'Cutter Slabs', sizes: '120-150 x 60-90 x 3 & 4 CM', icon: '▪️' },
-        { name: 'Palisades', sizes: '100 x 25 x 6 CM', icon: '▪️' },
-        { name: 'Wall Cladding', sizes: '60 x 15 x 1.5-2.5 CM', icon: '▪️' },
-        { name: 'Step Blocks', sizes: '100-120 x 35-40 x 14-16 CM', icon: '▪️' },
-        { name: 'Mosaic', sizes: '30 x 30 x 1 CM', icon: '▪️' },
-        { name: 'Pool Coping', sizes: '60-100 x 30-60 x 3 CM', icon: '▪️' },
-        { name: 'Cobbles', sizes: '10 x 10 x 3-5-7-9 CM', icon: '▪️' },
-        { name: 'Crazy Paving', sizes: '30-60 x 30-60 x 2.5-3.5 CM', icon: '▪️' },
-        { name: 'Stepping Stones', sizes: '30 x 30, 60 x 40 x 2 & 3 CM', icon: '▪️' },
-      ],
+      types: LIMESTONE_TYPE_SIZES,
       finishes: [
         { name: 'Natural', image: null },
         { name: 'Brushed', image: null },
@@ -208,18 +199,7 @@ export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveM
         { title: 'Aging Gracefully', desc: 'Develops character with time and use' },
         { title: 'Design Flexibility', desc: 'Works beautifully with all color palettes' },
       ],
-      types: [
-        { name: 'Tiles', sizes: '30 x 30 to 60 x 120 CM in various thicknesses', icon: '▪️' },
-        { name: 'Cutter Slabs', sizes: '120-150 x 60-90 x 3 & 4 CM', icon: '▪️' },
-        { name: 'Palisades', sizes: '100 x 25 x 6 CM', icon: '▪️' },
-        { name: 'Wall Cladding', sizes: '60 x 15 x 1.5-2.5 CM', icon: '▪️' },
-        { name: 'Step Blocks', sizes: '100-120 x 35-40 x 14-16 CM', icon: '▪️' },
-        { name: 'Mosaic', sizes: '30 x 30 x 1 CM', icon: '▪️' },
-        { name: 'Pool Coping', sizes: '60-100 x 30-60 x 3 CM', icon: '▪️' },
-        { name: 'Cobbles', sizes: '10 x 10 x 3-5-7-9 CM', icon: '▪️' },
-        { name: 'Crazy Paving', sizes: '30-60 x 30-60 x 2.5-3.5 CM', icon: '▪️' },
-        { name: 'Stepping Stones', sizes: '30 x 30, 60 x 40 x 2 & 3 CM', icon: '▪️' },
-      ],
+      types: LIMESTONE_TYPE_SIZES,
       finishes: [
         { name: 'Natural', image: null },
         { name: 'Brushed', image: null },
@@ -255,65 +235,6 @@ export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveM
         'Museum & Gallery Spaces',
       ],
     },
-    black: {
-      name: 'Cudappah Black Limestone',
-      code: 'LST-BLK',
-      image: blackImage,
-      description: 'Deep black limestone with a bold architectural presence, ideal for premium facades, modern paving, statement interiors, and high-contrast design palettes.',
-      story: 'Selected for its saturated tone and sleek surface character, our Cudappah Black Limestone creates a dramatic visual anchor for contemporary spaces and export-grade projects.',
-      benefits: [
-        { title: 'Bold Contrast', desc: 'Rich dark tones create a sharp, premium look in modern architecture' },
-        { title: 'Luxury Presence', desc: 'Makes feature walls, paving, and steps feel elevated and intentional' },
-        { title: 'Project Versatility', desc: 'Suitable for statement interiors, facades, pool decks, and landscape detailing' },
-        { title: 'Reliable Performance', desc: 'Durable limestone structure suited for residential and commercial use' },
-      ],
-      types: [
-        { name: 'Tiles', sizes: '30 x 30 to 60 x 120 CM in various thicknesses', icon: '▪️' },
-        { name: 'Cutter Slabs', sizes: '120-150 x 60-90 x 3 & 4 CM', icon: '▪️' },
-        { name: 'Palisades', sizes: '100 x 25 x 6 CM', icon: '▪️' },
-        { name: 'Wall Cladding', sizes: '60 x 15 x 1.5-2.5 CM', icon: '▪️' },
-        { name: 'Step Blocks', sizes: '100-120 x 35-40 x 14-16 CM', icon: '▪️' },
-        { name: 'Mosaic', sizes: '30 x 30 x 1 CM', icon: '▪️' },
-        { name: 'Pool Coping', sizes: '60-100 x 30-60 x 3 CM', icon: '▪️' },
-        { name: 'Cobbles', sizes: '10 x 10 x 3-5-7-9 CM', icon: '▪️' },
-        { name: 'Crazy Paving', sizes: '30-60 x 30-60 x 2.5-3.5 CM', icon: '▪️' },
-        { name: 'Stepping Stones', sizes: '30 x 30, 60 x 40 x 2 & 3 CM', icon: '▪️' },
-      ],
-      finishes: [
-        { name: 'Natural', image: null },
-        { name: 'Brushed', image: null },
-        { name: 'Tumbled', image: null },
-        { name: 'Tumbled and Brushed', image: null },
-        { name: 'Sandblast', image: null },
-        { name: 'Honed + Sandblast', image: null },
-        { name: 'Bush Hammered', image: null },
-        { name: 'Bush Hammered + Brushed', image: null },
-      ],
-      edge: ['Machine cut', 'Hand cut', 'Pool coping', 'Eased edge'],
-      maintenance: [
-        'Sweep regularly to keep the dark tone crisp and dust-free',
-        'Use pH-neutral stone cleaners only',
-        'Avoid acidic cleaners and bleach-based products',
-        'Seal periodically for better stain resistance',
-        'Wipe spills promptly to preserve the finish',
-      ],
-      specs: [
-        { label: 'Origin', value: 'Telangana, India' },
-        { label: 'Density', value: '2.7 g/cm³' },
-        { label: 'Compressive Strength', value: '170 MPa' },
-        { label: 'Water Absorption', value: '0.45%' },
-      ],
-      applications: [
-        'Luxury Exterior Paving',
-        'Feature Walls',
-        'High-Contrast Interiors',
-        'Pool & Spa Surrounds',
-        'Modern Staircases',
-        'Boutique Retail Design',
-        'Hospitality Entrances',
-        'Landscape Highlights',
-      ],
-    },
   };
 
   const stone = limestoneData[colorId];
@@ -321,9 +242,19 @@ export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveM
   const getFinishName = (finish) => (typeof finish === 'string' ? finish : finish.name);
   const getTypeImage = (typeName) => {
     const typeImagesByColor = {
+      blue: {
+        Tiles: tilesImage,
+        Palisades: palisadesImage,
+        'Wall Cladding': blueWallCladdingTypeImage,
+        'Step Blocks': stepBlocksImage,
+        Mosaic: blueMosaicTypeImage,
+        'Pool Coping': bluePoolCopingTypeImage,
+        Cobbles: cobblesImage,
+        'Crazy Paving': blueCrazyPavingTypeImage,
+        'Stepping Stones': blueSteppingStonesTypeImage,
+      },
       grey: {
         Tiles: greyTilesTypeImage,
-        'Cutter Slabs': greyCutterSlabTypeImage,
         Palisades: greyPalisadesTypeImage,
         'Wall Cladding': greyWallCladdingTypeImage,
         'Step Blocks': greyStepBlocksTypeImage,
@@ -335,7 +266,6 @@ export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveM
       },
       yellow: {
         Tiles: yellowTilesImage,
-        'Cutter Slabs': yellowCutterSlabImage,
         Palisades: yellowPalisadesImage,
         'Wall Cladding': yellowWallCladdingImage,
         'Step Blocks': yellowStepBlocksImage,
@@ -347,7 +277,6 @@ export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveM
       },
       default: {
         Tiles: tilesImage,
-        'Cutter Slabs': cutterSlabImage,
         Palisades: palisadesImage,
         'Wall Cladding': wallCladdingImage,
         'Step Blocks': stepBlocksImage,
@@ -377,12 +306,6 @@ export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveM
         'Eased edge': yellowEasedEdge,
       },
       grey: {
-        'Machine cut': greyMachineCut,
-        'Pool coping': greyPoolCoping,
-        'Hand cut': greyHandCut,
-        'Eased edge': greyEasedEdge,
-      },
-      black: {
         'Machine cut': greyMachineCut,
         'Pool coping': greyPoolCoping,
         'Hand cut': greyHandCut,
@@ -479,13 +402,6 @@ export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveM
       step: 'bg-slate-300/80',
       stat: 'bg-slate-800 text-white',
       message: 'border-slate-800 bg-slate-800 text-white',
-    },
-    black: {
-      panel: 'border-neutral-500 bg-neutral-200/90',
-      inner: 'border-neutral-400 bg-white',
-      step: 'bg-neutral-300/80',
-      stat: 'bg-neutral-900 text-white',
-      message: 'border-neutral-900 bg-neutral-900 text-white',
     },
   };
   const selectionTheme = themeByColor[colorId] || themeByColor.grey;

@@ -67,9 +67,7 @@ export default function EditorialSection() {
               className="max-w-xl text-[2.6rem] leading-[0.98] tracking-[-0.03em] text-black md:text-[3.4rem] lg:text-[4.25rem]"
               style={{ fontFamily: 'Inter, sans-serif' }}
             >
-              A Stone Shaped
-              <br />
-              by Time
+              Premium Natural Stone for Lasting Performance
             </h2>
 
             <div className="my-8 h-px w-full max-w-[420px] bg-black/16" />
@@ -78,7 +76,7 @@ export default function EditorialSection() {
               className="max-w-xl text-base leading-8 text-black md:text-lg"
               style={{ fontFamily: 'Inter, sans-serif' }}
             >
-              Born beneath ancient seabeds, shaped over millions of years. Our limestone carries a dense structure, refined texture, and timeless strength for modern architecture.
+              Natural stone, including limestone and sandstone, is widely used for its durability, slip resistance, and consistent finish. Suitable for paving, wall cladding, pool coping, and landscaping, it offers both performance and visual appeal. With its natural texture and long-lasting strength, it remains a reliable choice for residential and commercial projects.
             </p>
 
             <motion.button
