@@ -49,7 +49,7 @@ export default function CartPage({ cartItems, onRemoveCartItem, onClearCart, onO
                 Saved Stone Selections
               </h1>
               <p className="mt-4 max-w-2xl text-base md:text-lg text-gray-600">
-                Review the limestone items you&apos;ve added, then request a quote when you&apos;re ready.
+                Review the stone items you&apos;ve added, then request a quote when you&apos;re ready.
               </p>
             </div>
 
@@ -90,7 +90,7 @@ export default function CartPage({ cartItems, onRemoveCartItem, onClearCart, onO
                 Your cart is empty
               </h2>
               <p className="text-gray-600 mb-8 max-w-xl mx-auto">
-                Add a limestone by selecting its size, finish, and edge options from any product detail page.
+                Add a stone by selecting its size, finish, and edge options from any product detail page.
               </p>
               <button
                 onClick={() => navigate('/', { state: { scrollTo: 'limestone-collection' } })}
@@ -129,7 +129,7 @@ export default function CartPage({ cartItems, onRemoveCartItem, onClearCart, onO
 
                     <div className="flex flex-wrap gap-3">
                       <button
-                        onClick={() => navigate(`/limestone/${item.colorId}`)}
+                        onClick={() => navigate(item.category === 'granite' ? `/granite/${item.colorId}` : `/limestone/${item.colorId}`)}
                         className="px-4 py-2 border border-black text-black font-gabarito font-semibold rounded-sm hover:bg-black hover:text-white transition-all duration-220"
                       >
                         View Product

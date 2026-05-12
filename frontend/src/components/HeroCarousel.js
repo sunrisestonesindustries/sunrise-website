@@ -39,7 +39,7 @@ export default function Hero() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000);
+    }, 3500);
     return () => clearInterval(timer);
   }, [slides.length]);
 
@@ -98,7 +98,7 @@ export default function Hero() {
 
           {/* Main Headline */}
           <h1 className="text-4xl md:text-5xl lg:text-h1-lg font-gabarito font-bold tracking-tight text-white mb-6 md:mb-8 leading-tight">
-            NATURAL STONE EXPORTS
+            Natural Stone Excellence in Granite & Limestone
           </h1>
 
           {/* Microproof */}

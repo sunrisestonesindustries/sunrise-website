@@ -38,6 +38,26 @@ export default function Footer({ onOpenModal, onOpenContact }) {
     { name: 'Call', url: 'tel:+19088002340' },
     { name: 'Website', url: 'https://www.sunrisestonesindustries.com' },
   ];
+  const socialLinks = [
+    {
+      name: 'LinkedIn',
+      url: 'https://www.linkedin.com/in/sunrisestonesindustries',
+      icon: (
+        <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-current">
+          <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.35V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z" />
+        </svg>
+      ),
+    },
+    {
+      name: 'Instagram',
+      url: 'https://www.instagram.com/sunrisestonesindustries',
+      icon: (
+        <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-current">
+          <path d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2Zm-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6A3.6 3.6 0 0 0 16.4 4H7.6Zm9.65 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7.25A4.75 4.75 0 1 1 12 16.75 4.75 4.75 0 0 1 12 7.25Zm0 2A2.75 2.75 0 1 0 12 14.75 2.75 2.75 0 0 0 12 9.25Z" />
+        </svg>
+      ),
+    },
+  ];
 
   const openCollection = () => {
     if (typeof window !== 'undefined') {
@@ -184,16 +204,29 @@ export default function Footer({ onOpenModal, onOpenContact }) {
             </div>
 
             {/* Right: Quick Links */}
-            <div className="flex gap-6">
-              {quickLinks.map((social) => (
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              {quickLinks.map((link) => (
                 <a
-                  key={social.name}
-                  href={social.url}
-                  target={social.name === 'Website' ? '_blank' : undefined}
-                  rel={social.name === 'Website' ? 'noreferrer' : undefined}
-                  className="text-xs font-gabarito text-gray-600 hover:text-black transition-colors duration-220"
+                  key={link.name}
+                  href={link.url}
+                  target={link.name === 'Website' ? '_blank' : undefined}
+                  rel={link.name === 'Website' ? 'noreferrer' : undefined}
+                  className="rounded-full border border-gray-300 px-4 py-2 text-xs font-gabarito text-gray-600 transition-colors duration-220 hover:border-black hover:bg-black hover:text-white"
                 >
-                  {social.name}
+                  {link.name}
+                </a>
+              ))}
+              {socialLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={link.name}
+                  title={link.name}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 text-gray-600 transition-colors duration-220 hover:border-black hover:bg-black hover:text-white"
+                >
+                  {link.icon}
                 </a>
               ))}
             </div>

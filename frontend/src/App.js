@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Lenis from 'lenis';
 import Navbar from './components/Navbar';
 import HeroCarousel from './components/HeroCarousel';
-import EditorialSection from './components/EditorialSection';
 import LogoStrip from './components/LogoStrip';
 import NewestStock from './components/NewestStock';
 import Testimonials from './components/Testimonials';
@@ -13,17 +12,51 @@ import ContactDetailsModal from './components/ContactDetailsModal';
 import MultiStepModal from './components/MultiStepModal';
 import Footer from './components/Footer';
 import LimestoneDetail from './components/LimestoneDetail';
+import GraniteDetail from './components/GraniteDetail';
 import MiningJourney from './components/MiningJourney';
 import CartPage from './components/CartPage';
 import StoneCustomizationPage from './components/StoneCustomizationPage';
 import CompanyInfoPage from './components/CompanyInfoPage';
 import './App.css';
 
+function ScrollToTop() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.history) {
+      return undefined;
+    }
+
+    const previousScrollRestoration = window.history.scrollRestoration;
+    window.history.scrollRestoration = 'manual';
+
+    return () => {
+      window.history.scrollRestoration = previousScrollRestoration;
+    };
+  }, []);
+
+  useLayoutEffect(() => {
+    const shouldScrollToSection = location.pathname === '/' && location.state?.scrollTo;
+
+    if (shouldScrollToSection) {
+      return;
+    }
+
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, [location.pathname, location.search, location.state]);
+
+  return null;
+}
+
 function HomePage({ setIsModalOpen, setIsAppointmentOpen, setIsContactOpen, cartCount }) {
   const location = useLocation();
 
   // Initialize Lenis smooth scrolling
   useEffect(() => {
+    let animationFrameId;
+    let isActive = true;
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -35,13 +68,19 @@ function HomePage({ setIsModalOpen, setIsAppointmentOpen, setIsContactOpen, cart
     });
 
     function raf(time) {
+      if (!isActive) {
+        return;
+      }
+
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      animationFrameId = requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf);
+    animationFrameId = requestAnimationFrame(raf);
 
     return () => {
+      isActive = false;
+      cancelAnimationFrame(animationFrameId);
       lenis.destroy();
     };
   }, []);
@@ -73,7 +112,6 @@ function HomePage({ setIsModalOpen, setIsAppointmentOpen, setIsContactOpen, cart
       />
       <HeroCarousel onOpenModal={() => setIsModalOpen(true)} />
       <div aria-hidden="true" className="h-screen" />
-      <EditorialSection />
       <NewestStock />
       <MiningJourney />
       <LogoStrip />
@@ -177,6 +215,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route 
           path="/" 
@@ -199,6 +238,17 @@ function App() {
               onOpenContact={() => setIsContactOpen(true)}
             />
           } 
+        />
+        <Route
+          path="/granite/:graniteId"
+          element={
+            <GraniteDetail
+              cartItems={cartItems}
+              onAddToCart={handleAddToCart}
+              onRemoveMatchingCartItem={handleRemoveMatchingCartItem}
+              onOpenContact={() => setIsContactOpen(true)}
+            />
+          }
         />
         <Route
           path="/cart"

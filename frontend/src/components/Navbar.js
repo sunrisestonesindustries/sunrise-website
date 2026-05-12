@@ -7,6 +7,8 @@ export default function Navbar({ onOpenModal, onOpenContact, cartCount = 0 }) {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isCatalogOpen, setIsCatalogOpen] = useState(false);
+  const catalogUrl = `${process.env.PUBLIC_URL}/catalog/CATALOG%202026.pdf`;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,7 +25,12 @@ export default function Navbar({ onOpenModal, onOpenContact, cartCount = 0 }) {
   };
 
   const handleProductsClick = () => {
-    navigate('/', { state: { scrollTo: 'color-gallery' } });
+    navigate('/', { state: { scrollTo: 'limestone-collection' } });
+    setIsOpen(false);
+  };
+
+  const handleCatalogClick = () => {
+    setIsCatalogOpen(true);
     setIsOpen(false);
   };
 
@@ -88,7 +95,14 @@ export default function Navbar({ onOpenModal, onOpenContact, cartCount = 0 }) {
               className="text-sm font-gabarito text-black hover:text-gray-600 transition-colors duration-220 border-none bg-transparent cursor-pointer"
               whileHover={{ y: -2 }}
             >
-              Products
+              Collection
+            </motion.button>
+            <motion.button
+              onClick={handleCatalogClick}
+              className="text-sm font-gabarito text-black hover:text-gray-600 transition-colors duration-220 border-none bg-transparent cursor-pointer"
+              whileHover={{ y: -2 }}
+            >
+              Catalog
             </motion.button>
             <motion.button
               onClick={() => handleNavClick('about')}
@@ -203,7 +217,15 @@ export default function Navbar({ onOpenModal, onOpenContact, cartCount = 0 }) {
                 whileHover={{ x: 8 }}
                 transition={{ type: 'spring', stiffness: 300 }}
               >
-                Products
+                Collection
+              </motion.button>
+              <motion.button
+                onClick={handleCatalogClick}
+                className="px-6 py-3 text-black text-base font-gabarito hover:bg-gray-100 transition-colors duration-200 tracking-wide text-left border-none bg-transparent cursor-pointer"
+                whileHover={{ x: 8 }}
+                transition={{ type: 'spring', stiffness: 300 }}
+              >
+                Catalog
               </motion.button>
               <motion.button
                 onClick={() => handleNavClick('about')}
@@ -247,6 +269,65 @@ export default function Navbar({ onOpenModal, onOpenContact, cartCount = 0 }) {
                 </motion.button>
               </div>
             </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {isCatalogOpen && (
+          <motion.div
+            className="fixed inset-0 z-[70] flex items-center justify-center bg-black/70 px-4 py-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              className="flex h-[88vh] w-full max-w-6xl flex-col overflow-hidden rounded-sm bg-white shadow-2xl"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 24 }}
+              transition={{ duration: 0.22 }}
+            >
+              <div className="flex flex-col gap-3 border-b border-gray-200 px-5 py-4 md:flex-row md:items-center md:justify-between">
+                <div>
+                  <p className="text-xs font-gabarito uppercase tracking-[0.24em] text-gray-500">
+                    Product Catalog
+                  </p>
+                  <h2 className="mt-1 text-xl font-gabarito font-bold text-black">
+                    CATALOG 2026
+                  </h2>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <a
+                    href={catalogUrl}
+                    download="CATALOG 2026.pdf"
+                    className="rounded-sm border-2 border-black px-4 py-2 text-sm font-gabarito font-semibold tracking-wide text-black transition-all duration-220 hover:bg-black hover:text-white"
+                  >
+                    DOWNLOAD
+                  </a>
+                  <a
+                    href={catalogUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="rounded-sm border-2 border-black px-4 py-2 text-sm font-gabarito font-semibold tracking-wide text-black transition-all duration-220 hover:bg-black hover:text-white"
+                  >
+                    OPEN
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => setIsCatalogOpen(false)}
+                    className="rounded-sm bg-black px-4 py-2 text-sm font-gabarito font-semibold tracking-wide text-white transition-all duration-220 hover:bg-gray-800"
+                  >
+                    CLOSE
+                  </button>
+                </div>
+              </div>
+              <iframe
+                title="Sunrise Stones Catalog 2026"
+                src={catalogUrl}
+                className="h-full w-full flex-1 border-0"
+              />
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
