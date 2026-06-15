@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import logoImage from '../Pictures/logo1.webp';
+import logoImage from '../Pictures/logo-geo.png';
 
 export default function Footer({ onOpenModal, onOpenContact }) {
   const currentYear = new Date().getFullYear();

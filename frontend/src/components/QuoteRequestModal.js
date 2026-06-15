@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import logoImage from '../Pictures/logo1.webp';
+import logoImage from '../Pictures/logo-geo.png';
 
 const FIELD_LABELS = {
   name: 'Full Name',

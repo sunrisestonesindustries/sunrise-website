@@ -9,10 +9,109 @@ import graniteJuparana from '../Pictures/Indian Juparana Granite.png';
 import graniteKashmirWhite from '../Pictures/White Granite. Kashmir.jpeg';
 import graniteParadiso from '../Pictures/Paradiso Bash Granite. (1).png';
 import graniteSapphire from '../Pictures/Sapphire Blue granite stone (1).png';
+import graniteTanBrown from '../Pictures/Tan Brown Granite.png';
+import graniteBlackPearl from '../Pictures/Black Pearl Granite.png';
+import graniteSteelGrey from '../Pictures/Steel Grey Granite.png';
+import graniteBlackForest from '../Pictures/Black Forest Granite.png';
+import graniteImperialBlue from '../Pictures/Imperial Blue Granite.png';
+import graniteCoffeeBrown from '../Pictures/Coffee Brown Granite.png';
+import graniteThunderBlack from '../Pictures/Thunder Black Granite.png';
+import graniteParadisoClassico from '../Pictures/Paradiso Classico Granite.png';
+import graniteCopperSilk from '../Pictures/Copper Silk Granite.png';
+import graniteSilverSilk from '../Pictures/Silver Silk Granite.png';
+import graniteMulticolorRed from '../Pictures/Multicolor Red Granite.png';
 
 const graniteItems = [
   {
     id: 1,
+    graniteId: 'tan-brown',
+    name: 'Tan Brown Granite',
+    code: 'GRT-TBR',
+    accent: 'from-[#3d2b1a] via-[#7a5c3a] to-[#1a1008]',
+    image: graniteTanBrown,
+  },
+  {
+    id: 2,
+    graniteId: 'black-pearl',
+    name: 'Black Pearl Granite',
+    code: 'GRT-BPL',
+    accent: 'from-[#1a1a1a] via-[#323232] to-[#080808]',
+    image: graniteBlackPearl,
+  },
+  {
+    id: 3,
+    graniteId: 'steel-grey',
+    name: 'Steel Grey Granite',
+    code: 'GRT-STG',
+    accent: 'from-[#3a3a3a] via-[#5a5a5a] to-[#1a1a1a]',
+    image: graniteSteelGrey,
+  },
+  {
+    id: 4,
+    graniteId: 'black-forest',
+    name: 'Black Forest Granite',
+    code: 'GRT-BFT',
+    accent: 'from-[#0f0f0f] via-[#2a2a2a] to-[#050505]',
+    image: graniteBlackForest,
+  },
+  {
+    id: 5,
+    graniteId: 'imperial-blue',
+    name: 'Imperial Blue Granite',
+    code: 'GRT-IMB',
+    accent: 'from-[#0a1f4d] via-[#1a3a7c] to-[#050f26]',
+    image: graniteImperialBlue,
+  },
+  {
+    id: 6,
+    graniteId: 'coffee-brown',
+    name: 'Coffee Brown Granite',
+    code: 'GRT-CFB',
+    accent: 'from-[#2a1f10] via-[#4a3520] to-[#120d05]',
+    image: graniteCoffeeBrown,
+  },
+  {
+    id: 7,
+    graniteId: 'thunder-black',
+    name: 'Thunder Black Granite',
+    code: 'GRT-THB',
+    accent: 'from-[#141414] via-[#282828] to-[#060606]',
+    image: graniteThunderBlack,
+  },
+  {
+    id: 8,
+    graniteId: 'paradiso-classico',
+    name: 'Paradiso Classico Granite',
+    code: 'GRT-PDC',
+    accent: 'from-[#4a3a3a] via-[#6a5a5a] to-[#1f1515]',
+    image: graniteParadisoClassico,
+  },
+  {
+    id: 9,
+    graniteId: 'copper-silk',
+    name: 'Copper Silk Granite',
+    code: 'GRT-CPS',
+    accent: 'from-[#5a2a10] via-[#8a4a20] to-[#251005]',
+    image: graniteCopperSilk,
+  },
+  {
+    id: 10,
+    graniteId: 'silver-silk',
+    name: 'Silver Silk Granite',
+    code: 'GRT-SVS',
+    accent: 'from-[#3a3530] via-[#5a5550] to-[#1a1510]',
+    image: graniteSilverSilk,
+  },
+  {
+    id: 11,
+    graniteId: 'multicolor-red',
+    name: 'Multicolor Red Granite',
+    code: 'GRT-MCR',
+    accent: 'from-[#5a1f10] via-[#8a3520] to-[#250a05]',
+    image: graniteMulticolorRed,
+  },
+  {
+    id: 12,
     graniteId: 'alaska-red',
     name: 'Alaska Red Granite',
     code: 'GRT-ALR',
@@ -20,7 +119,7 @@ const graniteItems = [
     image: graniteAlaskaRed,
   },
   {
-    id: 2,
+    id: 13,
     graniteId: 'indian-juparana',
     name: 'Indian Juparana Granite',
     code: 'GRT-IJG',
@@ -28,7 +127,7 @@ const graniteItems = [
     image: graniteJuparana,
   },
   {
-    id: 3,
+    id: 14,
     graniteId: 'kashmir-white',
     name: 'Kashmir White Granite',
     code: 'GRT-KWG',
@@ -36,7 +135,7 @@ const graniteItems = [
     image: graniteKashmirWhite,
   },
   {
-    id: 4,
+    id: 15,
     graniteId: 'paradiso-ash',
     name: 'Paradiso Ash Granite',
     code: 'GRT-PAG',
@@ -44,7 +143,7 @@ const graniteItems = [
     image: graniteParadiso,
   },
   {
-    id: 5,
+    id: 16,
     graniteId: 'sapphire-blue',
     name: 'Sapphire Blue Granite',
     code: 'GRT-SBG',

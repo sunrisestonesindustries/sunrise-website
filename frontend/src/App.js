@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Lenis from 'lenis';
 import Navbar from './components/Navbar';
@@ -11,13 +11,22 @@ import QuoteRequestModal from './components/QuoteRequestModal';
 import ContactDetailsModal from './components/ContactDetailsModal';
 import MultiStepModal from './components/MultiStepModal';
 import Footer from './components/Footer';
-import LimestoneDetail from './components/LimestoneDetail';
-import GraniteDetail from './components/GraniteDetail';
 import MiningJourney from './components/MiningJourney';
-import CartPage from './components/CartPage';
-import StoneCustomizationPage from './components/StoneCustomizationPage';
-import CompanyInfoPage from './components/CompanyInfoPage';
 import './App.css';
+
+// Heavy detail pages — code-split so they don't block initial load
+const LimestoneDetail = lazy(() => import('./components/LimestoneDetail'));
+const GraniteDetail   = lazy(() => import('./components/GraniteDetail'));
+const CartPage        = lazy(() => import('./components/CartPage'));
+const StoneCustomizationPage = lazy(() => import('./components/StoneCustomizationPage'));
+const CompanyInfoPage = lazy(() => import('./components/CompanyInfoPage'));
+
+// Minimal loading fallback
+const PageLoader = () => (
+  <div className="min-h-screen flex items-center justify-center bg-white">
+    <div className="h-8 w-8 rounded-full border-2 border-black/10 border-t-black animate-spin" />
+  </div>
+);
 
 function ScrollToTop() {
   const location = useLocation();
@@ -58,13 +67,11 @@ function HomePage({ setIsModalOpen, setIsAppointmentOpen, setIsContactOpen, cart
     let animationFrameId;
     let isActive = true;
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.1,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: 'vertical',
-      gestureDirection: 'vertical',
-      smooth: true,
       smoothTouch: false,
-      touchMultiplier: 2,
+      touchMultiplier: 1.8,
+      infinite: false,
     });
 
     function raf(time) {
@@ -104,7 +111,7 @@ function HomePage({ setIsModalOpen, setIsAppointmentOpen, setIsContactOpen, cart
   }, [location]);
 
   return (
-    <div className="App bg-white min-h-screen">
+    <div className="App bg-black min-h-screen">
       <Navbar
         onOpenModal={() => setIsModalOpen(true)}
         onOpenContact={() => setIsContactOpen(true)}
@@ -217,8 +224,8 @@ function App() {
     <Router>
       <ScrollToTop />
       <Routes>
-        <Route 
-          path="/" 
+        <Route
+          path="/"
           element={
             <HomePage
               setIsModalOpen={setIsModalOpen}
@@ -226,59 +233,69 @@ function App() {
               setIsContactOpen={setIsContactOpen}
               cartCount={cartCount}
             />
-          } 
+          }
         />
-        <Route 
-          path="/limestone/:colorId" 
+        <Route
+          path="/limestone/:colorId"
           element={
-            <LimestoneDetail
-              cartItems={cartItems}
-              onAddToCart={handleAddToCart}
-              onRemoveMatchingCartItem={handleRemoveMatchingCartItem}
-              onOpenContact={() => setIsContactOpen(true)}
-            />
-          } 
+            <Suspense fallback={<PageLoader />}>
+              <LimestoneDetail
+                cartItems={cartItems}
+                onAddToCart={handleAddToCart}
+                onRemoveMatchingCartItem={handleRemoveMatchingCartItem}
+                onOpenContact={() => setIsContactOpen(true)}
+              />
+            </Suspense>
+          }
         />
         <Route
           path="/granite/:graniteId"
           element={
-            <GraniteDetail
-              cartItems={cartItems}
-              onAddToCart={handleAddToCart}
-              onRemoveMatchingCartItem={handleRemoveMatchingCartItem}
-              onOpenContact={() => setIsContactOpen(true)}
-            />
+            <Suspense fallback={<PageLoader />}>
+              <GraniteDetail
+                cartItems={cartItems}
+                onAddToCart={handleAddToCart}
+                onRemoveMatchingCartItem={handleRemoveMatchingCartItem}
+                onOpenContact={() => setIsContactOpen(true)}
+              />
+            </Suspense>
           }
         />
         <Route
           path="/cart"
           element={
-            <CartPage
-              cartItems={cartItems}
-              onRemoveCartItem={handleRemoveCartItem}
-              onClearCart={handleClearCart}
-              onOpenModal={() => setIsModalOpen(true)}
-              onOpenContact={() => setIsContactOpen(true)}
-            />
+            <Suspense fallback={<PageLoader />}>
+              <CartPage
+                cartItems={cartItems}
+                onRemoveCartItem={handleRemoveCartItem}
+                onClearCart={handleClearCart}
+                onOpenModal={() => setIsModalOpen(true)}
+                onOpenContact={() => setIsContactOpen(true)}
+              />
+            </Suspense>
           }
         />
         <Route
           path="/customize-stone"
           element={
-            <StoneCustomizationPage
-              onOpenContact={() => setIsContactOpen(true)}
-              cartCount={cartCount}
-            />
+            <Suspense fallback={<PageLoader />}>
+              <StoneCustomizationPage
+                onOpenContact={() => setIsContactOpen(true)}
+                cartCount={cartCount}
+              />
+            </Suspense>
           }
         />
         <Route
           path="/terms"
           element={
-            <CompanyInfoPage
-              onOpenModal={() => setIsModalOpen(true)}
-              onOpenContact={() => setIsContactOpen(true)}
-              cartCount={cartCount}
-            />
+            <Suspense fallback={<PageLoader />}>
+              <CompanyInfoPage
+                onOpenModal={() => setIsModalOpen(true)}
+                onOpenContact={() => setIsContactOpen(true)}
+                cartCount={cartCount}
+              />
+            </Suspense>
           }
         />
         <Route

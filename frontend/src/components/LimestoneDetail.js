@@ -478,6 +478,8 @@ export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveM
                   src={stone.image}
                   alt={stone.name}
                   className="w-full h-full object-cover"
+                  loading="eager"
+                  decoding="async"
                 />
               </div>
             </motion.div>

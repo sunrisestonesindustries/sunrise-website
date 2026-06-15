@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import logoImage from '../Pictures/logo1.webp';
+import logoImage from '../Pictures/logo-geo.png';
 
 export default function Navbar({ onOpenModal, onOpenContact, cartCount = 0 }) {
   const navigate = useNavigate();
@@ -57,6 +57,7 @@ export default function Navbar({ onOpenModal, onOpenContact, cartCount = 0 }) {
     <>
       {/* Desktop Navbar */}
       <nav
+        style={{ willChange: 'transform', transform: 'translateZ(0)' }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
             ? 'backdrop-blur-glass bg-white/95 border-b border-gray-300/30'

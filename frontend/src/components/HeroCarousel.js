@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import greyImage from '../Pictures/grey 3.webp';
 import stepyImage from '../Pictures/stepy.webp';
 import extyImage from '../Pictures/exty5.webp';
@@ -7,11 +7,25 @@ import poolImage from '../Pictures/pb.jpg';
 
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const containerRef = useRef(null);
-  const { scrollY } = useScroll();
-  
-  // Fade out hero as user scrolls down
-  const heroOpacity = useTransform(scrollY, [0, 400], [1, 0]);
+  const heroRef = useRef(null);
+
+  // Performant scroll fade — passive listener + rAF, no React re-renders
+  useEffect(() => {
+    const el = heroRef.current;
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const progress = Math.min(1, window.scrollY / (window.innerHeight * 0.65));
+          if (el) el.style.opacity = 1 - progress;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const slides = [
     {
@@ -44,11 +58,7 @@ export default function Hero() {
   }, [slides.length]);
 
   return (
-    <motion.div 
-      ref={containerRef}
-      style={{ opacity: heroOpacity }}
-      className="fixed inset-0 w-full h-screen overflow-hidden z-0 pointer-events-none"
-    >
+    <div ref={heroRef} className="fixed inset-0 w-full h-screen overflow-hidden z-0 pointer-events-none">
       <AnimatePresence mode="wait">
         <motion.div
           key={currentSlide}
@@ -62,6 +72,9 @@ export default function Hero() {
             src={slides[currentSlide].image}
             alt={slides[currentSlide].alt}
             className="absolute inset-0 w-full h-full object-cover"
+            loading={currentSlide === 0 ? 'eager' : 'lazy'}
+            decoding="async"
+            style={{ willChange: 'opacity' }}
           />
           <div
             style={{ backgroundImage: slides[currentSlide].overlay }}
@@ -127,6 +140,6 @@ export default function Hero() {
         ))}
       </div>
 
-    </motion.div>
+    </div>
   );
 }

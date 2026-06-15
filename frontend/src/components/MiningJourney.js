@@ -58,6 +58,8 @@ export default function MiningJourney() {
             src={slides[activeSlide].image}
             alt={slides[activeSlide].title}
             className="h-full w-full object-cover"
+            loading="lazy"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(0,0,0,0.72),rgba(0,0,0,0.2)_48%,rgba(0,0,0,0.58))]" />
         </motion.div>

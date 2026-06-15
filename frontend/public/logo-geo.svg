@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="512" height="512">
+  <!-- Black outer background -->
+  <rect width="200" height="200" fill="black"/>
+  <!-- White circle -->
+  <circle cx="100" cy="100" r="94" fill="white"/>
+  <!-- Clip pattern to inner circle -->
+  <defs>
+    <clipPath id="clip">
+      <circle cx="100" cy="100" r="82"/>
+    </clipPath>
+  </defs>
+  <!-- Geometric pattern clipped inside -->
+  <g clip-path="url(#clip)">
+    <circle cx="100" cy="100" r="1.5" fill="black"/>
+    <line x1="100.000" y1="100.000" x2="100.000" y2="20.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="100.000" y1="100.000" x2="140.000" y2="30.718" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="100.000" y1="100.000" x2="169.282" y2="60.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="100.000" y1="100.000" x2="180.000" y2="100.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="100.000" y1="100.000" x2="169.282" y2="140.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="100.000" y1="100.000" x2="140.000" y2="169.282" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="100.000" y1="100.000" x2="100.000" y2="180.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="100.000" y1="100.000" x2="60.000" y2="169.282" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="100.000" y1="100.000" x2="30.718" y2="140.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="100.000" y1="100.000" x2="20.000" y2="100.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="100.000" y1="100.000" x2="30.718" y2="60.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="100.000" y1="100.000" x2="60.000" y2="30.718" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="100.000" y1="20.000" x2="169.282" y2="60.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="140.000" y1="30.718" x2="180.000" y2="100.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="169.282" y1="60.000" x2="169.282" y2="140.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="180.000" y1="100.000" x2="140.000" y2="169.282" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="169.282" y1="140.000" x2="100.000" y2="180.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="140.000" y1="169.282" x2="60.000" y2="169.282" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="100.000" y1="180.000" x2="30.718" y2="140.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="60.000" y1="169.282" x2="20.000" y2="100.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="30.718" y1="140.000" x2="30.718" y2="60.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="20.000" y1="100.000" x2="60.000" y2="30.718" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="30.718" y1="60.000" x2="100.000" y2="20.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="60.000" y1="30.718" x2="140.000" y2="30.718" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="100.000" y1="20.000" x2="180.000" y2="100.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="140.000" y1="30.718" x2="169.282" y2="140.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="169.282" y1="60.000" x2="140.000" y2="169.282" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="180.000" y1="100.000" x2="100.000" y2="180.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="169.282" y1="140.000" x2="60.000" y2="169.282" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="140.000" y1="169.282" x2="30.718" y2="140.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="100.000" y1="180.000" x2="20.000" y2="100.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="60.000" y1="169.282" x2="30.718" y2="60.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="30.718" y1="140.000" x2="60.000" y2="30.718" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="20.000" y1="100.000" x2="100.000" y2="20.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="30.718" y1="60.000" x2="140.000" y2="30.718" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="60.000" y1="30.718" x2="169.282" y2="60.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="100.000" y1="20.000" x2="169.282" y2="140.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="140.000" y1="30.718" x2="140.000" y2="169.282" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="169.282" y1="60.000" x2="100.000" y2="180.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="180.000" y1="100.000" x2="60.000" y2="169.282" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="169.282" y1="140.000" x2="30.718" y2="140.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="140.000" y1="169.282" x2="20.000" y2="100.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="100.000" y1="180.000" x2="30.718" y2="60.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="60.000" y1="169.282" x2="60.000" y2="30.718" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="30.718" y1="140.000" x2="100.000" y2="20.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="20.000" y1="100.000" x2="140.000" y2="30.718" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="30.718" y1="60.000" x2="169.282" y2="60.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="60.000" y1="30.718" x2="180.000" y2="100.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="100.000" y1="20.000" x2="140.000" y2="169.282" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="140.000" y1="30.718" x2="100.000" y2="180.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="169.282" y1="60.000" x2="60.000" y2="169.282" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="180.000" y1="100.000" x2="30.718" y2="140.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="169.282" y1="140.000" x2="20.000" y2="100.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="140.000" y1="169.282" x2="30.718" y2="60.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="100.000" y1="180.000" x2="60.000" y2="30.718" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="60.000" y1="169.282" x2="100.000" y2="20.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="30.718" y1="140.000" x2="140.000" y2="30.718" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="20.000" y1="100.000" x2="169.282" y2="60.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="30.718" y1="60.000" x2="180.000" y2="100.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="60.000" y1="30.718" x2="169.282" y2="140.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="100.000" y1="20.000" x2="100.000" y2="180.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="140.000" y1="30.718" x2="60.000" y2="169.282" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="169.282" y1="60.000" x2="30.718" y2="140.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="180.000" y1="100.000" x2="20.000" y2="100.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="169.282" y1="140.000" x2="30.718" y2="60.000" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="140.000" y1="169.282" x2="60.000" y2="30.718" stroke="black" stroke-width="1.8" stroke-linecap="round"/>
+  </g>
+  <!-- Outer ring border -->
+  <circle cx="100" cy="100" r="94" fill="none" stroke="black" stroke-width="10"/>
+  <!-- Inner ring border -->
+  <circle cx="100" cy="100" r="82" fill="none" stroke="black" stroke-width="2"/>
+</svg>

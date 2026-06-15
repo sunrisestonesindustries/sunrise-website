@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import logoImage from '../Pictures/logo1.webp';
+import logoImage from '../Pictures/logo-geo.png';
 
 const TIME_SLOTS = [
   '09:00 AM',

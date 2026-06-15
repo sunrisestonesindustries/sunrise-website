@@ -1,41 +1,217 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import Lenis from 'lenis';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import QuoteRequestModal from './QuoteRequestModal';
-import graniteAlaskaRed from '../Pictures/tan red granite.png';
-import graniteJuparana from '../Pictures/Indian Juparana Granite.png';
-import graniteKashmirWhite from '../Pictures/White Granite. Kashmir.jpeg';
-import graniteParadiso from '../Pictures/Paradiso Bash Granite. (1).png';
-import graniteSapphire from '../Pictures/Sapphire Blue granite stone (1).png';
+
+// ─── URL paths (served from /public/granite/ — loaded on demand, not bundled) ───
+const graniteAlaskaRed       = '/granite/tan-red-granite.webp';
+const graniteJuparana        = '/granite/indian-juparana-granite.webp';
+const graniteKashmirWhite    = '/granite/kashmir-white-granite.webp';
+const graniteParadiso        = '/granite/paradiso-bash-granite.webp';
+const graniteSapphire        = '/granite/sapphire-blue-granite.webp';
+const graniteTanBrown        = '/granite/tan-brown-granite.webp';
+const graniteBlackPearl      = '/granite/black-pearl-granite.webp';
+const graniteSteelGrey       = '/granite/steel-grey-granite.webp';
+const graniteBlackForest     = '/granite/black-forest-granite.webp';
+const graniteImperialBlue    = '/granite/imperial-blue-granite.webp';
+const graniteCoffeeBrown     = '/granite/coffee-brown-granite.webp';
+const graniteThunderBlack    = '/granite/thunder-black-granite.webp';
+const graniteParadisoClassico = '/granite/paradiso-classico-granite.webp';
+const graniteCopperSilk      = '/granite/copper-silk-granite.webp';
+const graniteSilverSilk      = '/granite/silver-silk-granite.webp';
+const graniteMulticolorRed   = '/granite/multicolor-red-granite.webp';
+
+// ─── Ripple hook — call triggerRipple(e) on click ───
+function useRipple() {
+  const ref = useRef(null);
+  const triggerRipple = useCallback((e) => {
+    const el = ref.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const x = (e.clientX ?? rect.left + rect.width / 2) - rect.left;
+    const y = (e.clientY ?? rect.top + rect.height / 2) - rect.top;
+    const ripple = document.createElement('span');
+    const size = Math.max(rect.width, rect.height) * 1.8;
+    ripple.style.cssText = `
+      position:absolute;left:${x - size/2}px;top:${y - size/2}px;
+      width:${size}px;height:${size}px;border-radius:50%;
+      background:rgba(201,168,76,0.22);pointer-events:none;
+      transform:scale(0);animation:_ripple 0.5s ease-out forwards;
+    `;
+    el.style.position = 'relative';
+    el.style.overflow = 'hidden';
+    el.appendChild(ripple);
+    ripple.addEventListener('animationend', () => ripple.remove());
+  }, []);
+  return [ref, triggerRipple];
+}
 
 const GRANITE_TYPES = [
-  { name: 'Gang Saw Slabs', sizes: '96"-130" x 60"-78", 2 cm and 3 cm thickness' },
-  { name: 'Cutter Slabs', sizes: '72"-96" x 24"-36", 2 cm and 3 cm thickness' },
-  { name: 'Tiles', sizes: '12" x 12", 16" x 16", 24" x 24", custom cut sizes' },
-  { name: 'Countertops', sizes: 'Custom fabricated to project drawings and sink/cooktop cutouts' },
-  { name: 'Vanity Tops', sizes: 'Custom bathroom tops with edge and backsplash options' },
-  { name: 'Stair Treads & Risers', sizes: 'Custom lengths, 1.2"-2" thickness, indoor and outdoor use' },
+  {
+    name: 'Countertops',
+    sizes: 'Custom fabricated  ·  Sink & cooktop cutouts included',
+    badge: 'Most Popular',
+    badgeColor: 'dark',
+    description: 'Fully fabricated to your kitchen or bathroom layout with precision edge work.',
+  },
+  {
+    name: 'Large Format Slabs',
+    sizes: '96"–130" × 60"–78"  ·  2 cm & 3 cm',
+    badge: 'Most Ordered',
+    badgeColor: 'gold',
+    description: 'Full gang-sawn slabs for expansive surfaces and continuous pattern flow.',
+  },
+  {
+    name: 'Standard Slabs',
+    sizes: '72"–96" × 24"–36"  ·  2 cm & 3 cm',
+    badge: null,
+    description: 'Mid-format slabs suited for islands, wall cladding, and modular work.',
+  },
+  {
+    name: 'Vanity Tops',
+    sizes: 'Custom dimensions  ·  Backsplash & edge options',
+    badge: null,
+    description: 'Bespoke bathroom surfaces with integrated backsplash and chosen edge profile.',
+  },
+  {
+    name: 'Tiles',
+    sizes: '12"×12"  ·  16"×16"  ·  24"×24"  ·  Custom',
+    badge: null,
+    description: 'Precision-cut tiles for flooring, feature walls, and mosaic installations.',
+  },
+  {
+    name: 'Stair Treads & Risers',
+    sizes: 'Custom lengths  ·  1.2"–2" thickness',
+    badge: null,
+    description: 'Engineered stair components for grand interior and exterior staircases.',
+  },
 ];
 
 const GRANITE_FINISHES = [
-  'Polished',
-  'Honed',
-  'Leathered',
-  'Flamed',
-  'Brushed',
-  'Sandblasted',
+  {
+    name: 'Polished',
+    badge: 'Most Popular',
+    badgeColor: 'gold',
+    description: 'Mirror-like reflective surface. Deepens colour and highlights natural veining.',
+    swatch: 'polished',
+    swatchLabel: 'High Gloss',
+  },
+  {
+    name: 'Honed',
+    badge: 'Popular',
+    badgeColor: 'neutral',
+    description: 'Smooth matte surface with a soft, understated luxury and zero glare.',
+    swatch: 'honed',
+    swatchLabel: 'Flat Matte',
+  },
+  {
+    name: 'Leathered',
+    badge: 'Trending',
+    badgeColor: 'green',
+    description: 'Organic textured surface that hides fingerprints and resists water marks.',
+    swatch: 'leathered',
+    swatchLabel: 'Bump Texture',
+  },
+  {
+    name: 'Brushed',
+    badge: 'Trending',
+    badgeColor: 'green',
+    description: 'Lightly abraded surface with fine linear texture and depth of character.',
+    swatch: 'brushed',
+    swatchLabel: 'Linear Grain',
+  },
+  {
+    name: 'Flamed',
+    badge: 'Outdoor Use',
+    badgeColor: 'stone',
+    description: 'Rough anti-slip surface created by intense heat. Ideal for exterior applications.',
+    swatch: 'flamed',
+    swatchLabel: 'Rough Surface',
+  },
+  {
+    name: 'Sandblasted',
+    badge: 'Specialty',
+    badgeColor: 'slate',
+    description: 'Uniform fine-grained matte texture for architectural and feature stone work.',
+    swatch: 'sandblasted',
+    swatchLabel: 'Fine Grain',
+  },
 ];
 
 const GRANITE_EDGES = [
-  'Straight edge',
-  'Eased edge',
-  'Beveled edge',
-  'Half bullnose',
-  'Full bullnose',
-  'Ogee edge',
+  {
+    name: 'Eased Edge',
+    tag: 'Most Popular · US',
+    tagColor: 'gold',
+    description: 'Softly squared profile. Clean, versatile, and suited to any interior style.',
+  },
+  {
+    name: 'Straight Edge',
+    tag: 'Modern',
+    tagColor: 'neutral',
+    description: 'Crisp 90° profile. Sharp, architectural, and strictly contemporary.',
+  },
+  {
+    name: 'Beveled Edge',
+    tag: 'Contemporary',
+    tagColor: 'neutral',
+    description: 'Angled face cut at 45°. Adds visual weight and a precision-crafted look.',
+  },
+  {
+    name: 'Half Bullnose',
+    tag: 'Classic',
+    tagColor: 'neutral',
+    description: 'Rounded top with a flat underside. Timeless, safe, and highly practical.',
+  },
+  {
+    name: 'Full Bullnose',
+    tag: 'Traditional',
+    tagColor: 'neutral',
+    description: 'Fully rounded profile on all sides. Soft, classic, and family-friendly.',
+  },
+  {
+    name: 'Ogee Edge',
+    tag: 'Luxury',
+    tagColor: 'gold',
+    description: 'Elegant S-curve profile. The hallmark edge of high-end and formal interiors.',
+  },
 ];
+
+const SWATCH_STYLES = {
+  // Mirror-like gloss: bold diagonal highlight stripe
+  polished: {
+    background: 'linear-gradient(118deg, #060606 0%, #0e0e0e 22%, #3a3a50 35%, #b0b0c8 42%, #eeeeff 48%, #b0b0c8 54%, #3a3a50 61%, #0e0e0e 76%, #060606 100%)',
+  },
+  // Pure flat matte: no shine, no pattern
+  honed: {
+    backgroundColor: '#2c2c2c',
+  },
+  // Organic bump texture: dot grid pattern
+  leathered: {
+    backgroundImage: 'radial-gradient(ellipse 2.5px 2px at 4px 4px, #3e3e3e 70%, transparent 80%)',
+    backgroundSize: '8px 8px',
+    backgroundColor: '#1c1c1c',
+  },
+  // Fine parallel grooves: clear horizontal lines
+  brushed: {
+    backgroundImage: 'repeating-linear-gradient(0deg, #181818 0px, #181818 2px, #303030 2px, #303030 5px)',
+    backgroundColor: '#1e1e1e',
+  },
+  // Rough heat texture: diagonal warm stripes
+  flamed: {
+    backgroundImage: 'repeating-linear-gradient(125deg, #3a1e08 0px, #3a1e08 3px, #562410 3px, #562410 7px, #3a1e08 7px, #3a1e08 10px)',
+    backgroundColor: '#3a1e08',
+  },
+  // Fine grain: tiny uniform dots
+  sandblasted: {
+    backgroundImage: 'radial-gradient(circle 1px at 2px 2px, #5a5a5a 100%, transparent 0)',
+    backgroundSize: '4px 4px',
+    backgroundColor: '#3a3a3a',
+  },
+};
 
 const graniteData = {
   'alaska-red': {
@@ -153,6 +329,259 @@ const graniteData = {
       'Architectural Details',
     ],
   },
+  'tan-brown': {
+    name: 'Tan Brown Granite',
+    code: 'GRT-TBR',
+    image: graniteTanBrown,
+    accent: 'amber',
+    description: 'One of India\'s most exported granites worldwide. A rich dark background interspersed with tan, gold, and burgundy mineral crystals. Extremely popular in the US market for kitchen countertops and flooring.',
+    specs: [
+      { label: 'Origin', value: 'Andhra Pradesh, India' },
+      { label: 'Material', value: 'Natural Granite' },
+      { label: 'Thickness', value: '2 cm / 3 cm' },
+      { label: 'Tone', value: 'Dark Brown & Gold' },
+    ],
+    applications: [
+      'Kitchen Countertops',
+      'Flooring',
+      'Bathroom Vanities',
+      'Feature Walls',
+      'Commercial Lobbies',
+      'Outdoor Paving',
+      'Staircases',
+      'Table Tops',
+    ],
+  },
+  'black-pearl': {
+    name: 'Black Pearl Granite',
+    code: 'GRT-BPL',
+    image: graniteBlackPearl,
+    accent: 'slate',
+    description: 'A uniform jet-black granite with fine silver and white mineral speckling throughout. One of the most consistent and sought-after black granites in the US and European markets.',
+    specs: [
+      { label: 'Origin', value: 'Karnataka / Andhra Pradesh, India' },
+      { label: 'Material', value: 'Natural Granite' },
+      { label: 'Thickness', value: '2 cm / 3 cm' },
+      { label: 'Tone', value: 'Black & Silver' },
+    ],
+    applications: [
+      'Kitchen Countertops',
+      'Bathroom Vanities',
+      'Flooring',
+      'Wall Cladding',
+      'Commercial Counters',
+      'Stair Treads',
+      'Exterior Facades',
+      'Architectural Details',
+    ],
+  },
+  'steel-grey': {
+    name: 'Steel Grey Granite',
+    code: 'GRT-STG',
+    image: graniteSteelGrey,
+    accent: 'slate',
+    description: 'A premium medium-dark grey granite with swirling silver and white cloud patterns. One of Karnataka\'s highest-volume exports with strong demand across the US, Germany, and the Middle East.',
+    specs: [
+      { label: 'Origin', value: 'Karnataka, India' },
+      { label: 'Material', value: 'Natural Granite' },
+      { label: 'Thickness', value: '2 cm / 3 cm' },
+      { label: 'Tone', value: 'Dark Grey & Silver' },
+    ],
+    applications: [
+      'Kitchen Countertops',
+      'Flooring',
+      'Wall Panels',
+      'Exterior Cladding',
+      'Bathroom Vanities',
+      'Commercial Flooring',
+      'Stair Treads',
+      'Paving',
+    ],
+  },
+  'black-forest': {
+    name: 'Black Forest Granite',
+    code: 'GRT-BFT',
+    image: graniteBlackForest,
+    accent: 'slate',
+    description: 'A dramatic deep black granite with bold flowing white and cream veins. The high contrast pattern makes it a statement choice for feature walls, kitchen islands, and luxury interiors.',
+    specs: [
+      { label: 'Origin', value: 'Karnataka, India' },
+      { label: 'Material', value: 'Natural Granite' },
+      { label: 'Thickness', value: '2 cm / 3 cm' },
+      { label: 'Pattern', value: 'Bold Flowing Veins' },
+    ],
+    applications: [
+      'Kitchen Islands',
+      'Feature Walls',
+      'Bathroom Vanities',
+      'Flooring',
+      'Reception Desks',
+      'Staircases',
+      'Luxury Interiors',
+      'Commercial Counters',
+    ],
+  },
+  'imperial-blue': {
+    name: 'Imperial Blue Granite',
+    code: 'GRT-IMB',
+    image: graniteImperialBlue,
+    accent: 'blue',
+    description: 'A striking vivid blue granite dense with silver and white mica sparkle. Quarried in Andhra Pradesh, it is a premium and distinctive stone that commands attention in any installation.',
+    specs: [
+      { label: 'Origin', value: 'Andhra Pradesh, India' },
+      { label: 'Material', value: 'Natural Granite' },
+      { label: 'Thickness', value: '2 cm / 3 cm' },
+      { label: 'Tone', value: 'Vivid Blue & Silver' },
+    ],
+    applications: [
+      'Feature Walls',
+      'Bathroom Vanities',
+      'Kitchen Countertops',
+      'Flooring',
+      'Exterior Facades',
+      'Luxury Interiors',
+      'Commercial Counters',
+      'Architectural Details',
+    ],
+  },
+  'coffee-brown': {
+    name: 'Coffee Brown Granite',
+    code: 'GRT-CFB',
+    image: graniteCoffeeBrown,
+    accent: 'amber',
+    description: 'A rich dark olive-brown granite with scattered golden, amber, and cream crystalline flecks. A reliable and popular earth-tone granite with consistent demand in residential and commercial projects.',
+    specs: [
+      { label: 'Origin', value: 'South India' },
+      { label: 'Material', value: 'Natural Granite' },
+      { label: 'Thickness', value: '2 cm / 3 cm' },
+      { label: 'Tone', value: 'Dark Brown & Gold' },
+    ],
+    applications: [
+      'Kitchen Countertops',
+      'Flooring',
+      'Bathroom Vanities',
+      'Wall Cladding',
+      'Outdoor Paving',
+      'Stair Treads',
+      'Table Tops',
+      'Commercial Flooring',
+    ],
+  },
+  'thunder-black': {
+    name: 'Thunder Black Granite',
+    code: 'GRT-THB',
+    image: graniteThunderBlack,
+    accent: 'slate',
+    description: 'A very dark charcoal-black granite with subtle swirling grey patterns and a fine uniform texture. An excellent choice for sleek modern interiors and high-traffic commercial spaces.',
+    specs: [
+      { label: 'Origin', value: 'Karnataka, India' },
+      { label: 'Material', value: 'Natural Granite' },
+      { label: 'Thickness', value: '2 cm / 3 cm' },
+      { label: 'Tone', value: 'Charcoal Black' },
+    ],
+    applications: [
+      'Flooring',
+      'Kitchen Countertops',
+      'Wall Cladding',
+      'Exterior Facades',
+      'Commercial Lobbies',
+      'Stair Treads',
+      'Bathroom Vanities',
+      'Outdoor Paving',
+    ],
+  },
+  'paradiso-classico': {
+    name: 'Paradiso Classico Granite',
+    code: 'GRT-PDC',
+    image: graniteParadisoClassico,
+    accent: 'violet',
+    description: 'A distinctive banded granite with strong diagonal layers of grey, salmon-pink, and black. Quarried in Hassan District, Karnataka, it is well recognised internationally and prized for its unique natural movement.',
+    specs: [
+      { label: 'Origin', value: 'Hassan District, Karnataka, India' },
+      { label: 'Material', value: 'Natural Granite' },
+      { label: 'Thickness', value: '2 cm / 3 cm' },
+      { label: 'Pattern', value: 'Diagonal Banding' },
+    ],
+    applications: [
+      'Feature Walls',
+      'Flooring',
+      'Countertops',
+      'Bathroom Vanities',
+      'Hotel Interiors',
+      'Reception Areas',
+      'Staircases',
+      'Exterior Cladding',
+    ],
+  },
+  'copper-silk': {
+    name: 'Copper Silk Granite',
+    code: 'GRT-CPS',
+    image: graniteCopperSilk,
+    accent: 'red',
+    description: 'A warm copper-rust granite with flowing dark green and black veining. A classic South Indian stone from Andhra Pradesh and Tamil Nadu with good export presence in the Middle East and European markets.',
+    specs: [
+      { label: 'Origin', value: 'Andhra Pradesh / Tamil Nadu, India' },
+      { label: 'Material', value: 'Natural Granite' },
+      { label: 'Thickness', value: '2 cm / 3 cm' },
+      { label: 'Tone', value: 'Copper & Dark Green' },
+    ],
+    applications: [
+      'Countertops',
+      'Flooring',
+      'Wall Cladding',
+      'Bathroom Vanities',
+      'Fireplace Surrounds',
+      'Feature Walls',
+      'Hotel Interiors',
+      'Table Tops',
+    ],
+  },
+  'silver-silk': {
+    name: 'Silver Silk Granite',
+    code: 'GRT-SVS',
+    image: graniteSilverSilk,
+    accent: 'slate',
+    description: 'A grey granite with golden-caramel wavy banding and strong foliation patterns. The warm gold tones against a cool grey base give it a distinctive and luxurious character popular in the Middle East and Southeast Asia.',
+    specs: [
+      { label: 'Origin', value: 'South India' },
+      { label: 'Material', value: 'Natural Granite' },
+      { label: 'Thickness', value: '2 cm / 3 cm' },
+      { label: 'Pattern', value: 'Wavy Banding' },
+    ],
+    applications: [
+      'Countertops',
+      'Flooring',
+      'Wall Panels',
+      'Reception Desks',
+      'Bathroom Vanities',
+      'Hotel Interiors',
+      'Stair Treads',
+      'Fireplace Surrounds',
+    ],
+  },
+  'multicolor-red': {
+    name: 'Multicolor Red Granite',
+    code: 'GRT-MCR',
+    image: graniteMulticolorRed,
+    accent: 'red',
+    description: 'A warm multi-toned granite with copper, brown, cream, and dark mineral swirling throughout. A vibrant and characterful stone suited to projects requiring strong natural colour and movement.',
+    specs: [
+      { label: 'Origin', value: 'South India' },
+      { label: 'Material', value: 'Natural Granite' },
+      { label: 'Thickness', value: '2 cm / 3 cm' },
+      { label: 'Tone', value: 'Copper Brown & Cream' },
+    ],
+    applications: [
+      'Feature Walls',
+      'Flooring',
+      'Countertops',
+      'Exterior Cladding',
+      'Bathroom Vanities',
+      'Stair Treads',
+      'Commercial Spaces',
+      'Table Tops',
+    ],
+  },
 };
 
 const themeByAccent = {
@@ -188,6 +617,44 @@ const themeByAccent = {
   },
 };
 
+function EdgeSVG({ name, selected }) {
+  const stroke = selected ? '#c9a84c' : '#999';
+  const fill = selected ? 'rgba(201,168,76,0.14)' : 'rgba(150,150,145,0.14)';
+  // Wider viewBox (0 0 72 100) gives the stone body clear width
+  // Right side of each path = the visible edge profile
+  // Top of each path (y=14) = counter surface (horizontal)
+  const paths = {
+    'Eased Edge':    'M 5 14 L 56 14 Q 66 14 66 24 L 66 90 L 5 90 Z',
+    'Straight Edge': 'M 5 14 L 66 14 L 66 90 L 5 90 Z',
+    'Beveled Edge':  'M 5 14 L 52 14 L 66 28 L 66 90 L 5 90 Z',
+    'Half Bullnose': 'M 5 14 L 40 14 Q 66 14 66 40 L 66 90 L 5 90 Z',
+    'Full Bullnose': 'M 5 14 L 24 14 A 36 38 0 0 1 24 90 L 5 90 Z',
+    'Ogee Edge':     'M 5 14 L 40 14 C 70 14 70 40 40 53 C 10 66 10 76 40 90 L 5 90 Z',
+  };
+  return (
+    <svg viewBox="0 0 72 104" width="58" height="84" aria-hidden="true">
+      {/* Subtle top-surface extension line */}
+      <line x1="5" y1="14" x2="70" y2="14" stroke={stroke} strokeWidth="1" strokeDasharray="3,3" opacity="0.4" />
+      <path
+        d={paths[name] || paths['Straight Edge']}
+        fill={fill}
+        stroke={stroke}
+        strokeWidth="2.4"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function getBadgeClasses(color, isSelected) {
+  if (color === 'gold') return 'bg-[#c9a84c] text-white';
+  if (color === 'green') return 'bg-emerald-600 text-white';
+  if (color === 'stone') return 'bg-stone-500 text-white';
+  if (color === 'slate') return 'bg-slate-600 text-white';
+  if (color === 'dark') return isSelected ? 'bg-white/15 text-white/80' : 'bg-black text-white';
+  return isSelected ? 'bg-white/10 text-white/60' : 'bg-stone-100 text-stone-600';
+}
+
 export default function GraniteDetail({ cartItems = [], onAddToCart, onRemoveMatchingCartItem, onOpenContact }) {
   const { graniteId } = useParams();
   const navigate = useNavigate();
@@ -196,6 +663,9 @@ export default function GraniteDetail({ cartItems = [], onAddToCart, onRemoveMat
   const [selectedFinish, setSelectedFinish] = useState('');
   const [selectedEdge, setSelectedEdge] = useState('');
   const [addMessage, setAddMessage] = useState('');
+  const [, triggerSizeRipple] = useRipple();
+  const [, triggerFinishRipple] = useRipple();
+  const [, triggerEdgeRipple] = useRipple();
 
   const stone = graniteData[graniteId];
   const cartCount = cartItems.reduce((sum, item) => sum + (item.sqm || 0), 0);
@@ -207,6 +677,20 @@ export default function GraniteDetail({ cartItems = [], onAddToCart, onRemoveMat
   ));
   const selectedCartCount = selectedCartItem?.sqm || 0;
   const selectionTheme = themeByAccent[stone?.accent] || themeByAccent.slate;
+
+  // Smooth scroll for this page
+  useEffect(() => {
+    let animId;
+    let active = true;
+    const lenis = new Lenis({
+      duration: 1.1,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothTouch: false,
+    });
+    function raf(t) { if (active) { lenis.raf(t); animId = requestAnimationFrame(raf); } }
+    animId = requestAnimationFrame(raf);
+    return () => { active = false; cancelAnimationFrame(animId); lenis.destroy(); };
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -224,26 +708,23 @@ export default function GraniteDetail({ cartItems = [], onAddToCart, onRemoveMat
     return () => window.clearTimeout(timer);
   }, [addMessage]);
 
-  const handleSizeSelect = (sizeName) => {
+  const handleSizeSelect = (sizeName, e) => {
+    if (e) triggerSizeRipple(e);
     setSelectedSize(sizeName);
     setSelectedFinish('');
     setSelectedEdge('');
   };
 
-  const handleFinishSelect = (finishName) => {
-    if (!selectedSize) {
-      return;
-    }
-
+  const handleFinishSelect = (finishName, e) => {
+    if (!selectedSize) return;
+    if (e) triggerFinishRipple(e);
     setSelectedFinish(finishName);
     setSelectedEdge('');
   };
 
-  const handleEdgeSelect = (edgeName) => {
-    if (!selectedFinish) {
-      return;
-    }
-
+  const handleEdgeSelect = (edgeName, e) => {
+    if (!selectedFinish) return;
+    if (e) triggerEdgeRipple(e);
     setSelectedEdge(edgeName);
   };
 
@@ -325,8 +806,24 @@ export default function GraniteDetail({ cartItems = [], onAddToCart, onRemoveMat
         >
           <button
             onClick={() => navigate('/', { state: { scrollTo: 'limestone-collection' } })}
-            className="font-gabarito text-gray-600 transition-colors hover:text-black"
+            className="group flex items-center gap-2 font-gabarito text-sm text-stone-500 transition-all duration-200 hover:text-black"
           >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="transition-transform duration-200 group-hover:-translate-x-1"
+            >
+              <path
+                d="M10 12L6 8L10 4"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
             Back to Granite Collection
           </button>
         </motion.div>
@@ -339,7 +836,7 @@ export default function GraniteDetail({ cartItems = [], onAddToCart, onRemoveMat
               transition={{ duration: 0.6 }}
             >
               <div className="relative h-96 overflow-hidden rounded-sm shadow-lg md:h-[500px]">
-                <img src={stone.image} alt={stone.name} className="h-full w-full object-cover" />
+                <img src={stone.image} alt={stone.name} className="h-full w-full object-cover" loading="eager" decoding="async" />
               </div>
             </motion.div>
 
@@ -392,36 +889,52 @@ export default function GraniteDetail({ cartItems = [], onAddToCart, onRemoveMat
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.6 }}
-            className="mb-16"
+            className="mb-20"
           >
-            <h2 className="mb-12 text-3xl font-gabarito font-bold text-black md:text-4xl">
-              Available Granite Sizes & Products
-            </h2>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="mb-10">
+              <p className="mb-2 font-gabarito text-xs font-semibold uppercase tracking-[0.3em] text-[#c9a84c]">
+                Step 01
+              </p>
+              <h2 className="text-3xl font-gabarito font-bold text-black md:text-4xl">
+                Format & Size
+              </h2>
+              <div className="mt-4 h-px bg-gradient-to-r from-[#c9a84c] via-[#c9a84c]/20 to-transparent" />
+            </div>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
               {GRANITE_TYPES.map((type, index) => (
                 <motion.button
                   key={type.name}
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.45, delay: index * 0.04 }}
-                  whileHover={{ y: -4 }}
-                  onClick={() => handleSizeSelect(type.name)}
-                  className={`rounded-lg border bg-white p-6 text-left transition-all duration-300 ${
+                  transition={{ duration: 0.45, delay: index * 0.05 }}
+                  whileHover={{ y: -3 }}
+                  onClick={(e) => handleSizeSelect(type.name, e)}
+                  className={`group relative overflow-hidden rounded-2xl border p-6 text-left transition-all duration-300 ${
                     selectedSize === type.name
-                      ? 'border-black shadow-xl ring-1 ring-black'
-                      : 'border-gray-200 hover:shadow-xl'
+                      ? 'border-[#c9a84c] bg-[#0a0a0a] shadow-[0_0_0_1px_#c9a84c,0_20px_60px_rgba(0,0,0,0.28)]'
+                      : 'border-[#e8e8e4] bg-white hover:border-[#c9a84c]/40 hover:shadow-xl'
                   }`}
                 >
-                  <div className="mb-3 flex items-start justify-between gap-3">
-                    <h3 className="font-gabarito text-lg font-bold text-black">{type.name}</h3>
-                    {selectedSize === type.name && (
-                      <span className="rounded-full bg-black px-3 py-1 font-gabarito text-xs uppercase tracking-wide text-white">
-                        Selected
+                  {selectedSize === type.name && (
+                    <div className="absolute left-0 top-0 h-full w-1 rounded-l-2xl bg-[#c9a84c]" />
+                  )}
+                  <div className="mb-3 flex items-start justify-between gap-2">
+                    <h3 className={`font-gabarito text-base font-bold leading-snug ${selectedSize === type.name ? 'text-white' : 'text-black'}`}>
+                      {type.name}
+                    </h3>
+                    {type.badge && (
+                      <span className={`shrink-0 rounded-full px-2.5 py-1 font-gabarito text-[10px] font-bold uppercase tracking-wider ${getBadgeClasses(type.badgeColor, selectedSize === type.name)}`}>
+                        {type.badge}
                       </span>
                     )}
                   </div>
-                  <p className="text-sm leading-relaxed text-gray-600">{type.sizes}</p>
+                  <p className={`mb-2.5 font-mono text-[11px] tracking-wide ${selectedSize === type.name ? 'text-[#c9a84c]' : 'text-stone-400'}`}>
+                    {type.sizes}
+                  </p>
+                  <p className={`text-sm leading-relaxed ${selectedSize === type.name ? 'text-white/60' : 'text-stone-500'}`}>
+                    {type.description}
+                  </p>
                 </motion.button>
               ))}
             </div>
@@ -432,30 +945,65 @@ export default function GraniteDetail({ cartItems = [], onAddToCart, onRemoveMat
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="mb-16"
+            className="mb-20"
           >
-            <h2 className="mb-12 text-3xl font-gabarito font-bold text-black md:text-4xl">
-              Granite Finish Options
-            </h2>
-            <div className="mb-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+            <div className="mb-10">
+              <p className="mb-2 font-gabarito text-xs font-semibold uppercase tracking-[0.3em] text-[#c9a84c]">
+                Step 02
+              </p>
+              <h2 className="text-3xl font-gabarito font-bold text-black md:text-4xl">
+                Surface Finish
+              </h2>
+              <div className="mt-4 h-px bg-gradient-to-r from-[#c9a84c] via-[#c9a84c]/20 to-transparent" />
+              {!selectedSize && (
+                <p className="mt-3 font-gabarito text-sm text-stone-400">
+                  Select a format above to unlock finish options.
+                </p>
+              )}
+            </div>
+            <div className="grid grid-cols-2 gap-3 md:grid-cols-2 lg:grid-cols-3">
               {GRANITE_FINISHES.map((finish, index) => (
                 <motion.button
-                  key={finish}
-                  initial={{ opacity: 0, scale: 0.95 }}
+                  key={finish.name}
+                  initial={{ opacity: 0, scale: 0.97 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.35, delay: index * 0.04 }}
-                  whileHover={selectedSize ? { y: -4 } : undefined}
-                  onClick={() => handleFinishSelect(finish)}
-                  className={`flex min-h-[84px] items-center justify-center rounded-xl border px-5 py-6 text-center transition-all duration-300 ${
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  whileHover={selectedSize ? { y: -3 } : undefined}
+                  onClick={(e) => handleFinishSelect(finish.name, e)}
+                  className={`group flex flex-col overflow-hidden rounded-2xl border text-left transition-all duration-300 ${
                     !selectedSize
-                      ? 'cursor-not-allowed border-gray-200 opacity-40'
-                      : selectedFinish === finish
-                        ? 'border-black shadow-xl ring-1 ring-black'
-                        : 'border-gray-200 hover:shadow-lg'
+                      ? 'cursor-not-allowed border-[#e8e8e4] opacity-40'
+                      : selectedFinish === finish.name
+                        ? 'border-[#c9a84c] shadow-[0_0_0_1px_#c9a84c,0_20px_60px_rgba(0,0,0,0.18)]'
+                        : 'border-[#e8e8e4] hover:border-[#c9a84c]/40 hover:shadow-xl'
                   }`}
                 >
-                  <span className="font-gabarito text-base font-semibold text-black">{finish}</span>
+                  {/* Full-width swatch area on top */}
+                  <div
+                    className="relative h-20 w-full"
+                    style={SWATCH_STYLES[finish.swatch]}
+                  >
+                    <span className="absolute bottom-2 left-3 font-gabarito text-[9px] font-bold uppercase tracking-[0.28em] text-white/35">
+                      {finish.swatchLabel}
+                    </span>
+                  </div>
+                  {/* Text content below */}
+                  <div className={`flex flex-1 flex-col p-4 transition-colors duration-300 ${selectedFinish === finish.name ? 'bg-[#0a0a0a]' : 'bg-white'}`}>
+                    <div className="mb-1 flex flex-wrap items-center gap-1.5">
+                      <span className={`font-gabarito text-sm font-bold ${selectedFinish === finish.name ? 'text-white' : 'text-black'}`}>
+                        {finish.name}
+                      </span>
+                      {finish.badge && (
+                        <span className={`rounded-full px-2 py-0.5 font-gabarito text-[9px] font-bold uppercase tracking-wider ${getBadgeClasses(finish.badgeColor, selectedFinish === finish.name)}`}>
+                          {finish.badge}
+                        </span>
+                      )}
+                    </div>
+                    <p className={`text-xs leading-relaxed ${selectedFinish === finish.name ? 'text-white/55' : 'text-stone-500'}`}>
+                      {finish.description}
+                    </p>
+                  </div>
                 </motion.button>
               ))}
             </div>
@@ -466,30 +1014,58 @@ export default function GraniteDetail({ cartItems = [], onAddToCart, onRemoveMat
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="mb-16"
+            className="mb-20"
           >
-            <h2 className="mb-8 text-3xl font-gabarito font-bold text-black md:text-4xl">
-              Edge Profiles
-            </h2>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="mb-10">
+              <p className="mb-2 font-gabarito text-xs font-semibold uppercase tracking-[0.3em] text-[#c9a84c]">
+                Step 03
+              </p>
+              <h2 className="text-3xl font-gabarito font-bold text-black md:text-4xl">
+                Edge Profile
+              </h2>
+              <div className="mt-4 h-px bg-gradient-to-r from-[#c9a84c] via-[#c9a84c]/20 to-transparent" />
+              {!selectedFinish && (
+                <p className="mt-3 font-gabarito text-sm text-stone-400">
+                  Select a surface finish above to unlock edge options.
+                </p>
+              )}
+            </div>
+            <div className="grid grid-cols-2 gap-3 md:grid-cols-2 lg:grid-cols-3">
               {GRANITE_EDGES.map((edge, index) => (
                 <motion.button
-                  key={edge}
-                  initial={{ opacity: 0, scale: 0.95 }}
+                  key={edge.name}
+                  initial={{ opacity: 0, scale: 0.97 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.35, delay: index * 0.04 }}
-                  whileHover={selectedFinish ? { scale: 1.03 } : undefined}
-                  onClick={() => handleEdgeSelect(edge)}
-                  className={`rounded-lg border bg-white p-5 text-center transition-all duration-300 ${
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  whileHover={selectedFinish ? { y: -3 } : undefined}
+                  onClick={(e) => handleEdgeSelect(edge.name, e)}
+                  className={`group flex flex-col overflow-hidden rounded-2xl border text-left transition-all duration-300 ${
                     !selectedFinish
-                      ? 'cursor-not-allowed border-gray-200 opacity-40'
-                      : selectedEdge === edge
-                        ? 'border-black shadow-lg ring-1 ring-black'
-                        : 'border-gray-200 hover:shadow-lg'
+                      ? 'cursor-not-allowed border-[#e8e8e4] opacity-40'
+                      : selectedEdge === edge.name
+                        ? 'border-[#c9a84c] shadow-[0_0_0_1px_#c9a84c,0_20px_60px_rgba(0,0,0,0.18)]'
+                        : 'border-[#e8e8e4] hover:border-[#c9a84c]/40 hover:shadow-xl'
                   }`}
                 >
-                  <p className="font-gabarito font-medium text-black">{edge}</p>
+                  {/* Large icon area on top */}
+                  <div className={`flex h-28 items-center justify-center transition-colors duration-300 ${selectedEdge === edge.name ? 'bg-[#111111]' : 'bg-[#f5f5f2]'}`}>
+                    <EdgeSVG name={edge.name} selected={selectedEdge === edge.name} />
+                  </div>
+                  {/* Text content below */}
+                  <div className={`flex flex-1 flex-col p-4 transition-colors duration-300 ${selectedEdge === edge.name ? 'bg-[#0a0a0a]' : 'bg-white'}`}>
+                    <div className="mb-1 flex flex-wrap items-center gap-1.5">
+                      <span className={`font-gabarito text-sm font-bold ${selectedEdge === edge.name ? 'text-white' : 'text-black'}`}>
+                        {edge.name}
+                      </span>
+                      <span className={`rounded-full px-2 py-0.5 font-gabarito text-[9px] font-bold uppercase tracking-wider ${getBadgeClasses(edge.tagColor, selectedEdge === edge.name)}`}>
+                        {edge.tag}
+                      </span>
+                    </div>
+                    <p className={`text-xs leading-relaxed ${selectedEdge === edge.name ? 'text-white/55' : 'text-stone-500'}`}>
+                      {edge.description}
+                    </p>
+                  </div>
                 </motion.button>
               ))}
             </div>
@@ -500,72 +1076,84 @@ export default function GraniteDetail({ cartItems = [], onAddToCart, onRemoveMat
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.6 }}
-            className={`mb-16 rounded-[28px] border p-8 shadow-[0_22px_70px_rgba(15,23,42,0.08)] md:p-12 ${selectionTheme.panel}`}
+            className="mb-16 rounded-[28px] border border-[#c9a84c]/15 bg-[#0a0a0a] p-8 md:p-12"
           >
-            <h2 className="mb-4 text-3xl font-gabarito font-bold text-black md:text-4xl">
+            {/* Section header */}
+            <div className="mb-2 flex items-center gap-3">
+              <div className="h-px w-6 bg-[#c9a84c]" />
+              <p className="font-gabarito text-xs font-bold uppercase tracking-[0.3em] text-[#c9a84c]">
+                Your Selection
+              </p>
+            </div>
+            <h2 className="mb-3 text-3xl font-gabarito font-bold text-white md:text-4xl">
               Product Specifications
             </h2>
-            <p className="mb-8 max-w-3xl text-gray-600">
+            <p className="mb-8 max-w-3xl text-white/40">
               Select the granite product type, finish, and edge profile, then add the exact specification to your quote cart.
             </p>
 
-            <div className="mb-8 rounded-[24px] border border-black/10 bg-white p-6 md:p-8">
-              <h3 className="mb-5 font-gabarito text-xl font-bold text-black">Current Configuration</h3>
-              <div className="grid grid-cols-1 gap-4 font-gabarito text-sm md:grid-cols-4">
-                <div className={`rounded-2xl p-4 ${selectionTheme.step}`}>
-                  <p className="text-xs uppercase tracking-[0.16em] text-gray-500">Product</p>
-                  <p className="mt-3 text-base font-semibold text-black">{selectedSize || 'Select a product'}</p>
+            {/* Current Configuration card */}
+            <div className="mb-6 rounded-[24px] border border-white/10 bg-white/5 p-6 md:p-8">
+              <h3 className="mb-5 font-gabarito text-sm font-bold uppercase tracking-[0.2em] text-white/50">
+                Selected Options
+              </h3>
+              <div className="grid grid-cols-1 gap-3 font-gabarito text-sm sm:grid-cols-2 md:grid-cols-4">
+                <div className="rounded-2xl bg-white/5 p-4">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#c9a84c]">Product</p>
+                  <p className="mt-2.5 text-sm font-semibold text-white">{selectedSize || '—'}</p>
                 </div>
-                <div className={`rounded-2xl p-4 ${selectionTheme.step}`}>
-                  <p className="text-xs uppercase tracking-[0.16em] text-gray-500">Finish</p>
-                  <p className="mt-3 text-base font-semibold text-black">{selectedFinish || 'Select a finish'}</p>
+                <div className="rounded-2xl bg-white/5 p-4">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#c9a84c]">Finish</p>
+                  <p className="mt-2.5 text-sm font-semibold text-white">{selectedFinish || '—'}</p>
                 </div>
-                <div className={`rounded-2xl p-4 ${selectionTheme.step}`}>
-                  <p className="text-xs uppercase tracking-[0.16em] text-gray-500">Edge</p>
-                  <p className="mt-3 text-base font-semibold text-black">{selectedEdge || 'Select an edge'}</p>
+                <div className="rounded-2xl bg-white/5 p-4">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#c9a84c]">Edge Profile</p>
+                  <p className="mt-2.5 text-sm font-semibold text-white">{selectedEdge || '—'}</p>
                 </div>
-                <div className={`rounded-2xl p-4 ${selectionTheme.stat}`}>
-                  <p className="mb-2 uppercase tracking-[0.18em] text-white/60">In Cart</p>
-                  <p className="text-xs uppercase tracking-[0.16em] text-white/50">Current selection</p>
-                  <p className="mt-2 text-3xl font-bold">{selectedCartCount}</p>
+                {/* In Cart — gold accent */}
+                <div className="rounded-2xl bg-[#c9a84c] p-4">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-black/55">Cart Qty</p>
+                  <p className="mt-0.5 text-xs text-black/40">This selection</p>
+                  <p className="mt-1 text-3xl font-bold text-black">{selectedCartCount}</p>
                 </div>
               </div>
             </div>
 
+            {/* Cart quantity + Add to Cart */}
             <div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_220px]">
-              <div className="overflow-hidden rounded-[22px] border border-black/15 bg-white">
-                <div className="flex items-center justify-between px-6 py-4">
+              <div className="overflow-hidden rounded-[22px] border border-white/10 bg-white/5">
+                <div className="flex items-center justify-between px-6 py-5">
                   <div>
-                    <p className="font-gabarito text-xs uppercase tracking-[0.24em] text-gray-400">Cart Quantity</p>
-                    <p className="mt-2 font-gabarito text-lg font-semibold text-black">
+                    <p className="font-gabarito text-xs font-bold uppercase tracking-[0.24em] text-[#c9a84c]">Cart Quantity</p>
+                    <p className="mt-2 font-gabarito text-base font-semibold text-white">
                       {selectedCartCount > 0
                         ? 'Adjust this exact granite selection'
                         : 'Add this specification to activate quantity controls'}
                     </p>
                   </div>
-                  <div className="flex items-center overflow-hidden rounded-full border border-black/15">
+                  <div className="flex items-center overflow-hidden rounded-full border border-white/15">
                     <button
                       onClick={() => handleRemoveFromCart(1)}
                       disabled={!selectedEdge || selectedCartCount === 0}
-                      className={`flex h-14 w-14 items-center justify-center font-gabarito text-3xl transition-colors duration-220 ${
+                      className={`flex h-14 w-14 items-center justify-center font-gabarito text-2xl transition-colors duration-220 ${
                         selectedEdge && selectedCartCount > 0
-                          ? 'bg-white text-black hover:bg-gray-100'
-                          : 'cursor-not-allowed bg-gray-100 text-gray-300'
+                          ? 'text-white hover:bg-white/10'
+                          : 'cursor-not-allowed text-white/20'
                       }`}
                       aria-label="Decrease cart quantity"
                     >
-                      -
+                      −
                     </button>
-                    <div className="flex h-14 min-w-20 items-center justify-center border-l border-r border-black/10 px-5 font-gabarito text-xl font-bold text-black">
+                    <div className="flex h-14 min-w-16 items-center justify-center border-l border-r border-white/10 px-4 font-gabarito text-xl font-bold text-white">
                       {selectedCartCount}
                     </div>
                     <button
                       onClick={() => handleAddToCart(selectedEdge, 1)}
                       disabled={!selectedEdge || selectedCartCount === 0}
-                      className={`flex h-14 w-14 items-center justify-center font-gabarito text-3xl transition-colors duration-220 ${
+                      className={`flex h-14 w-14 items-center justify-center font-gabarito text-2xl transition-colors duration-220 ${
                         selectedEdge && selectedCartCount > 0
-                          ? 'bg-white text-black hover:bg-gray-100'
-                          : 'cursor-not-allowed bg-gray-100 text-gray-300'
+                          ? 'text-white hover:bg-white/10'
+                          : 'cursor-not-allowed text-white/20'
                       }`}
                       aria-label="Increase cart quantity"
                     >
@@ -575,22 +1163,23 @@ export default function GraniteDetail({ cartItems = [], onAddToCart, onRemoveMat
                 </div>
               </div>
 
+              {/* Add to Cart — gold CTA */}
               <motion.button
                 onClick={() => handleAddToCart(selectedEdge, 1)}
-                whileHover={selectedEdge ? { scale: 1.01 } : undefined}
-                whileTap={selectedEdge ? { scale: 0.99 } : undefined}
+                whileHover={selectedEdge ? { scale: 1.02 } : undefined}
+                whileTap={selectedEdge ? { scale: 0.98 } : undefined}
                 disabled={!selectedEdge}
                 className={`rounded-[22px] py-4 font-gabarito text-base font-bold uppercase tracking-[0.18em] transition-all duration-220 ${
                   selectedEdge
-                    ? 'border border-black bg-black text-white hover:bg-gray-800'
-                    : 'cursor-not-allowed border border-black/10 bg-black/10 text-black/35'
+                    ? 'bg-[#c9a84c] text-black hover:bg-[#b8963c]'
+                    : 'cursor-not-allowed bg-[#c9a84c]/15 text-white/20'
                 }`}
               >
-                Add to Cart
+                Add to Quote Cart
               </motion.button>
 
               {addMessage && (
-                <p className={`rounded-[18px] border px-5 py-3 font-gabarito text-sm ${selectionTheme.message}`}>
+                <p className="rounded-[18px] border border-[#c9a84c]/30 bg-[#c9a84c]/10 px-5 py-3 font-gabarito text-sm text-[#c9a84c]">
                   {addMessage}
                 </p>
               )}
@@ -600,7 +1189,7 @@ export default function GraniteDetail({ cartItems = [], onAddToCart, onRemoveMat
                   onClick={() => setIsModalOpen(true)}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full rounded-[22px] border-2 border-black bg-white py-4 font-gabarito font-bold tracking-wide text-black transition-all duration-220 hover:bg-black hover:text-white"
+                  className="w-full rounded-[22px] border border-white/15 bg-white/8 py-4 font-gabarito font-bold tracking-wide text-white transition-all duration-300 hover:bg-white hover:text-black"
                 >
                   Request Quote
                 </motion.button>
@@ -608,7 +1197,7 @@ export default function GraniteDetail({ cartItems = [], onAddToCart, onRemoveMat
                   onClick={handleCustomizeSpecs}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="rounded-[22px] border border-black px-5 py-4 font-gabarito text-sm font-semibold tracking-wide text-black transition-all duration-220 hover:bg-black hover:text-white"
+                  className="rounded-[22px] border border-white/15 px-5 py-4 font-gabarito text-sm font-semibold tracking-wide text-white/60 transition-all duration-300 hover:border-white/30 hover:text-white"
                 >
                   Customize Specs
                 </motion.button>
