@@ -4,22 +4,23 @@ import { motion, AnimatePresence } from 'framer-motion';
 import blueImage from '../Pictures/blue shade.webp';
 import yellowImage from '../Pictures/Yellow shades.png';
 import greyImage from '../Pictures/grey shades.png';
-import graniteAlaskaRed from '../Pictures/tan red granite.png';
-import graniteJuparana from '../Pictures/Indian Juparana Granite.png';
-import graniteKashmirWhite from '../Pictures/White Granite. Kashmir.jpeg';
-import graniteParadiso from '../Pictures/Paradiso Bash Granite. (1).png';
-import graniteSapphire from '../Pictures/Sapphire Blue granite stone (1).png';
-import graniteTanBrown from '../Pictures/Tan Brown Granite.png';
-import graniteBlackPearl from '../Pictures/Black Pearl Granite.png';
-import graniteSteelGrey from '../Pictures/Steel Grey Granite.png';
-import graniteBlackForest from '../Pictures/Black Forest Granite.png';
-import graniteImperialBlue from '../Pictures/Imperial Blue Granite.png';
-import graniteCoffeeBrown from '../Pictures/Coffee Brown Granite.png';
-import graniteThunderBlack from '../Pictures/Thunder Black Granite.png';
-import graniteParadisoClassico from '../Pictures/Paradiso Classico Granite.png';
-import graniteCopperSilk from '../Pictures/Copper Silk Granite.png';
-import graniteSilverSilk from '../Pictures/Silver Silk Granite.png';
-import graniteMulticolorRed from '../Pictures/Multicolor Red Granite.png';
+// Granite images served from /public/granite/ (WebP, on-demand, not bundled)
+const graniteAlaskaRed       = '/granite/tan-red-granite.webp';
+const graniteJuparana        = '/granite/indian-juparana-granite.webp';
+const graniteKashmirWhite    = '/granite/kashmir-white-granite.webp';
+const graniteParadiso        = '/granite/paradiso-bash-granite.webp';
+const graniteSapphire        = '/granite/sapphire-blue-granite.webp';
+const graniteTanBrown        = '/granite/tan-brown-granite.webp';
+const graniteBlackPearl      = '/granite/black-pearl-granite.webp';
+const graniteSteelGrey       = '/granite/steel-grey-granite.webp';
+const graniteBlackForest     = '/granite/black-forest-granite.webp';
+const graniteImperialBlue    = '/granite/imperial-blue-granite.webp';
+const graniteCoffeeBrown     = '/granite/coffee-brown-granite.webp';
+const graniteThunderBlack    = '/granite/thunder-black-granite.webp';
+const graniteParadisoClassico = '/granite/paradiso-classico-granite.webp';
+const graniteCopperSilk      = '/granite/copper-silk-granite.webp';
+const graniteSilverSilk      = '/granite/silver-silk-granite.webp';
+const graniteMulticolorRed   = '/granite/multicolor-red-granite.webp';
 
 const graniteItems = [
   {
