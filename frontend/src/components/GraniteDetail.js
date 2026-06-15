@@ -584,39 +584,6 @@ const graniteData = {
   },
 };
 
-const themeByAccent = {
-  red: {
-    panel: 'border-red-200 bg-red-50/70',
-    step: 'bg-red-100/70',
-    stat: 'bg-red-950 text-white',
-    message: 'border-red-950 bg-red-950 text-white',
-  },
-  amber: {
-    panel: 'border-amber-200 bg-amber-50/80',
-    step: 'bg-amber-100/80',
-    stat: 'bg-amber-800 text-white',
-    message: 'border-amber-800 bg-amber-800 text-white',
-  },
-  slate: {
-    panel: 'border-slate-300 bg-slate-100/90',
-    step: 'bg-white',
-    stat: 'bg-slate-800 text-white',
-    message: 'border-slate-800 bg-slate-800 text-white',
-  },
-  violet: {
-    panel: 'border-violet-200 bg-violet-50/70',
-    step: 'bg-violet-100/70',
-    stat: 'bg-violet-950 text-white',
-    message: 'border-violet-950 bg-violet-950 text-white',
-  },
-  blue: {
-    panel: 'border-sky-200 bg-sky-50/70',
-    step: 'bg-sky-100/70',
-    stat: 'bg-sky-950 text-white',
-    message: 'border-sky-950 bg-sky-950 text-white',
-  },
-};
-
 function EdgeSVG({ name, selected }) {
   const stroke = selected ? '#c9a84c' : '#999';
   const fill = selected ? 'rgba(201,168,76,0.14)' : 'rgba(150,150,145,0.14)';
@@ -676,8 +643,6 @@ export default function GraniteDetail({ cartItems = [], onAddToCart, onRemoveMat
     && item.edge === selectedEdge
   ));
   const selectedCartCount = selectedCartItem?.sqm || 0;
-  const selectionTheme = themeByAccent[stone?.accent] || themeByAccent.slate;
-
   // Smooth scroll for this page
   useEffect(() => {
     let animId;
