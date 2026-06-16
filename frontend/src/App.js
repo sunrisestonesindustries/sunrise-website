@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useLayoutEffect, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import Lenis from 'lenis';
 import Navbar from './components/Navbar';
 import HeroCarousel from './components/HeroCarousel';
@@ -334,6 +335,7 @@ function App() {
         isOpen={isContactOpen}
         onClose={() => setIsContactOpen(false)}
       />
+      <Analytics />
     </Router>
   );
 }
