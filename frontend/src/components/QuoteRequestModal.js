@@ -94,6 +94,11 @@ export default function QuoteRequestModal({ isOpen, onClose, cartItems = [], ini
 
       setSubmitted(true);
 
+      if (typeof window !== 'undefined') {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'generate_lead', form_name: 'quote_request' });
+      }
+
       window.setTimeout(() => {
         handleClose();
       }, 2000);
