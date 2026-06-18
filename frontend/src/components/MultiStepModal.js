@@ -85,6 +85,10 @@ export default function MultiStepModal({ isOpen, onClose }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     setSubmitted(true);
+    if (typeof window !== 'undefined') {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'generate_lead', form_name: 'appointment' });
+    }
   };
 
   const handleClose = () => {
