@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import QuoteRequestModal from './QuoteRequestModal';
+import Seo, { SITE_URL } from './Seo';
 import blueImage from '../Pictures/blue shade.webp';
 import yellowImage from '../Pictures/Yellow shades.png';
 import greyImage from '../Pictures/grey shades.png';
@@ -417,6 +418,7 @@ export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveM
   if (!stone) {
     return (
       <div className="bg-white min-h-screen">
+        <Seo path={`/limestone/${colorId || ''}`} title="Limestone Not Found" noindex />
         <Navbar
           onOpenModal={() => setIsModalOpen(true)}
           onOpenContact={onOpenContact}
@@ -440,8 +442,44 @@ export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveM
     );
   }
 
+  const limestoneProductJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: stone.name,
+    sku: stone.code,
+    description: stone.description,
+    brand: { '@type': 'Brand', name: 'Sunrise Stones Industries' },
+    category: 'Natural Limestone',
+    material: 'Limestone',
+    countryOfOrigin: 'IN',
+    offers: {
+      '@type': 'AggregateOffer',
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
+      seller: { '@id': `${SITE_URL}/#organization` },
+    },
+  };
+  const limestoneBreadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL + '/' },
+      { '@type': 'ListItem', position: 2, name: 'Limestone', item: SITE_URL + '/#limestone-collection' },
+      { '@type': 'ListItem', position: 3, name: stone.name, item: `${SITE_URL}/limestone/${colorId}` },
+    ],
+  };
+
   return (
     <div className="bg-white min-h-screen">
+      <Seo
+        path={`/limestone/${colorId}`}
+        title={`${stone.name} — Tiles, Slabs, Pavers & Pool Coping`}
+        description={`${stone.name} from Sunrise Stones Industries. ${stone.description.slice(0, 120)}... Tandur limestone direct from the quarry — tiles, palisades, pool coping, cobbles. US nationwide supply.`}
+        keywords={`${stone.name}, Tandur limestone, ${stone.name} tiles, ${stone.name} pavers, limestone pool coping, limestone supplier USA, Indian limestone exporter`}
+        imageAlt={`${stone.name} — natural finish`}
+        type="product"
+        jsonLd={[limestoneProductJsonLd, limestoneBreadcrumbJsonLd]}
+      />
       <Navbar
         onOpenModal={() => setIsModalOpen(true)}
         onOpenContact={onOpenContact}

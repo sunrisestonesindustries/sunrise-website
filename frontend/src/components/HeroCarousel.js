@@ -30,22 +30,22 @@ export default function Hero() {
   const slides = [
     {
       image: extyImage,
-      alt: 'Limestone exterior application',
+      alt: 'Tandur limestone exterior facade cladding installation by Sunrise Stones Industries',
       overlay: 'linear-gradient(180deg, rgba(11,11,12,0.65), rgba(11,11,12,0.35))',
     },
     {
       image: greyImage,
-      alt: 'Grey limestone slab',
+      alt: 'Silver Ash grey limestone slab — honed finish for flooring and wall cladding',
       overlay: 'linear-gradient(180deg, rgba(11,11,12,0.65), rgba(11,11,12,0.35))',
     },
     {
       image: stepyImage,
-      alt: 'Limestone step application',
+      alt: 'Natural limestone step blocks for residential staircase application',
       overlay: 'linear-gradient(180deg, rgba(11,11,12,0.65), rgba(11,11,12,0.35))',
     },
     {
       image: poolImage,
-      alt: 'Limestone poolside application',
+      alt: 'Tandur blue limestone pool coping and surround — premium natural stone',
       overlay: 'linear-gradient(180deg, rgba(11,11,12,0.65), rgba(11,11,12,0.35))',
     },
   ];

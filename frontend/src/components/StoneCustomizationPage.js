@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import QuoteRequestModal from './QuoteRequestModal';
+import Seo from './Seo';
 
 const COLOR_OPTIONS = [
   'Urban Blue Limestone',
@@ -82,6 +83,12 @@ export default function StoneCustomizationPage({ onOpenContact, cartCount = 0 })
 
   return (
     <div className="bg-[#f7f3ea] min-h-screen">
+      <Seo
+        path="/customize-stone"
+        title="Custom Stone Fabrication — Size, Finish & Edge Builder"
+        description="Build custom-fabricated granite and limestone to your project spec: size, thickness, finish and edge profile. Sunrise Stones Industries — direct quarry sourcing, US nationwide supply."
+        keywords="custom stone fabrication, custom granite countertops, custom limestone tiles, stone edge profiles, granite finishes, made-to-spec stone, natural stone fabricator USA"
+      />
       <Navbar
         onOpenModal={() => setIsQuoteOpen(true)}
         onOpenContact={onOpenContact}

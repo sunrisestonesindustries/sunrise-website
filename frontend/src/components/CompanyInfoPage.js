@@ -2,6 +2,22 @@ import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import Seo from './Seo';
+
+const SEO_BY_PATH = {
+  '/terms': {
+    title: 'Terms of Supply',
+    description: 'Terms of supply for Sunrise Stones Industries — quotations, custom orders, natural stone variation policy and export logistics terms.',
+  },
+  '/privacy': {
+    title: 'Privacy & Contact Data',
+    description: 'How Sunrise Stones Industries handles enquiry and quote data, customer information, and export documentation.',
+  },
+  '/shipping-info': {
+    title: 'Shipping & Export Information',
+    description: 'Container-load export, lead times, packaging and shipment planning for granite and limestone orders from Sunrise Stones Industries.',
+  },
+};
 
 const PAGE_CONTENT = {
   '/terms': {
@@ -37,9 +53,11 @@ export default function CompanyInfoPage({ onOpenModal, onOpenContact, cartCount 
   const navigate = useNavigate();
   const location = useLocation();
   const content = PAGE_CONTENT[location.pathname] || PAGE_CONTENT['/terms'];
+  const seo = SEO_BY_PATH[location.pathname] || SEO_BY_PATH['/terms'];
 
   return (
     <div className="min-h-screen bg-white">
+      <Seo path={location.pathname} title={seo.title} description={seo.description} />
       <Navbar
         onOpenModal={onOpenModal}
         onOpenContact={onOpenContact}

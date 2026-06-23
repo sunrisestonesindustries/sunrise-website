@@ -1,0 +1,16 @@
+# https://www.sunrisestonesindustries.com/robots.txt
+User-agent: *
+Allow: /
+Disallow: /cart
+Disallow: /api/
+
+# Allow Google to fetch JS/CSS for proper rendering
+User-agent: Googlebot
+Allow: /static/
+Allow: /*.js$
+Allow: /*.css$
+Allow: /*.webp$
+Allow: /*.png$
+Allow: /*.jpg$
+
+Sitemap: https://www.sunrisestonesindustries.com/sitemap.xml

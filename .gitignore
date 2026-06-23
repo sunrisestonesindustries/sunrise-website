@@ -33,3 +33,24 @@ yarn-error.log*
 
 # Local archives
 deploy.zip
+credentials.json
+
+# Secrets / personal files — never commit
+Backup codes.pdf
+backup_codes.pdf
+*.backup.pdf
+smtp.env
+smtp2.env
+
+# Huge source PNGs (not used by build — the WebPs in public/granite are the production images)
+frontend/src/Pictures/Black Forest Granite.png
+frontend/src/Pictures/Black Pearl Granite.png
+frontend/src/Pictures/Coffee Brown Granite.png
+frontend/src/Pictures/Copper Silk Granite.png
+frontend/src/Pictures/Imperial Blue Granite.png
+frontend/src/Pictures/Multicolor Red Granite.png
+frontend/src/Pictures/Paradiso Classico Granite.png
+frontend/src/Pictures/Silver Silk Granite.png
+frontend/src/Pictures/Steel Grey Granite.png
+frontend/src/Pictures/Tan Brown Granite.png
+frontend/src/Pictures/Thunder Black Granite.png

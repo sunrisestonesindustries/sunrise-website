@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Home -->
+  <url>
+    <loc>https://www.sunrisestonesindustries.com/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.sunrisestonesindustries.com/logo1.webp</image:loc>
+      <image:title>Sunrise Stones Industries — Natural Stone Supplier USA</image:title>
+    </image:image>
+  </url>
+
+  <!-- Custom fabrication landing -->
+  <url>
+    <loc>https://www.sunrisestonesindustries.com/customize-stone</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Granite product pages -->
+  <url><loc>https://www.sunrisestonesindustries.com/granite/alaska-red</loc><changefreq>monthly</changefreq><priority>0.9</priority>
+    <image:image><image:loc>https://www.sunrisestonesindustries.com/granite/tan-red-granite.webp</image:loc><image:title>Alaska Red Granite</image:title></image:image></url>
+  <url><loc>https://www.sunrisestonesindustries.com/granite/indian-juparana</loc><changefreq>monthly</changefreq><priority>0.9</priority>
+    <image:image><image:loc>https://www.sunrisestonesindustries.com/granite/indian-juparana-granite.webp</image:loc><image:title>Indian Juparana Granite</image:title></image:image></url>
+  <url><loc>https://www.sunrisestonesindustries.com/granite/kashmir-white</loc><changefreq>monthly</changefreq><priority>0.9</priority>
+    <image:image><image:loc>https://www.sunrisestonesindustries.com/granite/kashmir-white-granite.webp</image:loc><image:title>Kashmir White Granite</image:title></image:image></url>
+  <url><loc>https://www.sunrisestonesindustries.com/granite/paradiso-ash</loc><changefreq>monthly</changefreq><priority>0.9</priority>
+    <image:image><image:loc>https://www.sunrisestonesindustries.com/granite/paradiso-bash-granite.webp</image:loc><image:title>Paradiso Ash Granite</image:title></image:image></url>
+  <url><loc>https://www.sunrisestonesindustries.com/granite/sapphire-blue</loc><changefreq>monthly</changefreq><priority>0.9</priority>
+    <image:image><image:loc>https://www.sunrisestonesindustries.com/granite/sapphire-blue-granite.webp</image:loc><image:title>Sapphire Blue Granite</image:title></image:image></url>
+  <url><loc>https://www.sunrisestonesindustries.com/granite/tan-brown</loc><changefreq>monthly</changefreq><priority>0.9</priority>
+    <image:image><image:loc>https://www.sunrisestonesindustries.com/granite/tan-brown-granite.webp</image:loc><image:title>Tan Brown Granite</image:title></image:image></url>
+  <url><loc>https://www.sunrisestonesindustries.com/granite/black-pearl</loc><changefreq>monthly</changefreq><priority>0.9</priority>
+    <image:image><image:loc>https://www.sunrisestonesindustries.com/granite/black-pearl-granite.webp</image:loc><image:title>Black Pearl Granite</image:title></image:image></url>
+  <url><loc>https://www.sunrisestonesindustries.com/granite/steel-grey</loc><changefreq>monthly</changefreq><priority>0.9</priority>
+    <image:image><image:loc>https://www.sunrisestonesindustries.com/granite/steel-grey-granite.webp</image:loc><image:title>Steel Grey Granite</image:title></image:image></url>
+  <url><loc>https://www.sunrisestonesindustries.com/granite/black-forest</loc><changefreq>monthly</changefreq><priority>0.9</priority>
+    <image:image><image:loc>https://www.sunrisestonesindustries.com/granite/black-forest-granite.webp</image:loc><image:title>Black Forest Granite</image:title></image:image></url>
+  <url><loc>https://www.sunrisestonesindustries.com/granite/imperial-blue</loc><changefreq>monthly</changefreq><priority>0.9</priority>
+    <image:image><image:loc>https://www.sunrisestonesindustries.com/granite/imperial-blue-granite.webp</image:loc><image:title>Imperial Blue Granite</image:title></image:image></url>
+  <url><loc>https://www.sunrisestonesindustries.com/granite/coffee-brown</loc><changefreq>monthly</changefreq><priority>0.9</priority>
+    <image:image><image:loc>https://www.sunrisestonesindustries.com/granite/coffee-brown-granite.webp</image:loc><image:title>Coffee Brown Granite</image:title></image:image></url>
+  <url><loc>https://www.sunrisestonesindustries.com/granite/thunder-black</loc><changefreq>monthly</changefreq><priority>0.9</priority>
+    <image:image><image:loc>https://www.sunrisestonesindustries.com/granite/thunder-black-granite.webp</image:loc><image:title>Thunder Black Granite</image:title></image:image></url>
+  <url><loc>https://www.sunrisestonesindustries.com/granite/paradiso-classico</loc><changefreq>monthly</changefreq><priority>0.9</priority>
+    <image:image><image:loc>https://www.sunrisestonesindustries.com/granite/paradiso-classico-granite.webp</image:loc><image:title>Paradiso Classico Granite</image:title></image:image></url>
+  <url><loc>https://www.sunrisestonesindustries.com/granite/copper-silk</loc><changefreq>monthly</changefreq><priority>0.9</priority>
+    <image:image><image:loc>https://www.sunrisestonesindustries.com/granite/copper-silk-granite.webp</image:loc><image:title>Copper Silk Granite</image:title></image:image></url>
+  <url><loc>https://www.sunrisestonesindustries.com/granite/silver-silk</loc><changefreq>monthly</changefreq><priority>0.9</priority>
+    <image:image><image:loc>https://www.sunrisestonesindustries.com/granite/silver-silk-granite.webp</image:loc><image:title>Silver Silk Granite</image:title></image:image></url>
+  <url><loc>https://www.sunrisestonesindustries.com/granite/multicolor-red</loc><changefreq>monthly</changefreq><priority>0.9</priority>
+    <image:image><image:loc>https://www.sunrisestonesindustries.com/granite/multicolor-red-granite.webp</image:loc><image:title>Multicolor Red Granite</image:title></image:image></url>
+
+  <!-- Limestone product pages -->
+  <url><loc>https://www.sunrisestonesindustries.com/limestone/blue</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.sunrisestonesindustries.com/limestone/yellow</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.sunrisestonesindustries.com/limestone/grey</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+
+  <!-- Blog -->
+  <url><loc>https://www.sunrisestonesindustries.com/blog</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.sunrisestonesindustries.com/blog/granite-vs-marble-kitchen-countertops</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.sunrisestonesindustries.com/blog/importing-indian-granite-to-usa</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.sunrisestonesindustries.com/blog/tandur-limestone-properties-applications</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Policies -->
+  <url><loc>https://www.sunrisestonesindustries.com/terms</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://www.sunrisestonesindustries.com/privacy</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://www.sunrisestonesindustries.com/shipping-info</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+
+</urlset>

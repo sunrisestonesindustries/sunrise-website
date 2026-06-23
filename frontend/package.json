@@ -1,7 +1,7 @@
 {
   "name": "sunrise-industries",
   "version": "1.0.0",
-  "description": "SUNRISE INDUSTRIES - Premium Tandur Limestone Export",
+  "description": "SUNRISE INDUSTRIES - Premium Indian Granite & Tandur Limestone Export",
   "private": true,
   "dependencies": {
     "axios": "^1.4.0",
@@ -9,19 +9,58 @@
     "lenis": "^1.3.18-dev.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-helmet-async": "^2.0.5",
     "react-router-dom": "^7.13.1",
     "react-scripts": "5.0.1",
     "tailwindcss": "^3.3.2"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.14",
-    "postcss": "^8.4.24"
+    "postcss": "^8.4.24",
+    "react-snap": "^1.23.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "postbuild": "react-snap",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "reactSnap": {
+    "source": "build",
+    "include": [
+      "/",
+      "/customize-stone",
+      "/terms",
+      "/privacy",
+      "/shipping-info",
+      "/blog",
+      "/blog/granite-vs-marble-kitchen-countertops",
+      "/blog/importing-indian-granite-to-usa",
+      "/blog/tandur-limestone-properties-applications",
+      "/granite/alaska-red",
+      "/granite/indian-juparana",
+      "/granite/kashmir-white",
+      "/granite/paradiso-ash",
+      "/granite/sapphire-blue",
+      "/granite/tan-brown",
+      "/granite/black-pearl",
+      "/granite/steel-grey",
+      "/granite/black-forest",
+      "/granite/imperial-blue",
+      "/granite/coffee-brown",
+      "/granite/thunder-black",
+      "/granite/paradiso-classico",
+      "/granite/copper-silk",
+      "/granite/silver-silk",
+      "/granite/multicolor-red",
+      "/limestone/blue",
+      "/limestone/yellow",
+      "/limestone/grey"
+    ],
+    "skipThirdPartyRequests": true,
+    "puppeteerArgs": ["--no-sandbox", "--disable-setuid-sandbox"],
+    "inlineCss": false
   },
   "eslintConfig": {
     "extends": [

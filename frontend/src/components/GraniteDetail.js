@@ -5,6 +5,7 @@ import Lenis from 'lenis';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import QuoteRequestModal from './QuoteRequestModal';
+import Seo, { SITE_URL } from './Seo';
 
 // ─── URL paths (served from /public/granite/ — loaded on demand, not bundled) ───
 const graniteAlaskaRed       = '/granite/tan-red-granite.webp';
@@ -738,6 +739,7 @@ export default function GraniteDetail({ cartItems = [], onAddToCart, onRemoveMat
   if (!stone) {
     return (
       <div className="min-h-screen bg-white">
+        <Seo path={`/granite/${graniteId || ''}`} title="Granite Not Found" noindex />
         <Navbar onOpenModal={() => setIsModalOpen(true)} onOpenContact={onOpenContact} cartCount={cartCount} />
         <div className="px-6 pt-40 text-center">
           <h1 className="text-3xl font-gabarito font-bold text-black">Granite not found</h1>
@@ -754,8 +756,47 @@ export default function GraniteDetail({ cartItems = [], onAddToCart, onRemoveMat
     );
   }
 
+  const productImageUrl = stone.image && stone.image.startsWith('http') ? stone.image : `${SITE_URL}${stone.image}`;
+  const productJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: stone.name,
+    sku: stone.code,
+    image: [productImageUrl],
+    description: stone.description,
+    brand: { '@type': 'Brand', name: 'Sunrise Stones Industries' },
+    category: 'Natural Granite',
+    material: 'Granite',
+    countryOfOrigin: 'IN',
+    offers: {
+      '@type': 'AggregateOffer',
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
+      seller: { '@id': `${SITE_URL}/#organization` },
+    },
+  };
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL + '/' },
+      { '@type': 'ListItem', position: 2, name: 'Granite', item: SITE_URL + '/#granite-collection' },
+      { '@type': 'ListItem', position: 3, name: stone.name, item: `${SITE_URL}/granite/${graniteId}` },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-white">
+      <Seo
+        path={`/granite/${graniteId}`}
+        title={`${stone.name} — Slabs, Tiles & Custom Sizes`}
+        description={`Buy ${stone.name} direct from Sunrise Stones Industries. ${stone.description.slice(0, 110)}... Custom slabs, tiles and fabrication. US nationwide supply.`}
+        keywords={`${stone.name}, ${stone.name} slabs, ${stone.name} tiles, ${stone.name} countertops, Indian granite, granite supplier USA, wholesale granite`}
+        image={productImageUrl}
+        imageAlt={`${stone.name} slab — polished surface`}
+        type="product"
+        jsonLd={[productJsonLd, breadcrumbJsonLd]}
+      />
       <Navbar
         onOpenModal={() => setIsModalOpen(true)}
         onOpenContact={onOpenContact}

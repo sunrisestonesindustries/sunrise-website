@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import Seo from './Seo';
 
 export default function CartPage({ cartItems, onRemoveCartItem, onClearCart, onOpenModal, onOpenContact }) {
   const navigate = useNavigate();
@@ -32,6 +33,12 @@ export default function CartPage({ cartItems, onRemoveCartItem, onClearCart, onO
 
   return (
     <div className="bg-white min-h-screen">
+      <Seo
+        path="/cart"
+        title="Your Stone Selections"
+        description="Review your saved granite and limestone selections and request a quote from Sunrise Stones Industries."
+        noindex
+      />
       <Navbar
         onOpenModal={onOpenModal}
         onOpenContact={onOpenContact}

@@ -12,6 +12,7 @@ import ContactDetailsModal from './components/ContactDetailsModal';
 import MultiStepModal from './components/MultiStepModal';
 import Footer from './components/Footer';
 import MiningJourney from './components/MiningJourney';
+import Seo from './components/Seo';
 import './App.css';
 
 // Heavy detail pages — code-split so they don't block initial load
@@ -20,6 +21,8 @@ const GraniteDetail   = lazy(() => import('./components/GraniteDetail'));
 const CartPage        = lazy(() => import('./components/CartPage'));
 const StoneCustomizationPage = lazy(() => import('./components/StoneCustomizationPage'));
 const CompanyInfoPage = lazy(() => import('./components/CompanyInfoPage'));
+const BlogIndex = lazy(() => import('./components/BlogPage').then((m) => ({ default: m.BlogIndex })));
+const BlogArticle = lazy(() => import('./components/BlogPage').then((m) => ({ default: m.BlogArticle })));
 
 // Minimal loading fallback
 const PageLoader = () => (
@@ -112,6 +115,26 @@ function HomePage({ setIsModalOpen, setIsAppointmentOpen, setIsContactOpen, cart
 
   return (
     <div className="App bg-black min-h-screen">
+      <Seo
+        path="/"
+        title="Granite, Limestone & Natural Stone Supplier in the USA"
+        description="US-based natural stone supplier shipping premium Indian granite, Tandur limestone and custom-fabricated countertops, slabs and tiles. Direct-from-quarry pricing, container-load export, reliable nationwide supply from our New Jersey HQ."
+        keywords="natural stone supplier USA, granite supplier New Jersey, Indian granite exporter, Tandur limestone, wholesale granite slabs, custom stone fabrication, granite countertops, limestone tiles"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'WebPage',
+          name: 'Granite, Limestone & Natural Stone Supplier in the USA',
+          url: 'https://www.sunrisestonesindustries.com/',
+          isPartOf: { '@id': 'https://www.sunrisestonesindustries.com/#website' },
+          about: { '@id': 'https://www.sunrisestonesindustries.com/#organization' },
+          breadcrumb: {
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.sunrisestonesindustries.com/' },
+            ],
+          },
+        }}
+      />
       <Navbar
         onOpenModal={() => setIsModalOpen(true)}
         onOpenContact={() => setIsContactOpen(true)}
@@ -316,6 +339,30 @@ function App() {
               onOpenContact={() => setIsContactOpen(true)}
               cartCount={cartCount}
             />
+          }
+        />
+        <Route
+          path="/blog"
+          element={
+            <Suspense fallback={<PageLoader />}>
+              <BlogIndex
+                onOpenModal={() => setIsModalOpen(true)}
+                onOpenContact={() => setIsContactOpen(true)}
+                cartCount={cartCount}
+              />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/:slug"
+          element={
+            <Suspense fallback={<PageLoader />}>
+              <BlogArticle
+                onOpenModal={() => setIsModalOpen(true)}
+                onOpenContact={() => setIsContactOpen(true)}
+                cartCount={cartCount}
+              />
+            </Suspense>
           }
         />
       </Routes>
