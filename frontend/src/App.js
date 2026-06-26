@@ -12,6 +12,7 @@ import ContactDetailsModal from './components/ContactDetailsModal';
 import MultiStepModal from './components/MultiStepModal';
 import Footer from './components/Footer';
 import MiningJourney from './components/MiningJourney';
+import ExitIntentPopup from './components/ExitIntentPopup';
 import Seo from './components/Seo';
 import './App.css';
 
@@ -381,6 +382,7 @@ function App() {
         isOpen={isContactOpen}
         onClose={() => setIsContactOpen(false)}
       />
+      <ExitIntentPopup />
     </Router>
   );
 }
