@@ -59,7 +59,7 @@ const ARTICLES = {
       { type: 'h2', text: 'Quality risks to underwrite' },
       { type: 'p', text: 'The three things that go wrong: color inconsistency between bundles (avoid by demanding all bundles from the same block whenever possible), hairline cracks that survive QC at origin but show up after stress on the trip (avoid by requiring resin treatment), and damaged corners from poor packing (avoid by inspecting loading photos and using A-frame bundles instead of loose slabs).' },
       { type: 'h2', text: 'Working with a US-presence supplier' },
-      { type: 'p', text: 'Sunrise Stones Industries operates from New Jersey with the supply chain in India. The reason this matters: you get a US bank account to pay into (no international wire fees), a US point of contact for customs and claims, and the ability to inspect inventory stateside before commitment — while still capturing direct-from-quarry pricing.' },
+      { type: 'p', text: 'Sunrise Stones Industries focuses on the US market with the supply chain in India. The reason this matters: a US point of contact for documentation, customs questions, and project planning, alongside direct-from-quarry pricing rather than buying through a chain of distributors.' },
     ],
   },
   'tandur-limestone-properties-applications': {

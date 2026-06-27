@@ -118,9 +118,9 @@ function HomePage({ setIsModalOpen, setIsAppointmentOpen, setIsContactOpen, cart
     <div className="App bg-black min-h-screen">
       <Seo
         path="/"
-        title="Granite, Limestone & Natural Stone Supplier in the USA"
-        description="US-based natural stone supplier shipping premium Indian granite, Tandur limestone and custom-fabricated countertops, slabs and tiles. Direct-from-quarry pricing, container-load export, reliable nationwide supply from our New Jersey HQ."
-        keywords="natural stone supplier USA, granite supplier New Jersey, Indian granite exporter, Tandur limestone, wholesale granite slabs, custom stone fabrication, granite countertops, limestone tiles"
+        title="Granite, Limestone & Natural Stone Supplier for US Buyers"
+        description="Premium Indian granite, Tandur limestone and custom-fabricated countertops, slabs and tiles shipped to the USA. Direct-from-quarry pricing, container-load export, reliable nationwide delivery."
+        keywords="natural stone supplier USA, Indian granite exporter, Tandur limestone supplier, wholesale granite slabs USA, custom stone fabrication, granite countertops, limestone tiles, stone import USA"
         jsonLd={{
           '@context': 'https://schema.org',
           '@type': 'WebPage',

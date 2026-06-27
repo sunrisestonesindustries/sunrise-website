@@ -352,6 +352,28 @@ const graniteData = {
       'Staircases',
       'Table Tops',
     ],
+    longContent: [
+      {
+        heading: 'About Tan Brown Granite',
+        body: 'Tan Brown is one of the most heavily exported Indian granites to the United States, prized for its warm dark background and consistent crystalline pattern. The stone is quarried in the Ongole and Prakasam districts of Andhra Pradesh, where the deposits yield blocks with the deep coffee-brown base and distinctive golden-amber feldspar that the variety is known for. Because the pattern is fine-grained and uniform rather than veined, Tan Brown rarely shows the dramatic bookmatching of more flowing granites — but it gives you something equally valuable: predictable, low-variation slabs that work across multi-island kitchens, large flooring runs, and commercial installations where consistency matters more than drama.',
+      },
+      {
+        heading: 'Why US fabricators choose Tan Brown',
+        body: 'Tan Brown holds a 6.5 on the Mohs hardness scale and a compressive strength of about 200 MPa, putting it among the most durable countertop granites available. Water absorption sits at roughly 0.4%, meaning sealed surfaces are essentially stain-proof against typical kitchen exposures including red wine, oil, and citrus. The dark color hides crumbs and watermarks far better than light granites, which is why it has remained a top seller in US kitchens for over twenty years despite the rise of engineered quartz alternatives. It also pairs naturally with both maple and dark cabinetry, brushed nickel and oil-rubbed bronze fixtures, and white or beige backsplashes — a flexibility that makes it a safe spec for builder-grade through luxury work.',
+      },
+      {
+        heading: 'Finishes and edge profiles available',
+        body: 'We supply Tan Brown in polished, leathered, honed, and flamed finishes. Polished is the most common request and showcases the stone\'s natural depth — the gold crystals practically glow under direct light. Leathered offers a soft matte texture that hides fingerprints and minor wear, increasingly popular on islands and outdoor kitchens. Standard edge profiles include eased, bullnose, ogee, and full bullnose; custom edge work is available for premium projects. All slabs are resin-treated at origin to seal micro-fissures.',
+      },
+      {
+        heading: 'Available sizes and order minimums',
+        body: 'Standard slab format is 96"–130" × 60"–78" in 2 cm and 3 cm thicknesses. Gang-sawn slabs typically run 110" × 70" — large enough to fabricate most US island countertops without seams. Tiles are available in 12"×12", 18"×18", and 24"×24". Minimum order quantity for direct container shipment is one 20\' container (roughly 280–320 sqm of 2 cm slabs); LCL shipments are possible for smaller fabricators but cost economics are weaker.',
+      },
+      {
+        heading: 'Lead times and shipping to the US',
+        body: 'Standard lead time from purchase order to US East Coast port is 8–12 weeks: 2–3 weeks block selection and slab cutting in Andhra Pradesh, 1 week resin treatment and packing, 4–6 weeks ocean freight (longer to West Coast via Pacific routing), 1–2 weeks customs clearance and inland trucking. We coordinate FOB, CIF, and DDP arrangements depending on whether you have an established US customs broker. All shipments include packing lists, container loading photos, IPPC-stamped wood crating, and certificates of origin for tariff classification.',
+      },
+    ],
   },
   'black-pearl': {
     name: 'Black Pearl Granite',
@@ -375,6 +397,28 @@ const graniteData = {
       'Exterior Facades',
       'Architectural Details',
     ],
+    longContent: [
+      {
+        heading: 'About Black Pearl Granite',
+        body: 'Black Pearl is the most consistent black granite quarried in India, drawn from deposits across Karnataka and northern Andhra Pradesh. The stone has a deep charcoal-to-jet-black background scattered with fine silver, white, and occasional pale-gold mineral flecks. Unlike Absolute Black or Indian Premium Black, which read as solid black, Black Pearl has visible texture and sparkle that catches light — making it a popular choice for kitchen islands, bar tops, and feature walls where the surface itself becomes a design element.',
+      },
+      {
+        heading: 'Why Black Pearl ships to the US in such high volume',
+        body: 'Three reasons. First, color consistency: block-to-block variation is unusually low for a natural granite, so a US fabricator ordering a container can confidently match seams across multiple slabs. Second, hardness — Black Pearl rates 7 on the Mohs scale, harder than most kitchen knife steels, which is why it resists scratches even from heavy daily use. Third, pricing: because the quarries are large and the variety is mature in the export market, Black Pearl trades at a more accessible price than Absolute Black while delivering similar visual impact. We see strong reorder rates from kitchen showrooms in Texas, Florida, the Mid-Atlantic, and the Pacific Northwest.',
+      },
+      {
+        heading: 'Performance and maintenance',
+        body: 'Compressive strength sits at 200–220 MPa, water absorption at 0.3%, and porosity under 0.5%. With proper sealing (recommended annually), Black Pearl is essentially impervious to common kitchen acids, oils, and hot pans. The dark surface does show watermarks more visibly than mid-toned granites — we recommend a leathered or honed finish rather than polished if the installation is in a high-use prep kitchen, since matte surfaces hide the mineral residue from hard water far better than a glossy polish.',
+      },
+      {
+        heading: 'Finishes, sizes, and edge work',
+        body: 'Available in polished (most popular), leathered (premium textured matte), honed (smooth matte), and flamed (rough for outdoor use). Standard slab dimensions: 96"–130" × 60"–78" in 2 cm and 3 cm. Large-format gang-sawn slabs available for monolithic island installations. Tiles in 12"×12", 18"×18", and 24"×24". All standard edge profiles supported (eased, bullnose, ogee, mitered, full bullnose), with custom edges priced separately.',
+      },
+      {
+        heading: 'Ordering and US delivery',
+        body: 'MOQ is one 20\' container (roughly 280–320 sqm). Lead time from purchase order to US port is 8–12 weeks, plus 1–2 weeks for customs clearance and inland trucking. We provide block photos before cutting, slab photos before packing, container loading photos before sealing, and full documentation including phyto certificates, COO, and packing lists. FOB Krishnapatnam, CIF most US ports, and DDP to warehouse all available. Container freight typically routes via Suez to East/Gulf coasts or via Pacific to West Coast.',
+      },
+    ],
   },
   'steel-grey': {
     name: 'Steel Grey Granite',
@@ -397,6 +441,28 @@ const graniteData = {
       'Commercial Flooring',
       'Stair Treads',
       'Paving',
+    ],
+    longContent: [
+      {
+        heading: 'About Steel Grey Granite',
+        body: 'Steel Grey is one of the most exported granites from Karnataka, India, recognizable by its swirling cloud-like pattern of silver, white, and charcoal-grey crystals across a medium-dark grey background. Unlike fine-grained black granites, Steel Grey has visible movement and depth — each slab carries a unique distribution of silver and pewter swirls. This makes it the natural choice for architects and designers who want a contemporary neutral with character rather than a flat field of color.',
+      },
+      {
+        heading: 'Why Steel Grey works for both residential and commercial projects',
+        body: 'Steel Grey hits the sweet spot between Black Pearl (too dark for some interiors) and Kashmir White (too busy for minimalist designs). The mid-grey field reads as sophisticated and modern, pairing equally well with white shaker cabinets in a residential kitchen and stainless steel fixtures in a corporate lobby. Because the pattern is randomized rather than veined, you get visual interest without the bookmatching complexity of marble-look granites. It is also one of the more forgiving granites for fabricators — seams blend naturally into the pattern, and small imperfections are absorbed by the busy surface rather than highlighted.',
+      },
+      {
+        heading: 'Technical performance',
+        body: 'Mohs hardness of 6–7, compressive strength of 190–210 MPa, water absorption at 0.4%, and porosity below 0.6%. Steel Grey passes the standard freeze-thaw cycling tests required for exterior installations in the US Northeast and Midwest, making it suitable for cladding, paving, and pool decks in addition to interior surfaces. Like all granites, sealing once per year preserves stain resistance against oil, wine, and acidic spills.',
+      },
+      {
+        heading: 'Finishes, formats, and applications',
+        body: 'Polished is the standard finish and delivers the deepest contrast between the silver crystals and the grey field. Honed is increasingly popular for residential kitchens — it softens the visual to a smooth matte while retaining the pattern. Flamed and bush-hammered finishes are available for exterior paving and slip-critical commercial floors. Slab format: 96"–130" × 60"–78" in 2 cm and 3 cm. Tile formats: 12"×12", 18"×18", 24"×24". Custom cut-to-size available for stair treads, vanity tops, and wall cladding panels.',
+      },
+      {
+        heading: 'Ordering, MOQ, and US delivery',
+        body: 'Minimum order is one 20\' container (about 280–320 sqm of 2 cm material). Lead time from PO to US port is 8–12 weeks. Steel Grey ships in significant volume from Krishnapatnam and Chennai ports, with reliable ocean freight schedules to US East Coast, Gulf, and West Coast destinations. We provide block-to-bundle photo documentation, IPPC-stamped wood crating, and full export documentation. FOB India, CIF US port, and DDP to US warehouse pricing all available depending on your customs and inland logistics preferences.',
+      },
     ],
   },
   'black-forest': {
@@ -889,6 +955,35 @@ export default function GraniteDetail({ cartItems = [], onAddToCart, onRemoveMat
               </div>
             </motion.div>
           </div>
+
+          {stone.longContent && stone.longContent.length > 0 && (
+            <motion.section
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-100px' }}
+              transition={{ duration: 0.6 }}
+              className="mb-20 rounded-[20px] border border-black/10 bg-[#fafaf7] p-8 md:p-12"
+            >
+              <p className="mb-3 font-gabarito text-xs font-semibold uppercase tracking-[0.3em] text-[#c9a84c]">
+                Buyer Guide
+              </p>
+              <h2 className="mb-10 text-3xl font-gabarito font-bold text-black md:text-4xl">
+                Everything to know about {stone.name}
+              </h2>
+              <div className="space-y-8">
+                {stone.longContent.map((section) => (
+                  <div key={section.heading}>
+                    <h3 className="mb-3 text-xl font-gabarito font-bold text-black md:text-2xl">
+                      {section.heading}
+                    </h3>
+                    <p className="text-base leading-relaxed text-gray-700 md:text-lg">
+                      {section.body}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </motion.section>
+          )}
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}

@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
 const SITE_URL = 'https://www.sunrisestonesindustries.com';
-const DEFAULT_OG_IMAGE = `${SITE_URL}/logo1.webp?v=4`;
+const DEFAULT_OG_IMAGE = `${SITE_URL}/og-default.jpg?v=1`;
 const SITE_NAME = 'Sunrise Stones Industries';
 
 /**
@@ -35,7 +35,7 @@ export default function Seo({
     ? title
     : title
       ? `${title} | ${SITE_NAME}`
-      : `Granite, Limestone & Natural Stone Supplier in the USA | ${SITE_NAME}`;
+      : `Granite, Limestone & Natural Stone Supplier for US Buyers | ${SITE_NAME}`;
 
   const ldBlocks = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
 
