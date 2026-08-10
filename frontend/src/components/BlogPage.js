@@ -86,9 +86,49 @@ const ARTICLES = {
       { type: 'p', text: 'Tiles 12"×12" up to 24"×47" in various thicknesses, wall cladding strips 24"×6"×0.6"–1", pool coping pieces 24"–39"×12"–24"×1.2", step blocks 39"–47"×14"–16"×5.5"–6.3", and standard cobbles, palisades, stepping stones, and crazy paving formats. Custom sizes are available with reasonable lead time.' },
     ],
   },
+  'best-indian-granites-for-us-kitchen-countertops': {
+    title: 'Best Indian Granites for US Kitchen Countertops in 2026',
+    description: 'The Indian granite varieties US buyers actually order for kitchen countertops in 2026 — Tan Brown, Black Pearl, Steel Grey, Kashmir White and more, compared by durability, price tier and design fit.',
+    keywords: 'best granite for kitchen countertops, Indian granite colors, granite countertop colors 2026, wholesale granite USA, granite kitchen countertop guide',
+    excerpt: 'Not all granite is interchangeable. Here is which Indian varieties actually move in the US kitchen market, and why each one gets chosen.',
+    publishedAt: '2026-08-01',
+    readMinutes: 10,
+    body: [
+      { type: 'h2', text: 'Why "granite" is the wrong search term' },
+      { type: 'p', text: 'Granite is a category, not a product. Asking "what is the best granite for kitchen countertops" is a bit like asking "what is the best car" — it depends entirely on the specific variety, and each one has a genuinely different character, price tier, and durability profile. Below are the Indian granites that account for the large majority of US kitchen countertop orders, organized by what actually drives the choice.' },
+      { type: 'h2', text: 'For a safe, popular, dark-tone kitchen: Black Pearl' },
+      { type: 'p', text: 'Black Pearl is the most consistently ordered dark granite in the US market for a reason — uniform charcoal-black background, fine silver speckling, and unusually low block-to-block color variation for a natural stone. It hides watermarks and daily wear better than almost anything else in this list, and fabricators can match seams across multiple slabs with confidence because the pattern barely shifts between blocks.' },
+      { type: 'h2', text: 'For the classic warm-kitchen look: Tan Brown' },
+      { type: 'p', text: 'If you picture "granite countertop" in your head without any other context, there is a good chance you are picturing something close to Tan Brown. It has been one of India\'s top US exports for over two decades — dark brown background, tan and gold mineral crystals, extremely durable (200 MPa compressive strength), and priced in the accessible-premium tier. It is the default recommendation for a traditional or transitional kitchen.' },
+      { type: 'h2', text: 'For bright, modern kitchens: Kashmir White' },
+      { type: 'p', text: 'As all-white and open-concept kitchens have become the dominant US residential trend, Kashmir White has moved from a niche choice to one of the most requested light granites. Soft white-grey base with burgundy flecks — bright enough to satisfy the "white kitchen" brief while still being a true granite (harder, more heat-resistant, more scratch-resistant than marble or quartz alternatives marketed as white stone).' },
+      { type: 'h2', text: 'For a distinctive but not-too-loud neutral: Steel Grey' },
+      { type: 'p', text: 'Steel Grey sits deliberately between the drama of Black Pearl and the brightness of Kashmir White — a medium-dark grey field with swirling silver cloud patterns. It is the choice for buyers who want something more visually interesting than a flat black or white but do not want a color that will look dated in five years. Consistently one of Karnataka\'s highest-volume US exports.' },
+      { type: 'h2', text: 'For a statement island or accent piece: Imperial Blue or Black Forest' },
+      { type: 'p', text: 'Most kitchens use one granite for the whole space. Some use a second, more dramatic variety just for the island or a waterfall edge. Imperial Blue (vivid blue with mica sparkle, genuinely rare in nature) and Black Forest (bold flowing white veins on black) are the two most requested "statement" granites for exactly this purpose — a signature surface with the rest of the kitchen kept simpler.' },
+      { type: 'h2', text: 'Price tiers, roughly (installed, US market, 2026)' },
+      { type: 'p', text: 'Tan Brown, Coffee Brown, Steel Grey, Thunder Black: $40–$65/sqft installed — the accessible-premium tier, highest volume. Black Pearl, Kashmir White, Multicolor Red: $50–$75/sqft — mid-premium. Imperial Blue, Paradiso Classico, specialty banded or rare-mineral varieties: $80–$150+/sqft — reserved for accents or buyers prioritizing a specific look over cost. If you are buying wholesale slabs directly rather than through a retail fabricator markup, these figures compress significantly.' },
+      { type: 'h2', text: 'How to actually decide' },
+      { type: 'p', text: 'Start from your cabinetry and fixture finish, not the stone. Dark cabinets pair well with lighter granites (Kashmir White, Steel Grey) for contrast; white or light cabinets pair well with darker or warmer granites (Black Pearl, Tan Brown) for grounding. If you cannot decide between two options, order sample pieces before committing to a container — natural stone photographs inconsistently and lighting changes everything.' },
+      {
+        type: 'links',
+        items: [
+          { label: 'Black Pearl Granite', path: '/granite/black-pearl' },
+          { label: 'Tan Brown Granite', path: '/granite/tan-brown' },
+          { label: 'Kashmir White Granite', path: '/granite/kashmir-white' },
+          { label: 'Steel Grey Granite', path: '/granite/steel-grey' },
+          { label: 'Imperial Blue Granite', path: '/granite/imperial-blue' },
+          { label: 'Black Forest Granite', path: '/granite/black-forest' },
+        ],
+      },
+      { type: 'h2', text: 'Bottom line' },
+      { type: 'p', text: 'For most US kitchens, the decision comes down to Tan Brown (warm, classic, safe), Black Pearl (dark, uniform, modern), Kashmir White (bright, contemporary), or Steel Grey (distinctive neutral). Everything else in the catalog is either a variation on these four themes or a deliberate statement choice for an accent surface. See the full catalog and request slab photos before you commit to a container.' },
+    ],
+  },
 };
 
 const ARTICLE_ORDER = [
+  'best-indian-granites-for-us-kitchen-countertops',
   'granite-vs-marble-kitchen-countertops',
   'importing-indian-granite-to-usa',
   'tandur-limestone-properties-applications',
@@ -238,6 +278,22 @@ function BlogArticle({ onOpenModal, onOpenContact, cartCount }) {
                 <h2 key={i} className="mt-10 mb-4 text-2xl font-gabarito font-bold text-black">
                   {block.text}
                 </h2>
+              );
+            }
+            if (block.type === 'links') {
+              return (
+                <ul key={i} className="mb-6 grid grid-cols-1 gap-2 sm:grid-cols-2">
+                  {block.items.map((item) => (
+                    <li key={item.path}>
+                      <Link
+                        to={item.path}
+                        className="block rounded-sm border border-black/10 bg-[#f7f3ea] px-4 py-3 font-gabarito text-sm font-semibold text-black transition-colors hover:border-black/30"
+                      >
+                        {item.label} →
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               );
             }
             return (

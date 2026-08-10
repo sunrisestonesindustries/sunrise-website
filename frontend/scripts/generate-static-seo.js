@@ -91,6 +91,13 @@ const ROUTES = [
     keywords: 'Tandur limestone, blue limestone India, yellow limestone, grey limestone, Tandur stone properties, limestone pool coping, limestone pavers, Telangana limestone',
     type: 'article',
   },
+  {
+    path: '/blog/best-indian-granites-for-us-kitchen-countertops',
+    title: 'Best Indian Granites for US Kitchen Countertops in 2026 | Sunrise Stones Industries',
+    description: 'The Indian granite varieties US buyers actually order for kitchen countertops in 2026 — Tan Brown, Black Pearl, Steel Grey, Kashmir White and more, compared by durability, price tier and design fit.',
+    keywords: 'best granite for kitchen countertops, Indian granite colors, granite countertop colors 2026, wholesale granite USA, granite kitchen countertop guide',
+    type: 'article',
+  },
 
   // ─── Granite product pages ───
   { path: '/granite/alaska-red', ...granite('Alaska Red Granite', '/granite/tan-red-granite.webp') },
