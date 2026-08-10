@@ -237,6 +237,28 @@ const graniteData = {
       'Vanity Tops',
       'Table Tops',
     ],
+    longContent: [
+      {
+        heading: 'About Alaska Red Granite',
+        body: 'Despite the name, Alaska Red is quarried in India — the "Alaska" naming is a trade convention used across the stone industry for certain red granite families, similar to how "Baltic Brown" and "Kashmir White" reference visual character rather than literal origin. The stone combines a bold red base with tan, cream, and charcoal mineral movement, giving it more visual energy than typical brown or grey granites while remaining easier to work with in a design scheme than Imperial Blue or other rare colors.',
+      },
+      {
+        heading: 'Why US buyers choose Alaska Red',
+        body: 'Red and warm-toned granites see consistent demand in the US Southwest and South, where terracotta, adobe, and warm color palettes dominate residential and commercial design. Alaska Red also performs well as an accent stone paired with neutral cabinetry or flooring elsewhere in a project — a red granite backsplash or fireplace surround against grey or white surfaces is a common specification pattern we see from US designers.',
+      },
+      {
+        heading: 'Performance and specifications',
+        body: 'Mohs hardness of 6–6.5, water absorption around 0.4%, suitable for both interior and exterior use including cladding and paving in most US climates. Standard annual sealing maintains stain resistance; the busy pattern hides minor everyday wear better than solid-color stones.',
+      },
+      {
+        heading: 'Finishes and available formats',
+        body: 'Polished finish is standard and brings out the full contrast between the red field and the tan/charcoal movement. Flamed and bush-hammered finishes are available for exterior paving and slip-resistant applications. Slab format: 96"–130" × 60"–78" in 2 cm and 3 cm. Tiles in 12"×12" and 18"×18" for accent applications and smaller installations.',
+      },
+      {
+        heading: 'Ordering and US delivery',
+        body: 'MOQ is one 20\' container. Standard lead time from PO to US port is 8–12 weeks with full documentation, container photos, and FOB/CIF/DDP shipping options available.',
+      },
+    ],
   },
   'indian-juparana': {
     name: 'Indian Juparana Granite',
@@ -259,6 +281,28 @@ const graniteData = {
       'Stair Treads',
       'Hotel Interiors',
       'Fireplace Surrounds',
+    ],
+    longContent: [
+      {
+        heading: 'About Indian Juparana Granite',
+        body: '"Juparana" is one of the most established granite family names in the international stone trade, originally associated with Brazilian quarries but now also produced from comparable deposits across India. Indian Juparana carries the same warm, flowing character the name is known for — peach, beige, grey, and brown tones moving across the slab in soft bands rather than the busy speckle pattern of most granites.',
+      },
+      {
+        heading: 'Why Indian Juparana works for luxury and hospitality projects',
+        body: 'The flowing, marble-like movement makes Indian Juparana a favorite for hotel lobbies, reception desks, and upscale residential projects where a granite needs to read as elegant rather than purely functional. It pairs naturally with warm wood tones, brass fixtures, and traditional or transitional design schemes — US hospitality buyers specifically search for this pattern type when a client wants granite\'s durability with a softer visual profile than typical speckled stones.',
+      },
+      {
+        heading: 'Technical performance',
+        body: 'Mohs hardness 6–6.5, water absorption approximately 0.4%, comparable durability to other premium Indian granites. The flowing pattern means slab selection matters more than with uniform colors — we provide photos of specific slabs for bookmatched applications like reception desks and large countertop runs.',
+      },
+      {
+        heading: 'Finishes and formats',
+        body: 'Polished finish is standard and essential to showcase the flowing pattern; honed available on request. Slab format 96"–130" × 60"–78" in 2 cm and 3 cm. Tiles in 12"×12", 18"×18", and 24"×24" for flooring applications.',
+      },
+      {
+        heading: 'Ordering and shipping',
+        body: 'MOQ one 20\' container, though for pattern-matched projects (reception desks, bookmatched islands) we recommend confirming slab selection before container loading. Standard lead time 8–12 weeks from PO to US port with full export documentation.',
+      },
     ],
   },
   'kashmir-white': {
@@ -328,6 +372,28 @@ const graniteData = {
       'Exterior Facades',
       'Custom Furniture',
     ],
+    longContent: [
+      {
+        heading: 'About Paradiso Ash Granite',
+        body: 'Paradiso Ash is one of the more visually complex granites in our range — soft ash-grey and violet tones move across the slab in wave-like bands, closer in feel to an exotic quartzite than a typical uniform granite. This is a specification stone: buyers usually find it after already deciding they want something distinctive for a signature surface, rather than browsing generic "granite" searches.',
+      },
+      {
+        heading: 'Where Paradiso Ash gets specified',
+        body: 'The wave pattern and violet undertone make this variety a natural fit for luxury bathroom vanities, feature walls behind bar areas, and reception desks in boutique hospitality projects. It reads as more contemporary than traditional browns and tans, which is why we see it requested most often for modern and transitional interiors rather than classic kitchen countertop work.',
+      },
+      {
+        heading: 'Performance specs',
+        body: 'Mohs hardness 6–6.5, water absorption near 0.4%. As with other pattern-driven granites, we recommend reviewing slab photos before finalizing large single-surface applications so the wave movement flows the way you expect across seams.',
+      },
+      {
+        heading: 'Finishes and sizes',
+        body: 'Polished is the standard and recommended finish to bring out the depth of the ash and violet tones. Slab format 96"–130" × 60"–78" in 2 cm and 3 cm. Because this is a lower-volume specialty color, we recommend confirming block availability before committing to a project timeline.',
+      },
+      {
+        heading: 'Ordering and lead times',
+        body: 'MOQ and lead times are more flexible for this variety given its specialty status — smaller LCL shipments are common for accent applications. Standard container lead time (when ordering full volume) is 8–12 weeks from PO to US port.',
+      },
+    ],
   },
   'sapphire-blue': {
     name: 'Sapphire Blue Granite',
@@ -350,6 +416,28 @@ const graniteData = {
       'Commercial Counters',
       'Staircases',
       'Architectural Details',
+    ],
+    longContent: [
+      {
+        heading: 'About Sapphire Blue Granite',
+        body: 'Sapphire Blue sits between Imperial Blue\'s vivid rarity and Steel Grey\'s everyday neutrality — a deep blue-grey field with crystalline mineral movement that reads as sophisticated rather than showy. It is more readily available than true blue granites like Imperial Blue, making it a practical choice for buyers who want a blue-toned stone without the premium pricing or availability constraints of rarer varieties.',
+      },
+      {
+        heading: 'Why Sapphire Blue works across residential and commercial projects',
+        body: 'The deep blue-grey base is versatile enough for full kitchen countertop coverage (unlike Imperial Blue, which is typically reserved for accent pieces due to cost and availability), while still offering more color character than standard greys and blacks. US buyers searching for "blue granite countertop" who find Imperial Blue outside their budget frequently land on Sapphire Blue as the practical alternative.',
+      },
+      {
+        heading: 'Technical specifications',
+        body: 'Mohs hardness 6–6.5, water absorption approximately 0.4%, compressive strength in line with other premium Indian granites. Suitable for both interior surfaces and exterior paving/cladding applications in most US climates.',
+      },
+      {
+        heading: 'Finishes and formats',
+        body: 'Polished finish is standard and shows the crystalline sparkle best. Honed available for a more contemporary matte look. Slab format 96"–130" × 60"–78" in 2 cm and 3 cm; tiles in standard 12"×12" and 18"×18" formats.',
+      },
+      {
+        heading: 'Ordering and US shipping',
+        body: 'MOQ one 20\' container, standard lead time 8–12 weeks from PO to US port. Full documentation and FOB/CIF/DDP shipping options available on every order.',
+      },
     ],
   },
   'tan-brown': {
@@ -599,6 +687,28 @@ const graniteData = {
       'Table Tops',
       'Commercial Flooring',
     ],
+    longContent: [
+      {
+        heading: 'About Coffee Brown Granite',
+        body: 'Coffee Brown is a dependable earth-tone granite from South India, sitting visually between Tan Brown\'s golden warmth and darker charcoal browns. The olive-brown base with scattered golden and cream crystalline flecks gives it a grounded, understated look that works in almost any design context without competing for attention — the reason it remains a steady seller year over year rather than a trend-driven color.',
+      },
+      {
+        heading: 'Why Coffee Brown is a safe, versatile specification',
+        body: 'When a US buyer needs a brown granite but isn\'t sure which specific variety fits their project, Coffee Brown is frequently the answer — it reads as warm without being as dramatic as Tan Brown, and pairs with a wider range of cabinetry and flooring choices. Contractors and builders working on spec homes or multi-unit residential projects favor it for exactly this reason: broad compatibility reduces design risk across many buyers.',
+      },
+      {
+        heading: 'Performance specs',
+        body: 'Mohs hardness 6–6.5, water absorption around 0.4%, suitable for both interior surfaces and exterior applications. Standard sealing maintains stain resistance against typical kitchen and outdoor exposure.',
+      },
+      {
+        heading: 'Finishes and formats',
+        body: 'Polished is the standard finish; flamed and honed available for exterior paving and contemporary interiors respectively. Slab format 96"–130" × 60"–78" in 2 cm and 3 cm. Tiles in 12"×12", 18"×18", and 24"×24".',
+      },
+      {
+        heading: 'Ordering and delivery',
+        body: 'MOQ one 20\' container, standard lead time 8–12 weeks from PO to US port. Reliable block availability given the volume this variety is quarried at.',
+      },
+    ],
   },
   'thunder-black': {
     name: 'Thunder Black Granite',
@@ -621,6 +731,28 @@ const graniteData = {
       'Stair Treads',
       'Bathroom Vanities',
       'Outdoor Paving',
+    ],
+    longContent: [
+      {
+        heading: 'About Thunder Black Granite',
+        body: 'Thunder Black is a very dark charcoal granite with subtle swirling grey undertones and a finer, more uniform texture than Black Pearl or Black Forest. Where those varieties show visible sparkle or bold veining, Thunder Black reads as close to solid black while still carrying enough natural mineral variation to distinguish it from engineered black surfaces.',
+      },
+      {
+        heading: 'Why Thunder Black suits commercial and modern residential work',
+        body: 'The fine, near-uniform texture makes Thunder Black a favorite for large-scale commercial flooring and cladding projects where visual consistency across dozens or hundreds of slabs matters more than individual pattern character. It is also frequently specified for sleek, minimalist kitchen designs where a true near-solid black is wanted without the premium pricing of Absolute Black.',
+      },
+      {
+        heading: 'Technical performance',
+        body: 'Mohs hardness 6.5–7, water absorption approximately 0.3–0.4%, high compressive strength suitable for heavy-traffic commercial flooring. Excellent stain resistance once sealed, with the dark tone hiding everyday wear exceptionally well.',
+      },
+      {
+        heading: 'Finishes and formats',
+        body: 'Polished, honed, and flamed finishes all available. Slab format 96"–130" × 60"–78" in 2 cm and 3 cm; large-format gang-sawn slabs available for commercial flooring runs requiring minimal seams. Tiles in standard 12"×12", 18"×18", and 24"×24" formats.',
+      },
+      {
+        heading: 'Ordering and shipping',
+        body: 'MOQ one 20\' container, standard lead time 8–12 weeks from PO to US port, with strong consistent block availability given the high volume this variety is quarried at.',
+      },
     ],
   },
   'paradiso-classico': {
@@ -645,6 +777,28 @@ const graniteData = {
       'Staircases',
       'Exterior Cladding',
     ],
+    longContent: [
+      {
+        heading: 'About Paradiso Classico Granite',
+        body: 'Paradiso Classico is quarried specifically in the Hassan District of Karnataka and is internationally recognized for its distinctive diagonal banding — strong layers of grey, salmon-pink, and black running across the slab at an angle rather than the wave or swirl patterns typical of other granites. This directional banding is the variety\'s signature and the reason it is specified by name by architects who have seen it in prior projects.',
+      },
+      {
+        heading: 'Why architects specify Paradiso Classico by name',
+        body: 'The diagonal banding creates striking visual effects when slabs are laid in sequence — feature walls and flooring runs can be arranged to create continuous or mirrored diagonal patterns across a room. This is a design-forward stone: buyers searching for it typically already know the name from seeing it in a portfolio, magazine, or prior installation, making it a strong candidate for direct-match SEO once a page exists to be found.',
+      },
+      {
+        heading: 'Technical performance',
+        body: 'Mohs hardness 6–6.5, water absorption around 0.4%. Because the banding is directional, we recommend confirming slab orientation preferences before cutting — buyers typically want the diagonal bands to run consistently across sequential slabs for continuous flooring or wall installations.',
+      },
+      {
+        heading: 'Finishes and formats',
+        body: 'Polished finish is standard and required to properly showcase the banding contrast. Slab format 96"–130" × 60"–78" in 2 cm and 3 cm. Tiles available in 12"×12" and 18"×18" for smaller accent applications, though the banding is best appreciated in larger slab format.',
+      },
+      {
+        heading: 'Ordering and lead times',
+        body: 'MOQ one 20\' container. Given the specific quarry source, we recommend confirming block availability and desired banding orientation 2–3 weeks before your project cutting date. Standard lead time 8–12 weeks from PO to US port.',
+      },
+    ],
   },
   'copper-silk': {
     name: 'Copper Silk Granite',
@@ -667,6 +821,28 @@ const graniteData = {
       'Feature Walls',
       'Hotel Interiors',
       'Table Tops',
+    ],
+    longContent: [
+      {
+        heading: 'About Copper Silk Granite',
+        body: 'Copper Silk is a classic South Indian granite quarried across Andhra Pradesh and Tamil Nadu, historically one of India\'s strongest export stones to the Middle East and Europe and increasingly requested by US buyers seeking a warm copper-rust tone with distinctive dark green and black veining. The combination of warm base color and cool green veining gives it more visual complexity than typical brown granites.',
+      },
+      {
+        heading: 'Why Copper Silk appeals to US buyers now',
+        body: 'As warm metallics (copper, brass, bronze fixtures) have become a dominant US interior design trend, granites with genuine copper-toned coloring like Copper Silk have seen renewed interest from designers looking to echo metallic fixture finishes in a natural stone surface. It is particularly effective for fireplace surrounds and accent walls where the copper tone can be a focal point.',
+      },
+      {
+        heading: 'Technical specifications',
+        body: 'Mohs hardness 6–6.5, water absorption around 0.4%, consistent quality given the long-established quarry operations producing this variety. Suitable for both interior surfaces and select exterior applications.',
+      },
+      {
+        heading: 'Finishes and formats',
+        body: 'Polished finish is standard and recommended to bring out the copper-to-green contrast. Slab format 96"–130" × 60"–78" in 2 cm and 3 cm. Tiles available in 12"×12" and 18"×18" formats.',
+      },
+      {
+        heading: 'Ordering and US delivery',
+        body: 'MOQ one 20\' container, standard lead time 8–12 weeks from PO to US port. Given established export history to Europe and the Middle East, block availability and quality consistency are typically reliable for this variety.',
+      },
     ],
   },
   'silver-silk': {
@@ -691,6 +867,28 @@ const graniteData = {
       'Stair Treads',
       'Fireplace Surrounds',
     ],
+    longContent: [
+      {
+        heading: 'About Silver Silk Granite',
+        body: 'Silver Silk combines a cool grey base with warm golden-caramel wavy banding, a foliation pattern that occurs when the original rock formation was subjected to intense heat and pressure over geological time, creating the flowing, almost fabric-like bands the stone is named for. This contrast between cool grey and warm gold gives it a distinctly luxurious character that has made it popular in high-end Middle Eastern and Southeast Asian hospitality projects.',
+      },
+      {
+        heading: 'Why Silver Silk suits premium hospitality and residential projects',
+        body: 'The combination of neutral grey (which fits contemporary Western design sensibilities) with warm gold banding (which reads as luxurious rather than dated) makes Silver Silk a strong crossover choice for US buyers who want something more distinctive than standard grey granites without moving into bold or unconventional color territory. It works particularly well for reception desks and feature walls where the foliation pattern can be showcased as a design statement.',
+      },
+      {
+        heading: 'Technical performance',
+        body: 'Mohs hardness 6–6.5, water absorption approximately 0.4%. As with other banded/foliated granites, slab selection and orientation matter for continuous pattern flow across large installations — we provide slab photos for approval on request.',
+      },
+      {
+        heading: 'Finishes and formats',
+        body: 'Polished finish is standard and essential to showcase the silver-to-gold contrast. Slab format 96"–130" × 60"–78" in 2 cm and 3 cm. Tiles available in 12"×12" and 18"×18" for smaller installations.',
+      },
+      {
+        heading: 'Ordering and shipping to the US',
+        body: 'MOQ one 20\' container, standard lead time 8–12 weeks from PO to US port. Full documentation and FOB/CIF/DDP options available.',
+      },
+    ],
   },
   'multicolor-red': {
     name: 'Multicolor Red Granite',
@@ -713,6 +911,28 @@ const graniteData = {
       'Stair Treads',
       'Commercial Spaces',
       'Table Tops',
+    ],
+    longContent: [
+      {
+        heading: 'About Multicolor Red Granite',
+        body: 'Multicolor Red lives up to its name — copper, brown, cream, and dark mineral tones swirl throughout the slab rather than settling into a single dominant color family. This is the most visually energetic granite in our range, chosen specifically by buyers who want a natural stone surface to function as the room\'s centerpiece rather than a supporting background element.',
+      },
+      {
+        heading: 'Where Multicolor Red gets specified',
+        body: 'This variety works best in spaces designed around bold natural materials — rustic and Mediterranean-influenced kitchens, outdoor entertaining areas, and commercial spaces (restaurants, boutique retail) wanting a distinctive natural stone identity. It pairs well with warm wood tones and wrought iron or bronze fixtures, and is a strong match for buyers specifically searching for "colorful granite" or "multicolor natural stone" rather than standard neutral options.',
+      },
+      {
+        heading: 'Performance specifications',
+        body: 'Mohs hardness 6–6.5, water absorption around 0.4%, suitable for interior and exterior applications including cladding and paving. The busy, multi-toned pattern is highly forgiving of everyday wear and minor surface marks.',
+      },
+      {
+        heading: 'Finishes and formats',
+        body: 'Polished finish is standard; flamed available for exterior paving applications requiring slip resistance. Slab format 96"–130" × 60"–78" in 2 cm and 3 cm. Tiles in 12"×12" and 18"×18" formats.',
+      },
+      {
+        heading: 'Ordering and US delivery',
+        body: 'MOQ one 20\' container, standard lead time 8–12 weeks from PO to US port with full export documentation and container loading photos provided on every shipment.',
+      },
     ],
   },
 };

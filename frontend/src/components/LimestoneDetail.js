@@ -139,6 +139,28 @@ export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveM
         'Heritage & Restoration',
         'Hospitality Projects',
       ],
+      longContent: [
+        {
+          heading: 'About Urban Blue (Tandur Blue) Limestone',
+          body: 'Urban Blue is quarried directly from our Telangana mines and belongs to the Tandur limestone family — a dense, fine-grained sedimentary stone with unusually high compressive strength for a limestone. The blue-grey field is even and subtle at rest, but darkens dramatically when wet, which is the visual signature that has made it the most requested Tandur variety for pool surrounds in the US market.',
+        },
+        {
+          heading: 'Why US pool and landscape contractors specify Urban Blue',
+          body: 'With water absorption around 0.5% and compressive strength of 170 MPa, Urban Blue outperforms most European and domestic US limestones on density and durability while remaining significantly more affordable per square foot. The wet-darkening effect around pool decks and water features is a specific aesthetic US landscape architects request by describing the stone before they know its name — "the limestone that turns dark blue when it gets wet" is a common search phrasing that ultimately leads back to this variety.',
+        },
+        {
+          heading: 'Performance and freeze-thaw suitability',
+          body: 'Density 2.7 g/cm³, water absorption 0.5%, compressive strength 170 MPa — these figures mean Urban Blue passes standard freeze-thaw cycling tests required for exterior installations in the US Northeast and Midwest, unlike many softer limestones that spall or flake after repeated winter cycles. This makes it viable for exterior use across most of the continental United States, not just warm-climate installations.',
+        },
+        {
+          heading: 'Finishes and formats available',
+          body: 'Natural, brushed, tumbled, sandblasted, honed, and bush-hammered finishes are all available. Honed + sandblast is the standard specification for pool coping given its slip resistance and smooth-but-textured surface. Formats include tiles (12"×12" to 24"×47"), pool coping pieces, wall cladding strips, step blocks, cobbles, crazy paving, and stepping stones — full range detailed in the Format & Size section below.',
+        },
+        {
+          heading: 'Ordering and US delivery',
+          body: 'Standard container MOQ applies; lead time from purchase order to US port is typically 8–12 weeks including block selection, cutting, finishing, and ocean transit. Full export documentation, container loading photos, and FOB/CIF/DDP shipping arrangements are available on every order.',
+        },
+      ],
     },
     yellow: {
       name: 'Sunwashed Limestone',
@@ -187,6 +209,28 @@ export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveM
         'Boutique Retail',
         'Wellness Spaces',
       ],
+      longContent: [
+        {
+          heading: 'About Sunwashed (Tandur Yellow) Limestone',
+          body: 'Sunwashed Limestone is the golden-ochre member of the Tandur family, quarried in Telangana and known for exceptionally consistent coloring across pieces — a rarer trait in natural stone than most buyers expect. Where many natural stones show meaningful color drift from batch to batch, Sunwashed maintains a uniform warm golden tone that makes large-scale installations easier to plan and match.',
+        },
+        {
+          heading: 'Why Sunwashed suits Mediterranean and warm-palette US projects',
+          body: 'US buyers working in Mediterranean, Spanish Colonial, or Tuscan-influenced residential design consistently search for warm golden stone options, and Sunwashed answers that demand directly while offering better durability and a lower price point than imported Mediterranean limestones from Turkey or Portugal. It is particularly popular for garden pathways, courtyard flooring, and boutique hospitality projects wanting a warm, welcoming material.',
+        },
+        {
+          heading: 'Technical performance',
+          body: 'Density 2.6 g/cm³, compressive strength 160 MPa, water absorption 0.6%. Slightly more porous than Urban Blue, so we recommend annual sealing for exterior installations and polishing every 2–3 months for interior surfaces to maintain the golden sheen.',
+        },
+        {
+          heading: 'Finishes and available formats',
+          body: 'Full finish range available: natural, brushed, tumbled, sandblasted, honed, and bush-hammered. Tumbled finish is especially popular for Sunwashed given the antique, sun-worn aesthetic it creates that complements the stone\'s natural warmth. Same format range as other Tandur colors — tiles, pool coping, wall cladding, step blocks, cobbles, crazy paving, and stepping stones.',
+        },
+        {
+          heading: 'Ordering and shipping to the US',
+          body: 'Standard container MOQ, 8–12 week lead time from PO to US port. Full documentation and flexible FOB/CIF/DDP shipping arrangements available for every order.',
+        },
+      ],
     },
     grey: {
       name: 'Silver Ash Limestone',
@@ -234,6 +278,28 @@ export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveM
         'Mixed-Use Projects',
         'Industrial & Warehouse',
         'Museum & Gallery Spaces',
+      ],
+      longContent: [
+        {
+          heading: 'About Silver Ash (Tandur Grey) Limestone',
+          body: 'Silver Ash is the neutral member of the Tandur limestone family, quarried in Telangana and offering a sophisticated mid-grey tone that functions as a design-neutral backdrop for virtually any architectural style. Where Urban Blue and Sunwashed carry strong color identities, Silver Ash is deliberately versatile — the variety most often specified when a project needs limestone\'s durability and texture without a dominant color statement.',
+        },
+        {
+          heading: 'Why Silver Ash is the top choice for commercial and institutional work',
+          body: 'Corporate offices, institutional buildings, museums, and mixed-use developments consistently specify neutral grey stone because it ages gracefully, photographs well, and does not compete with signage, art, or changing interior finishes over a building\'s lifetime. Silver Ash\'s combination of neutral tone and genuine limestone durability (versus engineered alternatives) makes it a frequent specification in US commercial and institutional RFPs searching for "grey limestone supplier" or "commercial natural stone flooring."',
+        },
+        {
+          heading: 'Technical performance',
+          body: 'Density 2.65 g/cm³, compressive strength 165 MPa, water absorption 0.55% — properties squarely between Urban Blue and Sunwashed, giving Silver Ash reliable performance across both interior commercial flooring and exterior landscaping applications.',
+        },
+        {
+          heading: 'Finishes and formats',
+          body: 'Full finish range: natural, brushed, tumbled, sandblasted, honed, and bush-hammered. Honed finish is most requested for commercial interior flooring given its smooth, low-maintenance surface; bush-hammered is preferred for exterior urban landscaping requiring slip resistance. Standard Tandur format range applies across tiles, pool coping, wall cladding, step blocks, cobbles, crazy paving, and stepping stones.',
+        },
+        {
+          heading: 'Ordering and delivery to the US',
+          body: 'Standard container MOQ, 8–12 week lead time from PO to US port. For large commercial and institutional projects requiring multiple containers, we coordinate phased shipping schedules to match construction timelines. Full export documentation and FOB/CIF/DDP options available.',
+        },
       ],
     },
   };
@@ -570,6 +636,35 @@ export default function LimestoneDetail({ cartItems = [], onAddToCart, onRemoveM
               </div>
             </motion.div>
           </div>
+
+          {stone.longContent && stone.longContent.length > 0 && (
+            <motion.section
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-100px' }}
+              transition={{ duration: 0.6 }}
+              className="mb-16 rounded-[20px] border border-black/10 bg-[#fafaf7] p-8 md:p-12"
+            >
+              <p className="mb-3 font-gabarito text-xs font-semibold uppercase tracking-[0.3em] text-[#c9a84c]">
+                Buyer Guide
+              </p>
+              <h2 className="mb-10 text-3xl font-gabarito font-bold text-black md:text-4xl">
+                Everything to know about {stone.name}
+              </h2>
+              <div className="space-y-8">
+                {stone.longContent.map((section) => (
+                  <div key={section.heading}>
+                    <h3 className="mb-3 text-xl font-gabarito font-bold text-black md:text-2xl">
+                      {section.heading}
+                    </h3>
+                    <p className="text-base leading-relaxed text-gray-700 md:text-lg">
+                      {section.body}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </motion.section>
+          )}
 
           {/* Available Sizes & Types */}
           <motion.div
