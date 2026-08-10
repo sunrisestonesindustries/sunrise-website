@@ -283,6 +283,28 @@ const graniteData = {
       'Retail Interiors',
       'Residential Projects',
     ],
+    longContent: [
+      {
+        heading: 'About Kashmir White Granite',
+        body: 'Kashmir White is one of the most recognizable light granites on the US market, quarried from deposits across India and prized for its soft white-and-grey base scattered with distinctive burgundy and maroon mineral flecks. Unlike engineered whites or true marbles, Kashmir White retains the durability of natural granite while delivering the bright, airy look that many US homeowners and designers want in kitchens and bathrooms without sacrificing scratch or heat resistance.',
+      },
+      {
+        heading: 'Why Kashmir White remains a top US seller',
+        body: 'Light granites have surged in popularity as open-concept kitchens and all-white interiors have become the dominant US residential design trend. Kashmir White answers that demand while still being a true granite — harder, more heat resistant, and more stain resistant than marble or quartzite. The burgundy fleck gives it just enough visual interest to avoid looking flat or artificial, which is a common complaint with some engineered white surfaces. It pairs naturally with white shaker cabinets, brass or matte black fixtures, and warm wood tones.',
+      },
+      {
+        heading: 'Performance and care',
+        body: 'Kashmir White rates 6–6.5 on the Mohs hardness scale with water absorption around 0.4%. As with all light-colored granites, staining is more visible than on dark stones, so we recommend sealing twice per year rather than the standard annual schedule, particularly in kitchens with heavy oil or wine exposure. Once sealed, the surface resists everyday acids, heat, and scratching as well as any granite in our range.',
+      },
+      {
+        heading: 'Finishes, sizes, and edge options',
+        body: 'Polished is by far the most requested finish for Kashmir White — it maximizes the brightness and depth of the white background. Honed is available for a softer, more contemporary matte look. Standard slab format is 96"–130" × 60"–78" in 2 cm and 3 cm; tiles available in 12"×12", 18"×18", and 24"×24". All standard edge profiles supported, with mitered and waterfall edges especially popular for the large kitchen islands this stone is typically specified for.',
+      },
+      {
+        heading: 'Ordering and shipping to the US',
+        body: 'Minimum order quantity is one 20\' container (approximately 280–320 sqm of 2 cm material). Standard lead time from purchase order to US port is 8–12 weeks. Because Kashmir White is a high-demand color, we recommend placing orders 2–3 weeks earlier than usual during peak US renovation season (spring and early summer) to avoid block availability delays. Full documentation, container loading photos, and FOB/CIF/DDP options are available on every order.',
+      },
+    ],
   },
   'paradiso-ash': {
     name: 'Paradiso Ash Granite',
@@ -487,6 +509,28 @@ const graniteData = {
       'Luxury Interiors',
       'Commercial Counters',
     ],
+    longContent: [
+      {
+        heading: 'About Black Forest Granite',
+        body: 'Black Forest is quarried in Karnataka and stands apart from other black granites for its bold, high-contrast veining — flowing bands of white and cream cutting across a deep black field, closer in visual drama to a marble-look granite than the uniform speckle of Black Pearl or Absolute Black. This is the variety designers reach for when a kitchen island or feature wall needs to be the room\'s focal point rather than a quiet backdrop.',
+      },
+      {
+        heading: 'Why designers spec Black Forest for statement pieces',
+        body: 'Every slab of Black Forest carries a unique vein pattern, which means fabricators and designers treat it more like a marble slab selection process — buyers often want to see and approve the specific slab before fabrication, particularly for bookmatched island installations where the veining needs to mirror across the seam. We support slab selection by photo for US buyers who want to approve pattern and vein flow before their container ships. This is the granite variety most likely to be requested by name after a client has seen a photo online, which is exactly the kind of high-intent search traffic a distinctive stone like this can capture.',
+      },
+      {
+        heading: 'Performance and technical specs',
+        body: 'Despite the dramatic pattern, Black Forest performs like a standard high-grade granite: Mohs hardness of 6.5–7, compressive strength around 200 MPa, water absorption near 0.4%. The veining does not represent a structural weak point — it is mineral banding native to the stone, not a fracture line, and slabs are resin-treated at origin the same as any other variety we ship.',
+      },
+      {
+        heading: 'Finishes, formats, and fabrication notes',
+        body: 'Polished finish is standard and essential for this variety — it is what makes the vein contrast pop. Honed is available on request but is rarely chosen for Black Forest since it mutes the pattern that makes the stone desirable. Slab format: 96"–130" × 60"–78" in 2 cm and 3 cm, large-format gang-sawn slabs available for monolithic islands. We recommend 3 cm thickness for waterfall-edge islands to give the vein pattern enough visual weight on the vertical face.',
+      },
+      {
+        heading: 'Ordering and US delivery',
+        body: 'MOQ is one 20\' container. Because vein-pattern granites have more block-to-block variation than uniform colors, we recommend ordering slightly above your calculated square footage need (5–8% buffer) to allow for pattern matching and waste during fabrication. Lead time from PO to US port is 8–12 weeks, with slab selection photos provided before cutting for approval.',
+      },
+    ],
   },
   'imperial-blue': {
     name: 'Imperial Blue Granite',
@@ -509,6 +553,28 @@ const graniteData = {
       'Luxury Interiors',
       'Commercial Counters',
       'Architectural Details',
+    ],
+    longContent: [
+      {
+        heading: 'About Imperial Blue Granite',
+        body: 'Imperial Blue is one of the rarest true-blue granites available from India, quarried in a limited number of sites across Andhra Pradesh. The vivid blue field is dense with silver and white mica particles that catch light dramatically under both natural sun and interior spotlighting — a mineral composition that occurs in very few granite deposits worldwide, which is part of why this variety commands premium pricing relative to standard colors.',
+      },
+      {
+        heading: 'Why Imperial Blue is a premium-tier specification',
+        body: 'Blue is the rarest color in the granite spectrum because it requires a specific mineral (typically sodalite or similar blue silicates) that most quarries simply do not contain. This scarcity is why Imperial Blue is typically specified for signature pieces — a bar top, a statement bathroom vanity, a reception desk — rather than whole-kitchen coverage. US buyers searching for "blue granite countertop" or "rare granite colors" are almost always looking for exactly this variety, and the search volume, while smaller than mainstream colors, converts to higher-value orders because buyers already know they want something unusual.',
+      },
+      {
+        heading: 'Technical performance',
+        body: 'Mohs hardness 6–6.5, water absorption approximately 0.4%, compressive strength around 180–200 MPa — comparable durability to other premium granites despite the unusual mineral composition. Sealing is recommended annually as with any granite; the dark blue background hides most everyday marks well, similar to other dark-toned stones.',
+      },
+      {
+        heading: 'Finishes, sizes, and fabrication considerations',
+        body: 'Polished is essentially the only finish requested for Imperial Blue — the mica sparkle is the entire point of the stone and a matte finish would mute it substantially. Available in standard slab format 96"–130" × 60"–78", though because block yield is lower than mainstream colors, large single-slab pieces should be reserved and confirmed early in project planning. Tile format available in 12"×12" and 18"×18" for smaller accent applications.',
+      },
+      {
+        heading: 'Ordering, availability, and lead times',
+        body: 'Because Imperial Blue comes from a small number of quarry sites, availability is less predictable than mainstream granites — we recommend reserving blocks 4–6 weeks before you need cutting to begin, longer than the standard lead time for common colors. MOQ can be more flexible for this variety; LCL (less than container load) shipment is more commonly used given that most orders are for accent pieces rather than whole-house volume. Contact us directly to confirm current block availability before finalizing a project timeline.',
+      },
     ],
   },
   'coffee-brown': {
