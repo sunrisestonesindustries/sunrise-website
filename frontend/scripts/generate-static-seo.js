@@ -98,6 +98,13 @@ const ROUTES = [
     keywords: 'best granite for kitchen countertops, Indian granite colors, granite countertop colors 2026, wholesale granite USA, granite kitchen countertop guide',
     type: 'article',
   },
+  {
+    path: '/blog/limestone-vs-travertine-pool-deck',
+    title: 'Limestone vs Travertine for Pool Decks: Which Should You Choose? | Sunrise Stones Industries',
+    description: 'Limestone vs travertine for pool decks and coping compared on heat, slip resistance, chlorine durability, cost and maintenance. A practical guide for landscapers, pool builders and homeowners.',
+    keywords: 'limestone vs travertine, pool deck stone comparison, best stone for pool coping, natural stone pool deck, limestone pool coping, travertine pool deck alternative',
+    type: 'article',
+  },
 
   // ─── Granite product pages ───
   { path: '/granite/alaska-red', ...granite('Alaska Red Granite', '/granite/tan-red-granite.webp') },
