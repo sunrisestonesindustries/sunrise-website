@@ -4,7 +4,7 @@
 
 This is a premium B2B e-commerce website for **SUNRISE STONE INDUSTRIES**, a luxury Tandur Limestone exporter specializing in high-end stone sourcing from Telangana, India to USA markets.
 
-The website showcases a luxury gallery aesthetic with:
+The website showcases a luxury gallery aersthetic with:
 - Dark, premium neutral color palette
 - Smooth animations and transitions
 - Full-width hero carousel with video-like quality

@@ -12,10 +12,13 @@ export default function Navbar({ onOpenModal, onOpenContact, cartCount = 0 }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const hero = document.querySelector('[data-hero-animation]');
+      const heroEnd = hero ? hero.offsetTop + hero.offsetHeight : 50;
+      setIsScrolled(window.scrollY >= heroEnd - window.innerHeight);
     };
 
     window.addEventListener('scroll', handleScroll);
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -61,7 +64,7 @@ export default function Navbar({ onOpenModal, onOpenContact, cartCount = 0 }) {
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
             ? 'backdrop-blur-glass bg-white/95 border-b border-gray-300/30'
-            : 'bg-white'
+            : 'bg-transparent'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 py-4 hidden md:flex items-center justify-between">

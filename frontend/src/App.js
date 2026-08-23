@@ -2,7 +2,7 @@ import React, { useState, useEffect, useLayoutEffect, lazy, Suspense } from 'rea
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Lenis from 'lenis';
 import Navbar from './components/Navbar';
-import HeroCarousel from './components/HeroCarousel';
+import Hero3D from './components/Hero3D';
 import LogoStrip from './components/LogoStrip';
 import NewestStock from './components/NewestStock';
 import Testimonials from './components/Testimonials';
@@ -68,6 +68,12 @@ function HomePage({ setIsModalOpen, setIsAppointmentOpen, setIsContactOpen, cart
 
   // Initialize Lenis smooth scrolling
   useEffect(() => {
+    const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (isTouchDevice || prefersReducedMotion) {
+      return undefined;
+    }
+
     let animationFrameId;
     let isActive = true;
     const lenis = new Lenis({
@@ -141,8 +147,7 @@ function HomePage({ setIsModalOpen, setIsAppointmentOpen, setIsContactOpen, cart
         onOpenContact={() => setIsContactOpen(true)}
         cartCount={cartCount}
       />
-      <HeroCarousel onOpenModal={() => setIsModalOpen(true)} />
-      <div aria-hidden="true" className="h-screen" />
+      <Hero3D onOpenModal={() => setIsModalOpen(true)} />
       <NewestStock />
       <MiningJourney />
       <LogoStrip />

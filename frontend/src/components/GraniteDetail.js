@@ -52,42 +52,17 @@ function useRipple() {
 
 const GRANITE_TYPES = [
   {
-    name: 'Countertops',
-    sizes: 'Custom fabricated  ·  Sink & cooktop cutouts included',
-    badge: 'Most Popular',
-    badgeColor: 'dark',
-    description: 'Fully fabricated to your kitchen or bathroom layout with precision edge work.',
-  },
-  {
-    name: 'Large Format Slabs',
+    name: 'Slabs',
     sizes: '96"–130" × 60"–78"  ·  2 cm & 3 cm',
     badge: 'Most Ordered',
     badgeColor: 'gold',
-    description: 'Full gang-sawn slabs for expansive surfaces and continuous pattern flow.',
+    description: 'Full-size granite slabs for countertops, islands, walls, and large installations.',
   },
   {
-    name: 'Standard Slabs',
-    sizes: '72"–96" × 24"–36"  ·  2 cm & 3 cm',
+    name: 'Custom Size',
+    sizes: 'Made to your project dimensions',
     badge: null,
-    description: 'Mid-format slabs suited for islands, wall cladding, and modular work.',
-  },
-  {
-    name: 'Vanity Tops',
-    sizes: 'Custom dimensions  ·  Backsplash & edge options',
-    badge: null,
-    description: 'Bespoke bathroom surfaces with integrated backsplash and chosen edge profile.',
-  },
-  {
-    name: 'Tiles',
-    sizes: '12"×12"  ·  16"×16"  ·  24"×24"  ·  Custom',
-    badge: null,
-    description: 'Precision-cut tiles for flooring, feature walls, and mosaic installations.',
-  },
-  {
-    name: 'Stair Treads & Risers',
-    sizes: 'Custom lengths  ·  1.2"–2" thickness',
-    badge: null,
-    description: 'Engineered stair components for grand interior and exterior staircases.',
+    description: 'Cut-to-size granite prepared for your drawings, cutouts, and installation needs.',
   },
 ];
 
@@ -982,6 +957,7 @@ export default function GraniteDetail({ cartItems = [], onAddToCart, onRemoveMat
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedFinish, setSelectedFinish] = useState('');
   const [selectedEdge, setSelectedEdge] = useState('');
+  const [isBuyerGuideOpen, setIsBuyerGuideOpen] = useState(false);
   const [addMessage, setAddMessage] = useState('');
   const [, triggerSizeRipple] = useRipple();
   const [, triggerFinishRipple] = useRipple();
@@ -1044,6 +1020,9 @@ export default function GraniteDetail({ cartItems = [], onAddToCart, onRemoveMat
     if (!selectedFinish) return;
     if (e) triggerEdgeRipple(e);
     setSelectedEdge(edgeName);
+    if (edgeName !== selectedEdge) {
+      handleAddToCart(edgeName, 1);
+    }
   };
 
   const handleAddToCart = (edgeName = selectedEdge, quantity = 1) => {
@@ -1242,35 +1221,6 @@ export default function GraniteDetail({ cartItems = [], onAddToCart, onRemoveMat
             </motion.div>
           </div>
 
-          {stone.longContent && stone.longContent.length > 0 && (
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 0.6 }}
-              className="mb-20 rounded-[20px] border border-black/10 bg-[#fafaf7] p-8 md:p-12"
-            >
-              <p className="mb-3 font-gabarito text-xs font-semibold uppercase tracking-[0.3em] text-[#c9a84c]">
-                Buyer Guide
-              </p>
-              <h2 className="mb-10 text-3xl font-gabarito font-bold text-black md:text-4xl">
-                Everything to know about {stone.name}
-              </h2>
-              <div className="space-y-8">
-                {stone.longContent.map((section) => (
-                  <div key={section.heading}>
-                    <h3 className="mb-3 text-xl font-gabarito font-bold text-black md:text-2xl">
-                      {section.heading}
-                    </h3>
-                    <p className="text-base leading-relaxed text-gray-700 md:text-lg">
-                      {section.body}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </motion.section>
-          )}
-
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1465,25 +1415,21 @@ export default function GraniteDetail({ cartItems = [], onAddToCart, onRemoveMat
             transition={{ duration: 0.6 }}
             className="mb-16 rounded-[28px] border border-[#c9a84c]/15 bg-[#0a0a0a] p-8 md:p-12"
           >
-            {/* Section header */}
-            <div className="mb-2 flex items-center gap-3">
-              <div className="h-px w-6 bg-[#c9a84c]" />
-              <p className="font-gabarito text-xs font-bold uppercase tracking-[0.3em] text-[#c9a84c]">
-                Your Selection
-              </p>
+            <div className="mb-6 flex items-center justify-between gap-4">
+              <div>
+                <p className="mb-2 font-gabarito text-xs font-bold uppercase tracking-[0.3em] text-[#c9a84c]">
+                  Your Selection
+                </p>
+                <h2 className="text-3xl font-gabarito font-bold text-white md:text-4xl">
+                  Ready to order
+                </h2>
+              </div>
+              <span className="hidden rounded-full border border-white/15 px-4 py-2 font-gabarito text-xs text-white/50 sm:block">
+                Added automatically
+              </span>
             </div>
-            <h2 className="mb-3 text-3xl font-gabarito font-bold text-white md:text-4xl">
-              Product Specifications
-            </h2>
-            <p className="mb-8 max-w-3xl text-white/40">
-              Select the granite product type, finish, and edge profile, then add the exact specification to your quote cart.
-            </p>
 
-            {/* Current Configuration card */}
-            <div className="mb-6 rounded-[24px] border border-white/10 bg-white/5 p-6 md:p-8">
-              <h3 className="mb-5 font-gabarito text-sm font-bold uppercase tracking-[0.2em] text-white/50">
-                Selected Options
-              </h3>
+            <div className="mb-6 rounded-[20px] border border-white/10 bg-white/5 p-5 md:p-6">
               <div className="grid grid-cols-1 gap-3 font-gabarito text-sm sm:grid-cols-2 md:grid-cols-4">
                 <div className="rounded-2xl bg-white/5 p-4">
                   <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#c9a84c]">Product</p>
@@ -1497,7 +1443,6 @@ export default function GraniteDetail({ cartItems = [], onAddToCart, onRemoveMat
                   <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#c9a84c]">Edge Profile</p>
                   <p className="mt-2.5 text-sm font-semibold text-white">{selectedEdge || '—'}</p>
                 </div>
-                {/* In Cart — gold accent */}
                 <div className="rounded-2xl bg-[#c9a84c] p-4">
                   <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-black/55">Cart Qty</p>
                   <p className="mt-0.5 text-xs text-black/40">This selection</p>
@@ -1506,7 +1451,6 @@ export default function GraniteDetail({ cartItems = [], onAddToCart, onRemoveMat
               </div>
             </div>
 
-            {/* Cart quantity + Add to Cart */}
             <div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_220px]">
               <div className="overflow-hidden rounded-[22px] border border-white/10 bg-white/5">
                 <div className="flex items-center justify-between px-6 py-5">
@@ -1550,23 +1494,8 @@ export default function GraniteDetail({ cartItems = [], onAddToCart, onRemoveMat
                 </div>
               </div>
 
-              {/* Add to Cart — gold CTA */}
-              <motion.button
-                onClick={() => handleAddToCart(selectedEdge, 1)}
-                whileHover={selectedEdge ? { scale: 1.02 } : undefined}
-                whileTap={selectedEdge ? { scale: 0.98 } : undefined}
-                disabled={!selectedEdge}
-                className={`rounded-[22px] py-4 font-gabarito text-base font-bold uppercase tracking-[0.18em] transition-all duration-220 ${
-                  selectedEdge
-                    ? 'bg-[#c9a84c] text-black hover:bg-[#b8963c]'
-                    : 'cursor-not-allowed bg-[#c9a84c]/15 text-white/20'
-                }`}
-              >
-                Add to Quote Cart
-              </motion.button>
-
               {addMessage && (
-                <p className="rounded-[18px] border border-[#c9a84c]/30 bg-[#c9a84c]/10 px-5 py-3 font-gabarito text-sm text-[#c9a84c]">
+                <p className="rounded-[18px] border border-[#c9a84c]/30 bg-[#c9a84c]/10 px-5 py-3 font-gabarito text-sm text-[#c9a84c] md:col-span-2">
                   {addMessage}
                 </p>
               )}
@@ -1618,6 +1547,54 @@ export default function GraniteDetail({ cartItems = [], onAddToCart, onRemoveMat
               ))}
             </div>
           </motion.div>
+
+          {stone.longContent && stone.longContent.length > 0 && (
+            <motion.section
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-100px' }}
+              transition={{ duration: 0.6 }}
+              className="mb-20 overflow-hidden rounded-[20px] border border-black/10 bg-[#fafaf7]"
+            >
+              <button
+                type="button"
+                onClick={() => setIsBuyerGuideOpen((isOpen) => !isOpen)}
+                aria-expanded={isBuyerGuideOpen}
+                className="flex w-full items-center justify-between gap-6 p-6 text-left transition-colors duration-220 hover:bg-black/[0.03] md:p-8"
+              >
+                <span>
+                  <span className="mb-2 block font-gabarito text-xs font-semibold uppercase tracking-[0.3em] text-[#c9a84c]">
+                    Buyer Guide
+                  </span>
+                  <span className="block text-2xl font-gabarito font-bold text-black md:text-3xl">
+                    Everything to know about {stone.name}
+                  </span>
+                  <span className="mt-2 block text-sm text-gray-500">
+                    {isBuyerGuideOpen ? 'Hide detailed product information' : 'Open detailed product information'}
+                  </span>
+                </span>
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-black/15 text-2xl font-light text-black">
+                  {isBuyerGuideOpen ? '−' : '+'}
+                </span>
+              </button>
+              {isBuyerGuideOpen && (
+                <div className="border-t border-black/10 p-6 md:p-12">
+                  <div className="space-y-8">
+                    {stone.longContent.map((section) => (
+                      <div key={section.heading}>
+                        <h3 className="mb-3 text-xl font-gabarito font-bold text-black md:text-2xl">
+                          {section.heading}
+                        </h3>
+                        <p className="text-base leading-relaxed text-gray-700 md:text-lg">
+                          {section.body}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </motion.section>
+          )}
         </section>
       </main>
 

@@ -54,3 +54,15 @@ frontend/src/Pictures/Silver Silk Granite.png
 frontend/src/Pictures/Steel Grey Granite.png
 frontend/src/Pictures/Tan Brown Granite.png
 frontend/src/Pictures/Thunder Black Granite.png
+
+# Large animation frames
+frontend/animation/
+
+# Local backup
+WEBSITES.zip
+
+backend/smtp.env
+
+backend/smtp.env
+backend/.env.save
+smtp2.env
