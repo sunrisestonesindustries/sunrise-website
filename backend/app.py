@@ -11,23 +11,32 @@ from datetime import datetime
 
 
 def load_env_file():
-    """Load simple KEY=VALUE pairs from backend/.env without extra dependencies."""
-    env_path = os.path.join(os.path.dirname(__file__), '.env')
-    if not os.path.exists(env_path):
-        return
+    """Load KEY=VALUE pairs from the backend env files without extra dependencies.
 
-    with open(env_path, 'r', encoding='utf-8') as env_file:
-        for raw_line in env_file:
-            line = raw_line.strip()
-            if not line or line.startswith('#') or '=' not in line:
-                continue
+    The project keeps both .env and smtp.env for local setup. Use smtp.env as the
+    authoritative override so the runtime cannot drift between duplicate files.
+    """
+    env_paths = [
+        os.path.join(os.path.dirname(__file__), '.env'),
+        os.path.join(os.path.dirname(__file__), 'smtp.env'),
+    ]
 
-            key, value = line.split('=', 1)
-            key = key.strip()
-            value = value.strip().strip('"').strip("'")
+    for env_path in env_paths:
+        if not os.path.exists(env_path):
+            continue
 
-            if key and key not in os.environ:
-                os.environ[key] = value
+        with open(env_path, 'r', encoding='utf-8') as env_file:
+            for raw_line in env_file:
+                line = raw_line.strip()
+                if not line or line.startswith('#') or '=' not in line:
+                    continue
+
+                key, value = line.split('=', 1)
+                key = key.strip()
+                value = value.strip().strip('"').strip("'")
+
+                if key:
+                    os.environ[key] = value
 
 
 load_env_file()
