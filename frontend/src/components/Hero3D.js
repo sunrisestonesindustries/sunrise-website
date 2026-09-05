@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 const FRAME_COUNT = 262;
+const INITIAL_FRAME_COUNT = 8;
 const FRAME_PATH = '/animation/ezgif-frame-';
 
 function frameSource(frame) {
-  return `${FRAME_PATH}${String(frame).padStart(3, '0')}.png`;
+  return `${FRAME_PATH}${String(frame).padStart(3, '0')}.webp`;
 }
 
 export default function Hero3D({ onOpenModal }) {
@@ -15,6 +16,35 @@ export default function Hero3D({ onOpenModal }) {
   const phaseRef = useRef('before');
 
   useEffect(() => {
+    const loadedFrames = new Set();
+    let preloadCancelled = false;
+    let nextBackgroundFrame = INITIAL_FRAME_COUNT + 1;
+    let idleHandle;
+
+    const preloadFrame = (frame) => {
+      if (loadedFrames.has(frame)) return;
+      loadedFrames.add(frame);
+      const image = new Image();
+      image.src = frameSource(frame);
+    };
+
+    for (let frame = 1; frame <= INITIAL_FRAME_COUNT; frame += 1) {
+      preloadFrame(frame);
+    }
+
+    const preloadRemainingFrames = () => {
+      if (preloadCancelled || nextBackgroundFrame > FRAME_COUNT) return;
+      preloadFrame(nextBackgroundFrame);
+      nextBackgroundFrame += 1;
+      idleHandle = window.requestIdleCallback
+        ? window.requestIdleCallback(preloadRemainingFrames)
+        : window.setTimeout(preloadRemainingFrames, 100);
+    };
+
+    idleHandle = window.requestIdleCallback
+      ? window.requestIdleCallback(preloadRemainingFrames)
+      : window.setTimeout(preloadRemainingFrames, 100);
+
     let animationFrame = 0;
     let ticking = false;
     const isConstrainedDevice = window.matchMedia('(pointer: coarse)').matches
@@ -64,6 +94,12 @@ export default function Hero3D({ onOpenModal }) {
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', handleScroll, { passive: true });
     return () => {
+      preloadCancelled = true;
+      if (window.cancelIdleCallback && typeof idleHandle === 'number') {
+        window.cancelIdleCallback(idleHandle);
+      } else {
+        window.clearTimeout(idleHandle);
+      }
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleScroll);
       cancelAnimationFrame(animationFrame);

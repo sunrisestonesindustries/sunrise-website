@@ -1,0 +1,8 @@
+{
+  "files.watcherExclude": {
+    "**/frontend/public/animation/**": true
+  },
+  "files.exclude": {
+    "**/frontend/public/animation/**": true
+  }
+}
